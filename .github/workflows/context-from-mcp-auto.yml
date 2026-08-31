@@ -1,0 +1,68 @@
+name: Context from MCP-Auto
+
+# MCP-Auto 워크플로는 건드리지 않는다. Log가 읽기만 한다.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 15 * * 1-5"  # 00:20 KST weekdays
+
+permissions:
+  contents: write
+
+jobs:
+  pull-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Log vault
+        uses: actions/checkout@v4
+
+      - name: Checkout MCP-Auto (read-only deploy key)
+        uses: actions/checkout@v4
+        with:
+          repository: MCP-AI-Acount/MCP-Auto
+          ssh-key: ${{ secrets.MCP_AUTO_READ_KEY }}
+          path: mcp-auto
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build context index in MCP-Auto tree
+        run: python mcp-auto/automation/build_context_index.py
+
+      - name: Copy Context and Sessions into vault
+        run: |
+          set -euo pipefail
+          mkdir -p MCP/Context MCP/Sessions
+          if [ -d mcp-auto/automation/obsidian_mirror/Context ]; then
+            find mcp-auto/automation/obsidian_mirror/Context -maxdepth 1 -type f -name '*.md' -print0 |
+              while IFS= read -r -d '' f; do
+                base="$(basename "$f")"
+                # hand-written master-thread는 생성물이 아니면 덮지 않음
+                if [ "$base" = "master-thread.md" ]; then
+                  continue
+                fi
+                cp "$f" "MCP/Context/$base"
+              done
+          fi
+          if [ -d mcp-auto/automation/obsidian_mirror/Sessions ]; then
+            find mcp-auto/automation/obsidian_mirror/Sessions -maxdepth 1 -type f -name '*.md' -print0 |
+              while IFS= read -r -d '' f; do
+                cp "$f" "MCP/Sessions/$(basename "$f")"
+              done
+          fi
+          rm -rf mcp-auto
+
+      - name: Commit if the vault context changed
+        run: |
+          set -euo pipefail
+          git add -- MCP/Context MCP/Sessions
+          if git diff --cached --quiet; then
+            echo "no context changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(context): MCP-Auto 세션 인덱스·아카이브 반영"
+          git push
