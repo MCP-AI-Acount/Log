@@ -1,0 +1,71 @@
+---
+description: Detail 토픽 라우터 — HOW 전문은 Coding/Ops 자식. D 번호≠로드순. Core K-6-A 0-hop.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004825/cursorrules_Detail.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> | 층 | 접두어 | 규칙 코드 |
+> |---|--------|---------|
+> | Essence/조리층 | **E.** | A0·A1~A11 (품질 축) |
+> | Core/헌법층 | **C.** | K-0·K-0-A·K-8-B·k2.x |
+> | Detail/절차층 | **D.** | D-10·D-22·D-23·N1~N5 |
+> | Manual/행동층 | **M.** | M-0·M-0-A·M-0-B·M-0-C·M-0-D·M-1~M-5 |
+> | Behavior/동작층 | **B.** | B1~B9 |
+> *(층 접두어는 참조 표기용 — 규칙 코드 자체는 불변)*
+<!-- 층 체계: E.(Essence/조리층=A규칙) · C.(Core/헌법층=K·k2규칙) · D.(Detail/절차층=D·N규칙) · M.(Manual/행동층=M규칙) · B.(Behavior/동작층=B규칙) -->
+
+
+# Detail — 토픽 라우터 (HOW 지연)
+
+> **본 파일 = 목차·트리거만** — 조항 전문은 자식 `.mdc`. **D-ID = 식별자** · 파일·표 순서 **≠** 적용 우선순위.
+> 충돌 시 **Core > agent-tooling > Main > Sub > Detail*** (3-a). Tier A 항시 요약 → **Core K-6-A-0**.
+
+## 로드 트리거 (토픽)
+
+| 트리거 | 파일 | 토픽 클러스터 |
+|--------|------|---------------|
+| Write·Shell·ARP·D-10·F-gate·B2/B7/B8 | `cursorrules_Detail_Coding.mdc` | D-1 · D-8 · D-10 · D-14* · D-15 · D-22 · D-23 … |
+| debate·페르소나·Relay·push/sync·Cerberus·Arkhe | `cursorrules_Detail_Ops.mdc` | D-4* · D-7 · D-12 · D-16~D-21 … |
+| D-10 채점·§6 금지패턴 | `cursorrules_Essence.mdc` + Body | A·B·PR·O 조리 |
+
+## D-ID → 파일 (정본 위치)
+
+| D-ID | 파일 |
+|------|------|
+| D-1 | `cursorrules_Detail_Coding.mdc` |
+| D-8 | `cursorrules_Detail_Coding.mdc` |
+| D-22 | `cursorrules_Detail_Coding.mdc` |
+| D-23 | `cursorrules_Detail_Coding.mdc` |
+| D-10 | `cursorrules_Detail_Coding.mdc` |
+| D-2 | `cursorrules_Detail_Coding.mdc` |
+| D-2-A | `cursorrules_Detail_Coding.mdc` |
+| D-3 | `cursorrules_Detail_Coding.mdc` |
+| D-11 | `cursorrules_Detail_Coding.mdc` |
+| D-14 | `cursorrules_Detail_Coding.mdc` |
+| D-14-B | `cursorrules_Detail_Coding.mdc` |
+| D-14-C | `cursorrules_Detail_Coding.mdc` |
+| D-14-D | `cursorrules_Detail_Coding.mdc` |
+| D-14-E | `cursorrules_Detail_Coding.mdc` |
+| D-14-F | `cursorrules_Detail_Coding.mdc` |
+| D-14-G | `0_Config/cc_rules/lazy/behavior.md` (CC 층 발번 · 포인터) |
+| D-24 | `0_Config/cc_rules/lazy/behavior.md` (Purgatory · CC 층 발번 · 포인터) |
+| D-25 | `0_Config/cc_rules/lazy/behavior.md` (Ouroboros · CC 층 발번 · 포인터) |
+| D-26 | `0_Config/cc_rules/lazy/behavior.md` (Haiku 오타 검토 · CC 층 발번 · 포인터) |
+| D-15 | `cursorrules_Detail_Coding.mdc` |
+| D-5 | `cursorrules_Detail_Coding.mdc` |
+| D-6 | `cursorrules_Detail_Coding.mdc` |
+| D-9 | `cursorrules_Detail_Coding.mdc` |
+| D-4 | `cursorrules_Detail_Ops.mdc` |
+| D-7 | `cursorrules_Detail_Ops.mdc` |
+| D-12 | `cursorrules_Detail_Ops.mdc` |
+| D-13 | `cursorrules_Detail_Ops.mdc` |
+| D-16 | `cursorrules_Detail_Ops.mdc` |
+| D-17 | `cursorrules_Detail_Ops.mdc` |
+| D-18 | `cursorrules_Detail_Ops.mdc` |
+| D-19 | `cursorrules_Detail_Ops.mdc` |
+| D-20 | `cursorrules_Detail_Ops.mdc` |
+| D-21 | `cursorrules_Detail_Ops.mdc` |

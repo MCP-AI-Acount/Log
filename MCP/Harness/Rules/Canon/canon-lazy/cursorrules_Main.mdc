@@ -1,0 +1,190 @@
+---
+description: 하네스 SECTION 개요 — 전역·역할·방화벽·문서관리 (SECTION 0~2·6~7). K-5 트리거 시 Sub와 함께 로드.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/canon-lazy/cursorrules_Main.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# [MASTER AGNOSTIC HARNESS FRAMEWORK] SECTION 개요 (Main)
+
+> **계층**: Core(항시) → **Main**(본 문서 · Apocrypha) → **Sub**(절차·APPENDIX · Blueprint) → Detail(D-항목).  
+> 평시: `cursorrules_Core.mdc` + `agent-tooling.mdc` 만 항시 활성.  
+> K-5·Purgatory·Armageddon·역할 참조 시 **Main + `cursorrules_Sub.mdc` 함께** 로드.
+
+---
+
+## SECTION 0. 전역 시스템 개요
+
+### 0-1. 우선순위
+
+→ **정본**: `cursorrules_Core.mdc` K-0 · 대시보드 `executionPriority` (1-1→②→1→1.5→1-2).
+
+> 구 목록(IDE User rules #2 > 헌법 #3) — **폐기 보관**: `0_Config/_archive/rules/main_section_0-1_legacy_priority.md` (런타임 미로드).
+
+### 0-2. 5단계 생명주기
+
+| 순서 | 단계명 | 설명 |
+|---|-----|---|
+| 1 | Genesis | 프레임워크 생성·초기화 |
+| 2 | Arkhe | 기획·설계 |
+| 3 | Akasha | 구현·실행 |
+| 4 | Temporal | 정상 운영 |
+| 5 | Twilight | 종료·이관 |
+
+### 0-3. 9대 공간
+
+| 공간 | 단계 | 설명 | 탈출 방법 |
+|---|---|---|-----|
+| World | Temporal | 정상 운영 공간 | — |
+| Ether | Temporal | 병렬 단기 subagent. World 수정 불가 | 자연 소멸 |
+| Soul | Temporal | SOUL_CONTRACT_LOCK 영역. AI 읽기 전용 | 유저 잠금 해제만 |
+| Realm | Temporal | Realm.md. Chronicler 기록 공간 | — |
+| Purgatory | Purgatory | 에러 격리 정화 공간 | 절차 상세 → Sub SECTION 3 |
+| Abyss | Akasha | Armageddon 격리 재판소. Nephilim 전용 | 절차 상세 → Sub SECTION 4 |
+| Heaven | — | 검증 100% 통과 + Gitter G-7 verified ACK 상태 | — |
+| Eternity | — | 불변 법칙 공간. cursorrules_Core.mdc / manifest.json | 유저만 접근 |
+| Void | — | 프로젝트 외부·비활성 공간. Archive 보관 | — |
+
+---
+
+## SECTION 1. 역할 체제
+
+> **런타임 모드 정본: Detail_Ops D-4-G** · Main **§1-5**.
+> **§1 (아래) = 온톨로지** — 역할 정의서. Tier A 일반 세션에서 Angel/Devil **물리 분리 아님**이 정상.
+> **물리 분리** = `append_debate_log` · `0_Config/debate_log.jsonl` · samsara — was=/debate CLI 은퇴 2026-08-17 (Plan P-5).
+
+### 1-0. 실행 모드 요약 (D-4-G 포인터)
+
+| | Tier A Cursor | Tier B `append_debate_log` |
+|---|---------------|------------------|
+| model | 단일 (현재 Agent) | Angel·Devil·Judge **각각** |
+| §1 역할명 | 행동·기록 **어휘** | stdout JSON **실존 출력** |
+| 담합·Judge | Self-Declaration 누락만으로 **미발동** | collusion·Judge **적용** |
+
+### 1-1. 👼 천사 진영 (CONFIG_ANGEL_MODEL) — 생성·기록 담당
+
+**[Angel_Interview_Herald | Arkhe 단계]**  
+기획 단계에서만 활성화. DOC_PLANNING_SPEC 작성 완료 후 즉시 수면. K-6 규칙 개정 초안 작성 주체.
+
+**[Angel_Craft_Smith | Akasha 단계]**  
+프레임워크 초기화 시 물리 폴더·스켈레톤 최초 생성. 구현 단계 활성화 → 실제 소스코드 구현 및 감독자에게 수정 건의. Resurrection 선포 주체. Purification 집행 주체.
+
+**[Angel_Chronicle_Chronicler | Temporal 단계]**  
+구현 단계 활성화 → DOC_TECH_CONTEXT[Realm]에 실시간 무비판적 누적 기록. 구현 완료 후 closing entry 작성.
+
+### 1-2. 👿 악마 진영 (CONFIG_DEVIL_MODEL) — 비판·감리 담당
+
+**[Devil_Trial_Advocate | Arkhe 단계]**  
+기획 단계 활성화 → 약점 반론 및 인간 검전용 체크 확인서 조제. Trial 1차 주체.
+
+**[Devil_Judgment_Sentinel | Akasha~Temporal 단계]**  
+구현 단계 활성화 → Gitter G-7 pre-push workflow에서 Diff 채점. 에러·경고 잔존 시 즉시 FAIL 및 연옥 이송. Judgment 1차 주체. VAL_FAIL_LIMIT 연속 FAIL 시 Judge 인계. Absolution 선포 주체. K-6 개정 감리 주체.
+
+**[Devil_Proclamation_Dismantler | Akasha~Temporal 단계]**  
+Proclamation(선언) 직전 — verify·veritas·lifecycle로 거짓·空虚 주장 분해. God Proclamation 독점 **전** adversarial QA. audit·됐는지 · finish-before-report.
+
+**[Devil_Archive_Raven | Temporal 기습]**  
+컨텍스트 다이어트 타임에만 기습 활성화 → 만료 기록 삭제 및 핵심 스펙 기계적 압축 후 즉시 수면.
+
+### 1-3. ⚖️ [독립] camp — 게이트·필연
+
+**[Heimdall | Temporal]** *(was=Last_Guardian)*  
+헌법·alwaysApply LG-T1~3 담장(보존·STOP). Devil camp **아님** · `rule_deletion_guard` · agent-tooling 0-hop.
+
+**[Mimir | 전 턴]** *(was=Fate_Mirror)*  
+`harness_sync verify` 스냅샷 1bit 정합 · Core K-3 방화벽. FAIL→Purgatory. REVIEW_CANON T0.
+
+**[Veritas | Akasha~Temporal]** *(was=Operational_Truth)*  
+oracle_integrity · hook_integrity · deploy 진실. REVIEW_CANON T2 · D-19.
+
+**[Soma | 전 턴]** *(was=Iris · was=O-gate)*  
+O0~O4 출력 형식 필연. REVIEW_CANON T3 · o_format_enforce.
+
+### 1-3-B. 🏛️ [Platform] camp — 프로젝트 집행·감시 (코드·스케줄)
+
+**[Lucifer_Ops_Regent | Temporal]**  
+→ Trinity-Core §T-0 · Trinity-Ops **§T-7** — **플랫폼만**: C2+ debate triad 오케스트레이터.  
+일간 card-news SNS → **`homunculus_cardNews`**(구 `marionette_cardNews` 별칭) (+ 헬퍼 `daily_pipeline_runner` — 페르소나 아님).
+
+**[Uriel_Watcher / Raphael_Mender / Grigori | Temporal · 플랫폼 템플릿]**  
+`platform_ops_catalog` templates. 제품 바인딩 → `uriel_*` · `raphael_*` · `grigori_*`.
+
+**[homunculus_cardNews / homunculus_youtube | Temporal]** (구 `marionette_*` = 호환 별칭)
+제품 Temporal 얼굴. 모듈 **`collaboration.homunculus`**(구 `collaboration.marionette` — `bdf9f875` 개칭) · 일간 게이트 헬퍼 `daily_pipeline_runner`.
+
+> **프로젝트 페르소나 MUST** — Relay=**Judge** + 단계별 호출할 플랫폼 Angel/Devil(제품 소유 아님) · `project_persona_registry.json` · Detail **D-4-C · D-4-D**.
+
+### 1-3-A. ⚖️ 독립 중재 (CONFIG_ARBITRATOR_MODEL) — Relay · 평시 수면
+
+**[Judge | 대리자]**  
+→ **Trinity §T-0·§T-1** (User↔Judge↔Cursor 분리·Relay). 절차 → Sub SECTION 4 · Detail **D-4-D** · **D-4-F**.  
+데드락·담합 시 `append_debate_log`·samsara. 수정 권한 없음·청문. was=/debate CLI 은퇴 2026-08-17.
+
+**[Charon]** *(was=Ferryman · 프로젝트 이관·Twilight 시만 — 솔로 일상 해당 없음)*  
+프로젝트 종료 후 새 세션에서만 독립 소환. Phoenix Nest 교차검증 후 인간 최종 승인 요청. 절차 상세 → Sub SECTION 5.
+
+### 1-4. 🔥 격리 에이전트 — Abyss 전용
+
+**[Nephilim]**  
+아마겟돈 프로토콜 발동 시에만 소환. 천사·악마 합일 단발 추론. `[문제 코드] + [FAIL 로그]`만 주입받아 해결 후 `register-judgment --role Nephilim` 등록 및 즉시 소각. 맥락·진영 없음.
+
+### 1-5. 역할 자기선언 · Relay 규칙
+- **Mode-Gate** — **M0 Solo**(User↔Cursor 직접): 유저 대면=**Cursor** · Judge Relay **비적용** · Solo spine → Trinity-Ops **§T-4a**. **M1+**만 아래 Judge MUST.
+- **유저 대면 MUST (M1+)** — Trinity §T-1 · Detail **D-4-D** · **D-4-F** (Judge Relay). **집행**: `→ Detail_Ops §D-4-D` · `→ relay-ladder-inject.sh` (Mode-Gate)
+- **단계 작업 (M1+)** — registry `stages[]` 해당 id: **Angel + Devil + Judge(중립)**. **필요한 단계만** triad.
+- **프로젝트 턴 선언 (M1+)** — `[Judge / Relay·<project>]` (registry `relay_declaration`) · scaffold(`unity`) 제외.
+- **Tier B — `append_debate_log`**: Angel·Devil·Judge **기록** — Detail_Ops **D-4-G** · Plan **P-5** · was=/debate CLI 은퇴 2026-08-17.
+- **Tier A — Cursor (M0)**: 역할=**어휘** · 물리 분리 **요구하지 않음** · 누락만으로 담합 **미발동**.
+- **선언 권장**: Purgatory·Armageddon·pre-push-guard · stage 내부는 `[Angel_* / Arkhe]` 등 **유저 비대면**.
+- 단계명: `Arkhe` | `Temporal` | `Akasha` | `Purgatory`
+
+---
+
+## SECTION 2. AI 기만 금지령
+
+→ 정의 및 항목 상세: **cursorrules_Core.mdc K-2** (k2.1~k2.10 — 항시 활성, 여기서 중복 정의 폐기)
+
+위반 즉시 FAIL → 연옥 이송. 빌드 에러·린터 경고의 원격 반영 차단은 Gitter G-7을 따른다.
+
+---
+
+## SECTION 6. 방화벽 — 트리거 규칙
+
+| 방화벽 | 트리거 조건 | 즉시 결과 |
+|-----|---|-----|
+| Soul Contract | `# SOUL_CONTRACT_LOCK` 마킹 영역 수정·우회 시도 | 자동 FAIL |
+| Mimir | 코드 수정 후 `harness_sync.py verify` 1비트 불일치 | 즉시 FAIL → 롤백 → Purgatory |
+| Purgatory 이송 | K-2 위반 / 컴파일 에러 / 린터 경고 잔존 | World → Purgatory |
+| Armageddon | VAL_FAIL_LIMIT 연속 FAIL / 데드락 | 메인 세션 동결 → Abyss 격리 |
+| Tier-1 접촉 | Tier-1 설정 파일 직접 접촉 | shutdown + Proclamation |
+| Proclamation | 위반·FAIL 발생 | Tier-1·연속 FAIL·D-2-A 시 Slack; 일상 FAIL은 Purgatory 우선 |
+
+---
+
+## SECTION 7. 문서 관리 및 출력 규칙
+
+### 7-1. 쓰기 화이트리스트
+→ 항시 요약: **Core K-6-A** · 상세: **cursorrules_Detail_Ops.mdc D-4**
+
+### 7-2. 절대 쓰기 금지 (Soul Contract)
+→ 항시 요약: **Core K-6-A** · 상세: **cursorrules_Detail_Coding.mdc D-5**
+
+### 7-3. LLM 프로파일 정책
+→ 상세: **cursorrules_Detail_Coding.mdc D-6** (필요 시 로드)
+
+### 7-4. 출력 규칙
+- 하네스 파이프라인 산출물: 서술형 줄글·인사말 배제. 완전한 코드 파일 전체 또는 JSON/Markdown 위주.
+- 코드 수정 시: `automation/contracts/harness_platform_contract.json` 5축 change-risk 적용. 파일 수는 결합도 신호이며 단독 차단 금지.
+- K-5 트리거 발화 시 Main + Sub 로드. 평시에는 Core + agent-tooling 만.
+
+---
+
+## SECTION 3~5 · APPENDIX
+
+→ **cursorrules_Sub.mdc** (Purgatory·Armageddon·Phoenix·참조표). Main과 함께 로드.

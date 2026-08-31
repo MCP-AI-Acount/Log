@@ -1,0 +1,358 @@
+---
+description: Trinity Ops — T-Violation catalog · 사례표 · 파생 포인터 · 수행 모드 (Trinity-Core §T-1c 파생)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004824/cursorrules_Trinity-Ops.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> | 층 | 접두어 | 규칙 코드 |
+> |---|--------|---------|
+> | Essence/조리층 | **E.** | A0·A1~A11 (품질 축) |
+> | Core/헌법층 | **C.** | K-0·K-0-A·K-8-B·k2.x |
+> | Detail/절차층 | **D.** | D-10·D-22·D-23·N1~N5 |
+> | Manual/행동층 | **M.** | M-0·M-0-A·M-0-B·M-0-C·M-0-D·M-1~M-5 |
+> | Behavior/동작층 | **B.** | B1~B9 |
+> *(층 접두어는 참조 표기용 — 규칙 코드 자체는 불변)*
+<!-- 층 체계: E.(Essence/조리층=A규칙) · C.(Core/헌법층=K·k2규칙) · D.(Detail/절차층=D·N규칙) · M.(Manual/행동층=M규칙) · B.(Behavior/동작층=B규칙) -->
+
+
+# cursorrules_Trinity-Ops.mdc
+> **정본층**: canon-lazy · 불변식·권위 → `cursorrules_Trinity-Core.mdc §T-0·§T-1`
+> **적용 범위**: 3자 Relay 스택 활성 턴 (cc_bridge · delegation · Judge 경유). Tier A 솔로 Cursor 직접 대화 = **본 catalog 외** → `cursorrules_Core.mdc §K-0-B` · `cursorrules_Detail_Ops.mdc §D-4-G`
+
+---
+
+## §T-2 T-Violation catalog
+
+> **적용 전제**: cc_bridge · delegation · Judge 경유 턴에 한정. M0/M1 솔로 코딩 턴에 FULL 적용 금지 (→ §T-4 모드 참조).
+
+### T-2a 채널 분류 (T-V2 판정 기준)
+
+| 채널 유형 | 예 | User-facing? |
+|-----------|-----|:------------:|
+| **User-facing** | Claude Code 채팅 응답 · Judge 직접 출력 | ✅ |
+| **Judge-Relay 수송로** | `delegation_inbox/plan.json` · cc_bridge outbox | ❌ |
+| **Internal** | executor/Angel/Devil hooks · subagent stdout · `[CC-BRIDGE-FINAL]` 훅 | ❌ |
+
+> `[CC-BRIDGE-FINAL]`은 Judge 회수용 신호 — User 직접 보고 아님.
+
+---
+
+### T-V 카탈로그
+
+| 코드 | 위반 | Trinity 근거 | 집행 경로 |
+|------|------|-------------|-----------|
+| **T-V1** | **C2+ Angel/Devil 동일 컨텍스트**: C2+ 변경에서 Angel·Devil 산출이 동일 Judge model · 연속 컨텍스트에서 생성됨 | T-0 Polyphony · K-8-B C2+ | `cc_bridge --persona angel/devil` 물리 분리 MUST — 동일 ctx 전환 금지 |
+| **T-V2** | **Relay 활성 중 Cursor→User 직접 보고**: executor/Angel/Devil이 T-2a User-facing 채널에 직접 출력 | T-1 Cursor MUST NOT | Judge만 User-facing 출력 · D-4-D 집행 |
+| **T-V3** | **Judge 목적 4tuple 재정의**: User 미승인 상태에서 목적·우선순위·범위·완료정의 중 하나 이상을 Judge가 대체·확장·확정 | T-1 Judge MUST NOT | PR1 질문 + O2 확인 경유 · T-2b 사례표 |
+| **T-V4** | **Cursor 목적 4tuple 확정**: Cursor가 목적·우선순위·범위·완료정의를 User/Judge 없이 단독 확정 | T-0 Teleology User 독점 | D-10 결과는 Judge가 User에 제시 · Cursor verify ≠ Teleology 판단 |
+| **T-V5** | **취소 불가 행동 미승인 실행**: T-2c catalog 행동을 User 명시 승인 없이 실행 | T-1 User 취소불가 승인 독점 | 사전 O2 必 · 정본 D-2 · CLAUDE.md cloud-spawn |
+| **T-V6** | **Relay 증거 은폐**: Judge가 System→User 변환 시 diff·FAIL·`(막힘)` 등 실행 증거를 의도적 누락·왜곡 | T-0 Translation traceability | k2.9 증거 선행 · ops.md §cc_bridge pull 검수 절차 · O1 substance MUST · K-2.5 |
+| **T-V7** | **역방향 skip**: User→Cursor 직접 지시(Judge 우회) 또는 Judge→Cursor User intent 없는 임무 하달 | T-1 Relay 화살표 단방향 | Judge 경유 1문 O2 확인 · Oracle 발행 후 수신 확인 |
+| **T-V8** | **조기 완료 확정**: verify·O1만으로 User 합격 없이 「완료·Nirvana」확정 | T-1 User 외부성 · 2차 검증 | User 합격/불합격 선언 대기 · k2.9 「완료」주장 시 User-facing 증거 선행 |
+| **T-V9** | **Relay 독점 악용**: Judge가 Cursor 산출을 User 승인 없이 최종 채택·merge·push | T-0·T-1 Teleology 침범 | git push = O2 필수 · CLAUDE.md §B4 |
+| **T-V10** | **Persona collapse (C2+)**: C2+ Angel/Devil 산출이 상호 독립 검증 없이 동일 prompt 변형·복사만 | K-8-B C2+ Polyphony | cc_bridge 물리 분리 MUST(독립성 보장 수단) · Devil이 Angel 산출과 구별되는 반론 MUST · K-8-B C2+ 2왕복 |
+
+---
+
+### T-2b 구체화 vs 재정의 사례표 (T-V3 집행 기준)
+
+> **판단 축**: 목적 4tuple(목적·우선순위·범위·완료정의) User 소유 유지 여부 · User 확인 채널(O2/K-0-A) 경유 유무
+
+#### Positive — 구체화 (허용)
+
+| ID | 상황 | Judge 행동 | 허용 이유 |
+|----|------|-----------|----------|
+| **P-1** | User: 「로그인 버그 고쳐줘」— 화면·재현 조건 미명시 | PR1 1회: 「어느 화면·어떤 증상인지 1줄만 주시면 executor에 전달하겠습니다.」 | 목적(로그인 버그 수정) **유지** · 실행 조건 수집만 — 범위 변경 없음 |
+| **P-2** | User: 「API 응답 캐시 넣어줘」— 저장소·TTL 미언급 | B1 1문: 「Redis vs in-process 중 선호 없으면 기존 convention 따르겠습니다.」 | 목적(캐시 추가) **불변** · Mutation 평면 기술 수단만 확인 |
+| **P-3** | User: 「staging 배포해」— verify 선행 여부 미언급 | O2 1줄: 「verify PASS 후 deploy로 해석. production 아님 — 맞으면 진행합니다.」 | 암묵 절차 spec 명시 · 환경 변경 없음 · K-0-A 충돌 없음 |
+
+#### Negative — 재정의 (T-V3 위반)
+
+| ID | 상황 | Judge 행동 | 위반 이유 |
+|----|------|-----------|----------|
+| **N-1** | User: 「결제 A 기능만 추가해줘」 | User 확인 없이 B·C 기능까지 plan.json에 포함 하달 | **범위** 4tuple 확장 · PR1 「~만」위반 |
+| **N-2** | User: 「① auth ② UI ③ docs — 다 해줘」(순서 미지정) | 「③ docs 먼저(빠름)」순으로 D-10·O2 없이 plan 고정 | **우선순위** 4tuple 단독 확정 |
+| **N-3** | User: 「다 되면 알려줘」 | verify PASS 후 User 확인 없이 「완료 확정」선언 | **완료정의** 4tuple Judge 단독 확정 (T-V8 인접) |
+
+#### Gray zone — 경계 모호
+
+| ID | 상황 | 허용 쪽(A) | 위반 쪽(B) | 판정 기준 |
+|----|------|-----------|-----------|----------|
+| **G-1** | User: 「성능 개선해줘」(병목·범위 미명시) | O2: 「쿼리만·쿼리+인덱스·캐시까지 — 어느 층까지?」→ User 선택 후 executor | 「병목 분석 결과 3층 포함해 진행」— User 확인 없음 | 분기 질문(A) vs 범위 묶음 확정(B) |
+| **G-2** | User: 「헌법 규칙 정리해줘」(정리 방법 불명) | 「중복 MUST 제거+pointer 통합만으로 해석 — 삭제·등급 변경 제외. 맞나요?」 | 「정리=중복 제거만」단정 후 대량 `.mdc` 삭제 위임 | PR1 좁은 해석 + 1회 확인(A) vs 목적 축소 대체(B) |
+
+**Gray 판정 원칙**:
+① **무응답 default** — 좁은 해석만 실행 · 무응답 ≠ 범위 동의
+② **판정 시점** — 행동 **전** O2/B1 확인 유무가 기준 · 사후 intent 주장은 새 지시 처리
+③ **병렬 실행** — Mutation 허용 · 완료 순서가 User 목적에 영향 시 O2 필요
+
+---
+
+### T-2c 취소 불가 행동 catalog (T-V5 기준 목록)
+
+| 행동 | 정본 |
+|------|------|
+| git force push | D-2 · CLAUDE.md §B4 |
+| cloud-spawn post-exec | CLAUDE.md §클라우드 라우팅 |
+| Soul Contract 파일 Write | Core K-0-C · CLAUDE.md §Soul Contract |
+| DB 삭제 · 대량 파일 삭제 | D-2 R3 |
+| PR 생성 · push | CLAUDE.md §B4 (CC 추가) |
+
+---
+
+## §T-3 후속 파생 포인터
+
+> **방향**: Trinity §T-0·§T-1 → 하위 정본. 「D-4-D가 Trinity 없으면 성립 불가」가 아니라 「정합」관계.
+
+### 입법·목적 축 (User Teleology)
+
+| 파생 | 포인터 |
+|------|--------|
+| User 최종 합격/불합격 선언권 | `Delivery-Audit` · `cursorrules_Sub.mdc §5-2` |
+| 취소 불가 행동 사전 승인 | T-2c catalog ← `cursorrules_Detail_Coding.mdc §D-2` · `CLAUDE.md §cloud-spawn` |
+| C2+ 헌법 변경 User 최종 판단 | `cursorrules_CCLayer.mdc §K-8-B` |
+| Soul Contract · LG-T1 (User 입법축) | `cursorrules_Core.mdc §K-0-C` |
+
+### 변환 축 (Judge Translation)
+
+| 파생 | 포인터 |
+|------|--------|
+| Relay 유일 · skip-edge 금지 | `cursorrules_Detail_Ops.mdc §D-4-D · §D-4-F` |
+| C2+ 단독 통과 금지 | `cursorrules_CCLayer.mdc §K-8-B` (T-1 MUST NOT) |
+| K-2 위반 경로 차단(veto) | `cursorrules_Core.mdc §K-2` · `CLAUDE.md §K-2` |
+| PR1 literal · 범위 확장 금지 | `cursorrules_Essence_Body.mdc §0-A-PR` |
+| k2.9 증거 선행 (traceability) | `cursorrules_Core.mdc §K-2 k2.9` |
+| K-0-A 충돌 확인 (override = User 명시만) | `cursorrules_Core.mdc §K-0-A` |
+| Oracle 발행 + 수신 확인 의무 | `CLAUDE.md §M-4` |
+
+### 실행 축 (Cursor Mutation)
+
+| 파생 | 포인터 |
+|------|--------|
+| Relay 활성 중 User-facing 직접 보고 금지 | `cursorrules_Detail_Ops.mdc §D-4-D` |
+| C2+ Angel/Devil cc_bridge 물리 분리 | `cursorrules_CCLayer.mdc §K-8-B` |
+| Tier B 3model debate | `cursorrules_Detail_Ops.mdc §D-4-G` |
+| verify · Cerberus (실행평면 내부 견제) | `cursorrules_Detail_Coding.mdc §D-23` |
+| cc_bridge · delegation (수송로 ≠ T-V2) | `CLAUDE.md §cc_bridge · cc_relay 운영` |
+
+---
+
+## §T-4 수행 모드 (Mode-Gate 정본)
+
+> **전제**: Trinity 3자 Relay는 항상 활성이 아님 — 아래 모드 기준으로 T-V 적용 범위가 달라진다.
+> **판정**: `harness_sync.is_trinity_relay_active` · 0-hop → Trinity-Core **§T-Mode**.
+> **기계 정본 (런타임)**: `M0` | `M1+` only (`automation/cursor_mode_gate.evaluate_mode` / `harness_sync.mode_gate_decision`). 아래 M2/M3는 **M1+ 강도 레인**(문서·`model_lane`/Hermes jump) — 런타임 enum 확장 아님.
+
+| 모드 | 조건 | User 대면 | Angel/Devil | T-V 적용 |
+|------|------|-----------|-------------|---------|
+| **M0 Solo** | live-pending 없음 · User↔Cursor 직접 · Tier A | Cursor UI 직접 | 단일 model · 역할=어휘 (D-4-G) | **T-V 비적용** · **§T-4a** |
+| **M1 Relay-Lite** | Claude Code Judge + executor 1세션 | Judge | executor 내부 분석만 | T-V2·T-V6·T-V7·T-V8 적용 |
+| **M2 Trinity-Full** | C2+ · `/debate` · constitution · delegation plan | **Judge only** | cc_bridge **물리 분리** 세션 | **T-V 전체 적용** |
+| **M3 Scale-Out** | SESSION_SPLIT · delegation subtasks | Judge | N executor + 선택적 A/D | T-V1~V10 + T-2c 취소불가 강화 |
+
+### §T-4a Solo Spine (M0 — Judge 복제 인프라 없이)
+
+> **목적**: Trinity 약점(제2 검수·증거·완료 외성)을 **cc_bridge/outbox 신설 없이** 솔로 Cursor에 이식.
+> **MUST NOT**: M0에서 Judge 유일채널·D-4-F ladder·T-V2·outbox 의무.
+
+| # | 축 | MUST (0-hop) | Trinity 대응 |
+|---|-----|--------------|--------------|
+| 1 | **자기 Devil** | C1 규칙 Write 전/후 **반론 1문** (같은 ctx) · Devil OK→진행 / 이의→유저 | T-V1 lite · K-8-B C1 |
+| 2 | **증거 선행** | 원인·완료 주장 전 k2.9 증거 1회 · O1 substance | T-V6 lite |
+| 3 | **완료 외성** | O1≠완료 · User 합격/불합격만 Nirvana | T-V8 lite |
+| 4 | **에스컬레이션** | C2+·다영역·취소불가·장기 NTD → O2 「Trinity로 넘겨?」1문 (강제 spawn 금지) | M1+/M2 승격 |
+
+- **C2+·물리 debate·다세션·cloud-spawn** = **M2/M3 전용** (본 spine으로 대체 **금지**).
+- **품질 본체** = Tier A verify · Cerberus · O-gate (기존) + 위 4축.
+
+### T-V × K-8-B 등급 교차표
+
+| 상황 | K-8-B | T-V1 | T-V10 |
+|------|-------|------|-------|
+| C0 오타 | 없음 | 해당 없음 | 해당 없음 |
+| C1 단일 조항 | 단일 ctx Angel→Devil OK | **해당 없음** | 주의 (독립 반론 의무) |
+| C2+ 구조 | 물리 분리 MUST | **FULL** | **FULL** |
+
+### 모드별 룰트리 적용 범위
+
+> **룰트리** = 각 주체의 규칙 계층 물리 구조. 모드 전환 시 어느 트리가 활성인지 확인 기준.
+
+| 모드 | Judge 참조 트리 | Cursor 참조 트리 | 통합 참조 |
+|------|---------------|----------------|---------|
+| M0 Solo | — | `.cursor/rules/RULE_TREE.md` | — |
+| M1 Relay-Lite | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` | `RULE_TREE_COMBINED.md` |
+| M2 Trinity-Full | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` | `RULE_TREE_COMBINED.md` (교차 참조 필수) |
+| M3 Scale-Out | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` per executor | `RULE_TREE_COMBINED.md` |
+
+**룰트리 갱신 의무**: M1+ 전환 시 두 트리가 동기화됐는지 확인. 신규 `.mdc` 또는 `cc_rules/*.md` 추가 시 `RULE_TREE_COMBINED.md` 교차 참조 표도 함께 갱신 (→ `RULE_TREE_COMBINED.md §갱신 체크리스트`). · **집행**: `harness_sync verify` `rule_paths` · `WORKTREE_BY_FILENAME` delta **또는** `.cursor/rules/RULE_TREE.md` checklist
+
+---
+
+## §T-5 루프 경계 원칙 (정반합 합)
+
+> **배경**: 正(Cursor 자율 루프) × 反(Trinity Judge 경계) → 合(경계 분리)
+
+**불변식**: 루프의 *내부 iteration*과 *경계(시작·종료·에스컬레이션)*는 다른 주체가 담당한다.
+
+| 루프 층 | 담당 | 모드 | T-V 적용 |
+|---------|------|------|---------|
+| **내부 iteration** | Cursor (stop-hook 주도) | M0 Solo | T-V 비적용 |
+| **경계 — 시작** | Judge → Oracle 발행 → Cursor | M1 Relay-Lite | T-V3·T-V7 |
+| **경계 — 종료** | Cursor 완료 신호 → Judge 재확인 → User O2 | M1 Relay-Lite | T-V8·T-V3 |
+| **경계 — 에스컬레이션** | Cursor escalate → Judge 중계 → cc_bridge 물리분리 | M2 Trinity-Full | T-V1·T-V10 |
+
+### §T-5a Angel/Devil 발동 기준 (루프 내)
+
+Angel/Devil 토론은 **루프 경계 결정 시에만** 발동한다.
+
+| 위치 | 발동 | 근거 |
+|------|------|------|
+| 루프 시작 게이트 | ✅ (삼사라 feature/error-fix) | 방향 결정 = 분기점 1회 |
+| 에스컬레이션 (blocker) | ✅ (삼사라 escalate) | 전략 전환 결정 |
+| 매 iteration | ❌ | 실행 기준이 명확 — 노이즈만 추가 |
+| 종료 판정 | ❌ | PRD passes / 미션 잔여 체크가 더 정확 |
+
+### §T-5b CC 단독 세션 예외
+
+cc_bridge/Cursor stop-hook 미가동 시 Judge가 루프 경계를 직접 Bash 호출로 대행한다.
+집행 명령 → `CLAUDE.md §CC 세션 루프 직접 제어`.
+
+---
+
+---
+
+## §T-6 대규모 작업 워크플로우 (Large-Scale Workflow)
+
+> **적용 조건**: 프로젝트 신규 생성 **또는** 대규모 추가·수정 (아래 발동 기준 참조).
+> 삼사라·켈베로스·시지프스·Slack Watcher를 **단일 워크플로우**로 묶어 Judge가 오케스트레이션.
+
+### §T-6a 발동 기준
+
+아래 중 **하나 이상** 해당 시 본 워크플로우 의무 적용:
+
+| 기준 | 판정 |
+|------|------|
+| Volva에 `feature` 또는 `improve` kind 항목 존재 | `cc_volva.json` open LT 확인 |
+| 변경 대상 파일 3개 이상 OR 신규 모듈·디렉토리 생성 | Write 계획 확정 시점 |
+| 유저가 "프로젝트", "전면 수정", "새로 만들어" 발화 | PR1 문맥 판단 |
+
+> 유저가 "삼사라 없이"·"직접 실행"을 명시하면 워크플로우 금지.
+
+> **자동 arm(유저 선언 없이) 세부 조건**: `CLAUDE.md §삼사라 auto-arm` · `ops.md §삼사라 자동발동 기준` 참조.
+
+### §T-6b 실행 순서 (Judge 오케스트레이션)
+
+```
+[1] 착수 게이트
+    Judge: M-0 체크 ("이 선택이 나중에 더 많은 일을 만드는가?")
+    Judge: 삼사라 Oracle 발행 → delegation_inbox/plan.json
+
+[2] 루프 시작 (동시 실행)
+    Cursor: bash EXE/run_samsara_loop.sh start --task "X" --kind feature
+    Judge:  bash EXE/run_samsara_slack_notify.sh watch --project "P" --task "X" &
+    (S1 미션 있으면) bash EXE/run_sisyphus_loop.sh arm --s1-from-ntd  # 플래그명 레거시 · 소스=missions
+
+[3] 실행 중 (Cursor Mutation 평면)
+    Write 완료마다: python3 collaboration/cerberus.py post-edit --file F --change-class C
+    Cerberus all_pass → Judge에 자동 통보
+
+[4] 종료 게이트
+    Cerberus all_pass 확인 → Judge가 User에 O2 제시
+    User 합격 → bash EXE/run_samsara_loop.sh nirvana
+    Judge: Slack watcher kill + 완료 알림 자동 발송 (✅ 메시지)
+
+[5] 이월 처리
+    미완 근기 → next_session_missions.json · LT만 cc_volva.json
+    시지프스 disarm → 세션 종료 리포트
+```
+
+### §T-6c 루프 배치 역할표
+
+| 루프 | 담당층 | 역할 | 판단 기준 |
+|------|--------|------|----------|
+| **삼사라** | Cursor (Judge 발동) | 미션 사이클 전체 유지·PRD 추적 | feature/improve Volva open LT |
+| **켈베로스** | Cursor (Write 직후 자동) | 코드 변경 품질 견제 | Write 완료마다 |
+| **시지프스** | Cursor (Judge 발동) | S1 단기 미션 반복 실행 | S1 pending 있으면 |
+| **Slack Watcher** | Judge (백그라운드) | 진행상황 가시성 유지 | 워크플로우 시작~완료 |
+
+### §T-6d T-V 연계
+
+| 상황 | T-V | 처리 |
+|------|-----|------|
+| 삼사라 Nirvana를 User 합격 없이 선언 | T-V8 | User O2 대기 필수 |
+| Slack watcher 없이 대규모 작업 진행 | T-V6 | 진행상황 은폐에 준함 → watcher 즉시 시작 |
+| 워크플로우 도중 범위 확장 | T-V3 | PR1 + O2 경유 필수 |
+
+> **CC 집행 명령** → `CLAUDE.md §K-6-A-0 삼사라 auto-arm` · `ops.md §삼사라 실행 프로토콜`
+
+---
+
+---
+
+## §T-7 Lucifer_Ops_Regent — C2+ Triad 오케스트레이터 **[PLANNED]**
+
+> **상태**: **[PLANNED]** — live `cc_bridge --persona lucifer` · `outbox_lucifer.json` **미구현** (D-10 ★ L2 · ntd-105-1). 현행 C2+ = Judge가 angel/devil 직접 push·pull (K-8-B).
+> **역할 정본** → `cursorrules_Trinity-Core.mdc §T-0` footnote — **debate triad 오케스트레이터만**. card-news/제품 실행 ≠ 본 절 (→ EXE · topic-news skill).
+> **발동 조건 (계획)**: C2+ (K-8-B ladder) 디베이트 세션에 한정. L-T2 Scale-Out은 별도 debate 후 결정.
+
+### §T-7a 역할 정의
+
+Lucifer_Ops_Regent = Cursor 실행 평면 내부의 **C2+ debate triad 오케스트레이터만** (Angel/Devil 라운드 집행 · 메타 패킷). **≠** card-news/SNS 유일 집행자 · **≠** live cc_bridge persona.
+
+| MUST (계획) | MUST NOT |
+|------|----------|
+| C2+ 시 Angel/Devil cc_bridge push · pull · 라운드 캡 관리 | User-facing 채널 직접 접근 (T-V2) |
+| 라운드 완료 후 경량 메타 패킷 → Judge 전달 | 목적 4-tuple 확정·recommendation 작성 (T-V3·T-V4) |
+| K-2 flags 감지 시 즉시 표기 | Judge 판단 검증·veto · 제품 파이프라인 단독 기동 |
+| Judge 지시 없이 Angel/Devil 세션 종료 불가 | Synthesis consensus·채택안 독자 생성 |
+
+### §T-7b 경량 메타 패킷 형식 **[PLANNED]**
+
+계획 경로: Lucifer → `0_Config/cc_bridge/outbox_lucifer.json` (**미구현** — L1 전면 구현 기각).
+
+```json
+{
+  "schema": "lucifer_meta_v1",
+  "task_id": "...",
+  "kind": "c2_debate",
+  "rounds": { "planned": 2, "completed": 2 },
+  "session_paths": {
+    "angel": "0_Config/cc_bridge/outbox_angel.json",
+    "devil": "0_Config/cc_bridge/outbox_devil.json"
+  },
+  "k2_flags": [],
+  "status": "ready_for_judge"
+}
+```
+
+**Judge 처리 규칙 (계획)**:
+- `k2_flags` 비어 있음 → 메타 패킷만으로 K-8-B 번역 진행 가능
+- `k2_flags` 항목 있음 → `session_paths` 원문 **반드시** 열람 후 번역
+- `recommendation` · `consensus` 필드 **없음** — Judge·User만 D-10/O2
+
+### §T-7c 라운드 집행 흐름 **[PLANNED]**
+
+```
+Judge → Oracle + triad spec → Lucifer   # PLANNED; 현행=Judge 직접 angel/devil
+Lucifer → cc_bridge push --persona angel
+Lucifer → cc_bridge push --persona devil
+Lucifer → 라운드 캡 확인 (K-8-B 왕복 수)
+Lucifer → outbox_lucifer (메타 패킷) → Judge
+Judge → (k2_flags 확인) → K-8-B User-facing 번역 → User O2
+```
+
+### §T-7d T-V 연계
+
+| 상황 | T-V | 처리 |
+|------|-----|------|
+| Lucifer가 User에 직접 보고 | T-V2 | 즉시 차단 — Judge 경유만 |
+| 메타 패킷에 recommendation 포함 | T-V4 인접 | Lucifer MUST NOT — 필드 자체 없음 |
+| Judge가 k2_flags 무시하고 원문 미열람 | T-V6 | Judge MUST 원문 열람 후 번역 |
+
+---
+
+*Trinity-Ops는 Trinity-Core §T-0·§T-1에서 집행 세부를 파생한다. 불변식·권위구조 정본은 `cursorrules_Trinity-Core.mdc`.*

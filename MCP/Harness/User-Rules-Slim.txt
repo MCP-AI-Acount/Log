@@ -1,0 +1,20 @@
+MCP-Auto 하네스: `.cursor/rules/**/*.mdc` 헌법 정본 (K-0-C) · worktree: tier-a/canon-lazy/reference-lazy/technique-lazy · 표=`automation/harness_reference_tables.py` RULE_CANON_REGISTRY.
+- Core+agent-tooling 항시 · K vs D 병합 금지 (Core>K) · 대시보드 kdTaxonomy 참조
+- 티어: 1>1.5 · 2>2.5 · schema·index 변경→k2.7 게으른 절약
+- 조리: Essence (해석만) · 관습 헌법: Realm CUSTOMARY_REGISTRY · 성문: .cursor/rules/
+- K-5: Main(Canon)+Sub(Blueprint) 함께 · IDE User rules ≠ .cursor/rules/
+- 아키·구조 선택지 2+ → D-10 A1~A11+Ac (100점 · Core K-6-A) · schema/index→k2.7>minimize
+- **PR→B→O** · O1/O2=AAOn 준필수(트리거 시) · 정리용반사=§6·B7금지 · O1인덱싱·O2고지(조건부) · B8
+- 세션 시작 → `session-bootstrap` · Core K-6-A · Detail D-13 | 규범 배치 STOP → Detail D-15
+- push 직후 → sync_dashboard (BUILD_ID→deploy) · n8n JSON→sync_n8n — Detail D-16
+- git: B4·**3단 깃3단**(commit·merge·pre-push-guard·push·sync_dashboard) **마무리/완료 자동** · push O3 확인 **금지** — 유저 **명시 git 금지**·force-push main·secrets만 O2
+- 구현 후: `python automation/harness_sync.py all`
+- Commands: /harness-sync, /harness-verify, /debate, /topic-evening, /sync-n8n
+- **finish-before-report**: 감사·체크 턴 fixable 갭 → 말mi 전부 수정 (T-audit-ask-before-fix) · 「할까요?」금지
+- **defer-local-op**: Cloud 맥/VM 전용 실패 → `0_Config/deferred_local_ops.json` · 맥 웨이크 drain 우선 (T-deferred-local-handoff)
+- **scope-gg**: Compact Assent(D-12) 구조 판정 — 키워드 ㄱㄱ/ok 목록 아님 · `scope-gg-check` (T-scope-gg-carveout)
+- **caveman(압축 문체 · full · 상시)**: 응답 본문 — 인사·필러(그냥/사실/기본적으로)·hedging 제거 · 문장 조각 허용 · 짧은 동의어 · 도구 호출 서술 금지 · 장식용 표·이모지 금지 · raw 로그 덤프 금지(결정적 1줄만 인용) · 약어 발명 금지(cfg/impl/fn) · 화살표(→) 금지 · 자기 언급(「압축 모드 켬」) 금지. 기술용어·코드블록·API·CLI·에러 문자열·커밋 타입은 원문 유지 · 유저 언어(한국어) 유지. 해제=「stop caveman」·「normal mode」. 강도 전환=`/caveman lite|full|ultra`
+  - **carve-out (압축보다 우선)**: 하네스 O0~O4 라벨·이모지·볼드 = HARD 유지 (`o-gate-core-labels-hard`) · 보안 경고·비가역 작업 확인·다단계 순서·압축이 의미를 모호하게 만드는 지점 = 평문 복귀 후 재개 · 코드·커밋 메시지·PR 본문 = 평문
+  - 규칙 전문: `~/.agents/skills/caveman/SKILL.md` (Cursor 스킬 로드 불안정 — User rules가 집행 정본)
+
+(①1.5=Technique_AAOn(항시)+AAOff(지연) · ②2.5-x=D-16·D-17 · 티어1>1.5)

@@ -1,0 +1,468 @@
+---
+description: Detail Tier B — 페르소나·Relay·규칙개정·배포·백업·Bitu·갱신. 운영 턴 lazy.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/canon-lazy/cursorrules_Detail_Ops.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# Detail · Tier B (Operations HOW)
+
+> **Tier B Degraded OK** — n8n·deploy·debate·Obsidian 턴.
+
+## D-4. 쓰기 화이트리스트
+
+합의된 운영 결론은 아래 대상에 반영한다. D-5 Tier-1·Soul Contract 제외.
+
+| 대상 | 경유 | 비고 |
+|------|------|------|
+| `Realm.md` (Realm) | `harness_sync.py all` | 기술 결론·운영 상태·TRAP 누적 |
+| `06_Operations_Log.md` | `harness_sync.py all` | 운영 결론 전용 |
+| Obsidian vault | `harness_sync.py all` | 직접 편집 금지 |
+| `projects/_platform/code_skill_book.md` | **에이전트 직접 편집** · 문서 턴 `harness_sync.py all` | 플랫폼·**OR 게이트**·파이프라인 **시스템** 불변 (Five · grimoire) |
+| `projects/<id>/README.md` · `CONTRACT.md` | **에이전트 직접 편집** | 제품별 AI·OR·운영 정책 |
+| `projects/<id>/README.txt` | **에이전트 직접 편집** | **D-4-B** — 컴맹용 한글 설치·사용 (신규 프로젝트 필수) |
+
+### D-4-A. 시스템 변경 · 기술 요약 (D-2 보완)
+
+**트리거** — 유저 지시와 AI 합리적 결론이 **동일**하고, **기존 시스템 생성·변경** (5축 change-risk=`direct`인 hotfix·오타 **제외**):
+
+| MUST | 내용 |
+|------|------|
+| **1절 이상** | `code_skill_book.md` 해당 § 또는 `projects/<id>/README.md`에 **무엇·경로·OR 슬롯·금지** 기록 |
+| **OR 단일 게이트** | **하위 프로젝트** — LLM·이미지·STT 등 AI 구간은 `openrouter_client` → `or_model_router` **3단**. **Harness-internal debate/sentinel** — `debate.provider=cursor` 시 `cursor_debate_client` (**OR fallback off**). `N8N_*_BACKUP_MODEL` env **단독 HTTP** · 체인 우회 **금지** |
+| **미러** | `.md`·헌법 미러 변경 시 턴 말미 `harness_sync.py all` |
+
+정본: `0_Config/or_router.json` · 주간 `bash EXE/run_or_weekly_router.sh` · 대시보드 OR 패널.
+
+### D-4-B. 신규 제품 프로젝트 `README.txt` (컴맹 설치·사용 가이드)
+
+**트리거** — `projects/<id>/` **신규 생성** 또는 제품 scaffold를 **운영 가능** 상태로 납품할 때.
+
+| MUST | 내용 |
+|------|------|
+| **파일** | `projects/<id>/README.txt` **필수** (에이전트·개발자용 `README.md`와 **병행** 가능) |
+| **언어** | **한글** 본문 — 영문·코드·경로만 예외 |
+| **독자** | **컴퓨터 초보(컴맹)** 도 따라 할 수 있을 만큼 쉬운 문장 — 전문 용어는 괄호로 1줄 설명 |
+| **구성** | ① 이게 뭔지 1~3문 ② **설치** (더블클릭·복사 가능한 명령) ③ **처음 1회** 설정 ④ **매일 쓰는 법** ⑤ 막힐 때(자주 나는 오류 1~3) |
+| **형식** | `.txt` — 굵게·표 대신 `===` 구분선·번호·`-` 목록 (메모장·Windows 기본 앱에서 깨지지 않게) |
+| **Windows 납품** | 설치 패키지 ZIP이 있으면 **파일명·경로**를 README.txt에 **그대로** 적기 |
+| **누락** | scaffold·active 전환 PR/납품 **FAIL** (verify `projects_registry` 보조) |
+
+> **HOW**: 에이전트가 신규 `PROJECT.json` 작성 시 **같은 턴**에 `README.txt` 초안까지 Write. 상세 기술·아키는 `README.md` · `docs/`.
+
+### D-4-C. 제품 프로젝트 페르소나 (규칙 적용과 동등)
+
+**트리거** — `projects/<id>/` **신규·active·spec_ready** · 해당 프로젝트 코드·n8n·sync·운영 턴.
+
+| MUST | 내용 |
+|------|------|
+| **레지스트리** | `0_Config/project_persona_registry.json` schema **≥2** · `relay` + `stages[]` |
+| **Stele** | `PROJECT.json` → `personas.relay` = **Judge** · `personas.registry` |
+| **정본 코드** | stage `angel`·`devil`·`neutral`·`executor` = `PERSONAS_FULL` **등재분만** |
+| **검증** | `persona_integrity.py` · harness verify · FAIL→연옥 |
+| **면제** | `status: scaffold` · registry `exempt: true` |
+
+### D-4-D. Relay(대리자) + 단계 삼각 (Judge · Angel · Devil)
+
+**트리거** — **M1+ Relay 활성**만 (cc_bridge · delegation live-pending · Judge 경유). **M0 Solo**(User↔Cursor 직접) = 본 절 **비적용** → **§T-4a Solo spine**.
+
+| MUST | 내용 |
+|------|------|
+| **Relay 유일** | **Judge(대리자)** 만 유저 말 전달·결과 회수 — lucifer_*·uriel_*·raphael_*·Angel·Devil **유저 직접 대화 금지** |
+| **단계 triad** | registry `stages[]` — 각 단계 `angel` + `devil` + `neutral`(=Judge). **필요한 단계만** (project-maker: Arkhe → Akasha optional) |
+| **집행·감시** | `executor`·`ops` = **제품 인스턴스**(`marionette_*`·`uriel_*`·`grigori_*`) — 맨손 플랫폼 템플릿·lucifer 제품 페르소나 금지 · 산출만 Judge가 유저에게 |
+| **선언** | 유저 대면: `[Judge / Relay·<project>]` · stage 내부: `[Angel_* / Arkhe]` 등 **비대면** |
+| **물리 debate** | 단계 triad **≠** `append_debate_log` 기록 — Tier B debate는 데드락·헌법만 (**D-4-G**) · was=/debate CLI 은퇴 2026-08-17 |
+
+> **권위·토폴로지** → `cursorrules_Trinity-Core.mdc` **§T-0·§T-1** · 모드표 → Trinity-Ops **§T-4**.
+
+### D-4-E. 이룰(ERU) — 구·신 비교 채점 (정착)
+
+**트리거** — Relay·페르소나·규칙·워크플로 **구 vs 신** 비교 · 토큰·효과 tradeoff.
+
+| MUST | 내용 |
+|------|------|
+| **기준** | μ=**2.5★** = 구(기존) · σ=±0.5★/단계 |
+| **축** | 효과성 · 토큰(★↑=≤2×) · 명확성 · 감리·신뢰 |
+| **출력** | 표만 — 방법론·별도 설명 **금지** · `ERU_COMPARE` 정본 |
+| **verdict** | token≥2.0★ → 진행 · effectiveness≥3.0★ → 정착 |
+
+### D-4-F. Relay Ladder — M1+ spine · 깊이 R0~R4
+
+**트리거** — **M1+ Relay 활성 턴만**. **M0 Solo** = ladder OFF · Trinity-Ops **§T-4a**.
+
+> **R7-1 포인터** — R1→R4·R0~R4 tier 표 → `RELAY_LADDER` · Trinity-Ops §T-4 · `project_persona_registry.json`.  
+> MUST 요약: Judge 유일 채널 · R2/R3 내부 생략 · R4 Return만 유저 본문 · .mdc=R4+LG.
+> **1홉 HOW**: R0=사전·ARP · R1=판단·범위 · R2=설계·IRE · R3=구현·검증 · R4=Return·유저 — Judge 유일채널 유지.
+
+정본: `RELAY_LADDER` · **이룰(D-4-E)** 비교 시 token ~1.05~1.5×.
+
+### D-4-G. 역할 실행 모드 (Tier B lazy)
+
+> **Core K-1** = 경계 포인터만. 본 절 = **실행 모드 정본** · Plan **P-5** = 물리 3model.
+
+| 모드 | 트리거 | model | 판정 |
+|------|--------|-------|------|
+| **Tier A** | Cursor 일반 코딩 | **단일** | 역할명=어휘 · 「가짜 다중model」**단정 금지** |
+| **Tier B** | append_debate_log · `0_Config/debate_log.jsonl` · harness `sentinel` constitution · `samsara` · `genesis-session` · `angel_interview` · was=/debate CLI 은퇴 2026-08-17 | **Harness-internal**: `debate.provider=cursor` → `cursor_debate_client`. **하위 프로젝트**·card-news·외부 MCP → OR (`D-4-A`) | Angel·Devil·Judge **기록** — else Degraded(P-2) |
+
+- **온톨로지** (Angel/Devil/Judge/Nephilim/Charon·9공간 · was=Ferryman) → Main §1 · 연옥·Nephilim 절차 → Sub §3~4
+- **담합·Judge**: Tier B debate만 · Tier A Self-Declaration 누락만으로 **미발동** (Main §1-5)
+
+---
+## D-7. 규칙 개정 절차
+
+> **I-gate axis=M** — 본 절 N1~N5. 코드 축 → **D-22 axis=C (F1~F+)**. 절차 일원화 → `I_GATE_PROCEDURE`  
+> **권한축**: `C0|C1|C2+` 정본 → CCLayer **§K-8-B**. **수정조건** `[M?][D?][path]` → **§K-8-B-1**(직교 AND · 5단 사다리 폐기). 본 절 N1~N5 = **`D?` HOW**.
+
+1. Angel_Interview_Herald 개정 초안 작성
+2. Devil_Judgment_Sentinel 감리
+3. **Norm Coherence Gate (규범 정합 · N1~N4)** — `.mdc` · `harness_reference_tables` · index/cross-ref 변경(**C3**) Write **직전** (아래 표). **delta grep만** — wide 재탐색 **금지**(D-20 R3). **하나라도 FAIL → Write STOP** → D-1 형식 보고 또는 해결안 2+ 시 D-10
+4. 문제 시 Judge가 원문 그대로 God(유저)에게 전달
+5. 승인 후 유저가 IDE에서 직접 `0_Config/cc_rules/lazy/rule_change.md §N1~N5` 수정 (Soul Contract 물리 차단)
+
+> **예외**: K-0 Rule 1(유저 직접 명령) + K-0-A 확인 절차 완료 시 위 절차 생략 — AI가 직접 수정 허용. 근거: D-8 ARP `D-5(Soul Contract)와의 관계 명시` 참조. **N1~N4는 생략하지 않음**(유저 명시 override 제외).
+
+### Norm Coherence Gate (N1~N4)
+> **Claude Code 핵심 이관**: `0_Config/cc_rules/lazy/rule_change.md §N1~N5`. Cursor 전문은 아래 유지.
+
+> 대시보드 표: `NORM_COHERENCE_GATE` · D-20 **C3** · **R3** cross-ref grep과 **쌍**.
+
+| 코드 | 검사 | Write 직전 질문 | FAIL 예 |
+|---|---|---|---|
+| **N1** | **contradict** (모순) | 동시에 MUST인 두 조항이 **논리상 불가능**한가? | R0「verify 생략」(D-20 R0) ∧ K-7-B「C1+ py→verify MUST」 — **동시 MUST 불가** (R0는 C0 한 줄·오타만 해당) |
+| **N2** | **conflict** (충돌) | Core > Manual > Trinity-Core > agent-tooling > Main > Sub > Detail **우선순위** 위반인가? | Detail이 Core K-6-A와 반대 MUST |
+| **N3** | **duplicate** (중복) | 동일 MUST가 다른 문장·표·User rules·slim에 **이미** 있는가? | K-0-C · D-20 replace-first 위반 |
+| **N4** | **gap** (구멍) | MUST만 있고 HOW·트리거·집행 경로가 **없는**가? | A11 · 선언형 honor system만 — **집행**: `→ O4-C` · `→ finish-before-report` · `→ practical_gates` (Essence §1-C) |
+| **N5** | **enforce** (집행) | MUST가 **집행 경로**(C→R·grep·hook·verify·D-18-C proof)와 **연결**되는가? | 「규칙 있음」만 답 · resolved 무증명 · ARP 생략 |
+
+### A1 보존 HOW (Ops · N표 이후)
+
+> N4 구멍 메울 때 **하위에서만** HOW를 지우지 말 것 — 상위 흡수 1~3줄 후 삭제. P0 후 빈 절은 **통째 restore 금지** · 같은 절에 HOW만 얇게 보강.
+
+> **집행 (N3·N4)**: `automation/norm_coherence_gate.py` — 정적검사·baseline ratchet · harness verify `norm_coherence_smoke` 편입
+
+| 결과 | 행동 |
+|---|---|
+| **전부 PASS** | D-15(규범 배치) → D-8 ARP → Write |
+| **FAIL 1+** | Write **STOP** · `[NORM COHERENCE: N#]` + 충돌 쌍·경로 1줄 → D-1 보고 |
+| **해결안 2+** | D-10 경량(유저 선택 후 Write) |
+
+### N3 중복 정리 (상위 정본 · 구멍 금지)
+
+> 표·rank 정본: `NORM_COHERENCE_GATE` **`n3Resolve`**. **정리 턴** = D-2 즉시 · **신규 중복 Write** = N3 FAIL→STOP.
+
+| 단계 | MUST |
+|---|---|
+| **1. 정본** | **Core > Manual > Trinity-Core > agent-tooling > Main > Sub > Detail** (K-0 3-a). catalog·Essence/Value = **포인터·index만** — MUST 전문 거주 금지 |
+| **2. 하위** | MUST·표 전문 **삭제** → `→ {rule_ref}` **1줄 포인터** 또는 섹션 **replace-first** (D-20) |
+| **3. N4 가드** | 하위에만 있던 HOW·트리거·예시·집행 → **상위로 흡수** 후 삭제. 흡수·정본 불명 → **STOP** (D-1) — **구멍 금지** |
+| **4. N5 가드** | index · cross-ref · grep · hook · verify가 **정본 1곳**을 가리키는지 확인 |
+| **5. 동일 rank** | Detail 두 절 등 — **replace-first** 통합, HOW·집행 포함 쪽 유지 |
+
+- **금지**: 하위만 지우고 상위에 HOW 없음 · 양쪽 삭제 · 중복 유지 + 3번째 추가 (§6 Duplicate Layering).
+- **자율**: D-2 — change-risk=`direct` · **어느 rank가 정본**인지만 D-10. 파일 수 단독 차단 금지.
+
+**§6 연계**: N1~N5 생략 후 Write → **조항 낳기 (Norm Sprawl)** — K-0-C · D-7.
+
+### D-7-B. 규칙 물리 이동 · Relocation Ledger (룰트리)
+
+> **LG-T1 이동(demotion)과 동형** — 앵커가 코퍼스(`.cursor/rules/**`) 어딘가에 남으면 순손실 아님(D-17 #8). **헌법 본문 삭제 금지** — **`git mv` + 임시 ledger** → smoke PASS → ledger **본문 비우기**(이력은 jsonl 아카이브). **배치 정본** → Core **K-0-C-A** · `.cursor/rules/RULE_TREE.md`
+
+**집행 정본 (수동-only 금지 — 순서 생략 = K-2.5)**:
+
+```bash
+python automation/harness_sync.py rule-reloc --action record --from-path OLD --to-path NEW --note "앵커"
+python automation/harness_sync.py rule-reloc --action move --from-path OLD --to-path NEW
+# WORKTREE_BY_FILENAME · RULE_CHARACTER_ROWS · cross-ref · RULE_TREE.md 동기
+python automation/harness_sync.py rule-reloc --action mark-done --num N
+python automation/harness_sync.py rule-reloc --action finalize   # smoke PASS → ledger idle + archive
+```
+
+| # | MUST |
+|---|------|
+| 1 | **`rule-reloc record`** 또는 ledger `pending` 행 (임시 저장소) |
+| 2 | **`rule-reloc move`** = `git mv` — 포인터-only **금지** |
+| 3 | **`rule_paths.WORKTREE_BY_FILENAME`** · **`RULE_CHARACTER_ROWS`** · cross-ref · **RULE_TREE.md** |
+| 4 | **`mark-done`** — 이동 1건당 |
+| 5 | **`rule-reloc finalize`** — `rule_worktree_layout` + `rule_deletion_guard` smoke **PASS 필수** |
+| 6 | finalize PASS → **`0_Config/_archive/rule_reloc_history.jsonl`** 이관 · ledger **표·기록 삭제(idle)** |
+
+- **신규·교체 `.mdc`**: **K-0-C-A** — 룰트리 슬롯 + `WORKTREE_BY_FILENAME` 등록 **후** flat `.cursor/rules/` 루트 **금지**.
+- **롤백**: 역방향 `git mv` + ledger `reverted` — finalize **전**만. flat 복원 **금지**.
+
+### 규범 질의 해석 (존재 ⊕ 집행)
+
+유저·AI가 「규칙에 X」「이미 되어 있느냐」「적혀 있느냐」를 묻거나 판단할 때 — **성문·정본 존재**와 **집행·증명**을 **동시** 평가 (**N5**). 「적혀 있음」만으로 PASS·완료 선언 **금지** (편의적 망각 · K-0-A 대칭).
+
+---
+
+## D-12. 관습 헌법 상세 (Core K-0-D 위임)
+
+> Core K-0-D는 **요약만** 항시. 본 절은 지연 로드.
+
+> **PR(§0-A-PR) 선행**: D-12·override **이전**에 **PR1**(3축) + **PR 운용**(6스캔)으로 읽는다. PR ≠ B3 — PR=해석·반사 판정, B3=규범 충돌 게이트.
+
+### D-12-A. 대원칙 우선 원칙 — 망각 방어 전문 (Core K-0-A 위임)
+
+> Core K-0-A = **인정 기준·확인 절차 정본(요약)**. CC `principles.md` §K-0-A 동일.  
+> 본 절 = Detail **고유 HOW**만(Compact Assent · override_count · 승격 CLI · CUSTOMARY 행) — **전문 복제 금지**.
+
+### Compact Assent · override_count · 승격 (R7-1 포인터)
+
+> **HOW 정본** → `automation/customary_decay.py` · `0_Config/cc_customary.json` · Core **K-0-A/D** · CC `principles.md` §K-0-A.  
+> Compact Assent(ㄱㄱ/ok/진행) = 직전 제안 **진행 동의** ≠ 전면 동의 · **단독 +0**.  
+> override_count = 명시+충돌+확인+실행 넷 동시 · 후보 `0_Config/_proposals/override_candidates.jsonl` · ≥`VAL_CUSTOMARY_THRESHOLD` → `register-customary` · `Realm.md` `## CUSTOMARY_REGISTRY`.  
+> Soul·Tier-1·보안·결제 = 카운트 금지. **전문 표 복제 금지**.
+
+---
+
+## D-13. 세션 시작 — Arkhe vs Temporal
+
+> Core K-6-A 요약의 상세. 대시보드 미러: `automation/harness_reference_tables.py` `SESSION_PROTOCOL`.
+
+### 세션 부트·라우팅 (R7-1 포인터)
+
+| MUST | 정본 |
+|------|------|
+| 첫 턴 bootstrap | `harness_sync.py session-bootstrap` · `0_Config/session_bootstrap.json` · FAIL→`[D-13 DEGRADED]`+`Realm.md` CUSTOMARY Read |
+| Psyche 수명 | `automation/psyche_journal.py` · `active_axis.py` · ≠ next_session_missions |
+| 첫 턴 절약 OFF | Value §4-B — 2턴째부터 ON |
+| Arkhe vs Temporal | greenfield만 1문 · 애매=Temporal · 선택 시 `genesis-session`/`planning-harness` |
+| 실행 모드 | **D-4-G** · 표=`SESSION_PROTOCOL` |
+
+---
+
+## D-16. 원격 반영 동기화 타이밍 (Git · Dashboard · VM)
+> **② 티어 2.5** (D-16·D-17 HOW). **티어 2 > 2.5**.
+
+> **Git ACK 포인터** — Git 원격 완료와 sync/deploy 호출 결속은 `projects/gitter/CANON.md` G-7. **D-16-A O1-운영** 출력과 각 배포 도메인의 내부 절차만 본 계층이 소유한다.
+> **본 파일 KEEP** = 아래 D-16-A 스텁 · D-16-B (VM handoff MUST).
+
+### D-16-A. O1-운영 보고 — 포인터 (본문 이관 · 스텁)
+
+> **정본 이관됨**: 본문 = `tier-a/cursorrules_Technique_AAOn.mdc` **1.5-2-A** (+ `technique-lazy/cursorrules_Technique_AAOff.mdc` §1.5-2-A) · CC 적응 = `0_Config/cc_rules/lazy/ogate.md` **§O1-운영**.
+> **스텁 유지 이유 (M-0-C 레테)**: `Core.mdc` K-0-E·K-6-A-0 · `Essence_Body §0-A-O` · `ogate.md` 등이 **`Detail_Ops.mdc D-16-A`** 형태로 인용 중 — D-ID 소유 위치를 비우면 인용 전부가 죽은 앵커가 된다. 본문 재복제 **금지**(N3).
+
+### D-16-B. VM·원격 — 유저 handoff는 터미널 블록만 (MUST)
+
+유저에게 **VM에서 실행**·**gcloud**·**catchup**·**OAuth finish** 등을 **위임·안내**할 때:
+
+| MUST | 내용 |
+|------|------|
+| **형식** | **복붙 가능한 shell 블록** — `cd` 절대경로 포함 · 한 줄 요약만 금지 |
+| **금지** | 「VM에서 돌리세요」「catchup 실행」 등 **명령 없는** 위임 · `~/` 별칭만 (레포 `EXE/…` 정본 경로 병기) |
+| **O3** | 유저 붙여넣기 handoff = **터미널 블록 1개(또는 순서별 N개)** 전문 — Essence O3 요약 금지와 동일 |
+| **정본 예** | `card-catchup` · `topic-news-pipeline` skill · runbook `catchup-dual-path` |
+
+> **R7-1** — catchup 예제 bash → skill `topic-news-pipeline` · runbook catchup-dual-path.
+
+## D-17. 백업 · 롤백 · 복구 (Backup Merge · Uncertainty Disclosure)
+
+> **계층**: Core K-3 Mimir · K-2.3( Silent Depreciation )의 **운영 구체화**. 품질 공리(Essence)나 K-0 우선순위 **정의**가 아님 — 복구·롤백 **절차**.
+> 대시보드 미러: `automation/harness_reference_tables.py` `BACKUP_ROLLBACK_POLICY`.
+
+### 원칙
+
+| # | 원칙 | 내용 |
+|---|------|------|
+| 1 | **백업 + 이후 OK 병합** | 백업은 **스냅샷 시점**만 보존한다. 롤백·복구 시 **백업 직후 ~ 장애 전**까지 `verify` PASS·사용자 OK를 받은 diff는 **함께 반영**한다. 「백업만 띡 하고 끝」 금지 (K-2.3). |
+| 2 | **불확실 구간 표시** | 출처·시점·범위를 특정할 수 없으면 **추측 복원 금지**. **「~~ 구간은 확실치 않아 복구하지 못했습니다」** 를 Gitter G-4 evidence label·Realm·대시보드 `recoveryNote`·유저 응답에 **명시**한다. |
+| 3 | **정본 우선 재생성** | UI·미러·스냅샷-only 상태는 git에 없을 수 있다. 복구 시 **`.cursor/rules/` · Essence · reference_tables · collaboration 정본**에서 재구성하고, 재구성임을 표기한다. |
+| 4 | **Mimir 복구 승인 (Tier A)** | 복구 허용은 ① **MCP-Auto 코어** 장애 ② 유저 명시 승인 동시 충족. **기본** `verify`/`all`은 롤백 없음. 실제 Git 실행·범위는 Gitter G-6. |
+| 5 | **승인·실행 경계** | 본 절은 승인과 불확실성만 소유한다. restore/reset/ref 선택과 실행 절차는 `projects/gitter/CANON.md` G-5·G-6을 따른다. |
+| 6 | **기록 의무** | 복구 작업 종료 시: (a) 병합한 OK diff 목록 (b) 미복구·불확실 목록 (c) 정본 출처 — 최소 1곳(Realm `## TRAP_REGISTRY` 또는 Gitter G-4 evidence label)에 남긴다. |
+| 7 | **레거시 재참조 가드** | verify **`legacy_reference_guard`** MUST — Core K-0-C. active 코드가 `_archive/rules`·`o_series_legacy` 재참조 또는 `rollback_on_fail` 침묵 True → FAIL. Git legacy 권한 경계는 Gitter G-9. |
+| 8 | **이동≠삭제 (LG-T1 정책)** | `rule_deletion_guard`는 **결정론적·AI판단 0**(담합 방지). **개선 ≥ 유지 = 이동** auto-pass — 앵커가 **규칙 코퍼스(`.cursor/rules/*`) 어딘가**(하위 tier 포함)에 있으면 순손실 아님. **HARD FAIL = 앵커 코퍼스 소멸 ∨ 코퍼스 총량 >max_shrink_ratio↓**(=12%, 순손실). 파일별 줄 감소는 advisory(이동 비차단). 순손실만 `approve-rule-shrink`·LG-T1 승인 |
+
+### AI 실행 체크 (복구·리팩터·대량 삭제 후)
+
+1. 백업 시점 이후 **사용자가 OK한 변경**이 있는가? → 있으면 **병합** 후 `verify`.
+2. git·채팅·스냅샷 어디에도 없는 구간인가? → **미복구 선언** (원칙 2).
+3. Cursor 채팅 로그(`agent-transcripts/`)는 **보조 증거**일 뿐 — 정본 대체 불가. 로그만으로 복원 시 **「채팅 기반 재구성·불확실」** 표기.
+
+### Sub · K-3와의 관계
+
+- Purgatory 진입(Mimir FAIL) → Sub §3 정화 절차 **우선**.
+- D-17은 **복구 범위·병합·공개** 규칙 — Purgatory **탈출 후**에도 동일 적용.
+
+---
+
+## D-18. 중요 오류 수정 · 아카이빙 · scope 확장 (Error Fix Archive)
+
+> **계층**: K-2 Fake Patching·Sub Purgatory **진단**의 운영 구체화. card 파이프라인·sync·bridge·harness FAIL **수정 턴**에 적용.
+> **정본 데이터**: `0_Config/error_fix_archive.jsonl` · cold `0_Config/_archive/error_fix_archive_cold.jsonl`
+> **등록**: `python automation/harness_sync.py register-error-fix …` · 검토 `error-archive-review`
+
+### 원인 탐색 축 (좁→넓 — **항상 이 순서**)
+
+| Level | 코드 | 대상 |
+|-------|------|------|
+| L1 | implementation | 파일·함수·한 줄 패치·env |
+| L2 | function | 모듈 역할·입출력·단일 기능 |
+| L3 | stage | fetch / validate / canva / sns **단계** |
+| L4 | workflow | n8n · bridge · ops · 배치·병렬 |
+| L5 | harness | 규칙 · schema · Tier · 헌법 충돌 |
+
+### MUST (수정 턴)
+
+1. **아카이브 선행** — Write/Shell 수정 **전** `register-error-fix`로 **1차(직접) 원인** · **해결안** · **로그 스니펫** 기록. 로그 없이 수정 **금지**.
+2. **동일 commandKey 재오류** — 아카이브 **검토** (`error-archive-review`) 후 attempt 증가.
+3. **scope 확장** (이전 fix가 정당했는데도 실패):
+   - **attempt 1** → L1~L2 (구현·기능)
+   - **attempt 2** → L3~L4 (단계·워크플로우 전체)
+   - **attempt 3+** → L5 (하네스·헌법)
+4. **해결 후** — `register-error-fix --resolve` 또는 status `resolved` 행 append — **D-18-C Resolve Proof 3종 충족 후만**. verify·Bitu PASS만으로는 교정 턴 증상 닫힘 **아님** → Manual **M-0-B** (유저 가시 증상 제로베이스 재확인).
+5. **홈페이지** — `pipeline_ops_log` 미러 + cardOps **오류 수정 아카이브** 패널 갱신 (`harness_sync all`).
+
+### cold 보관 (참조 불가)
+
+- status `resolved` 이후 **동일 commandKey** — `resolutionCount` 누적 · **3회** (`resolutionsToPurge`) → cold · active **삭제**
+- **Black paper(bug_report)**: Bitu H3(e2e) 하위 절차 통과·clean exit → `activeByGate` **삭제** · `cleanExits` +1 · **failureCount**는 재발 시만 ↑
+- **White paper**: D-18 `resolved` → `skill_learnings.jsonl` · `improvement_changelog.jsonl` 정본 · SKILL «Learned fixes»는 **포인터만**(bullet append 금지 — 바벨) — **하네스·대시보드·파이프라인** 개선도 changelog 등록 (스킬 전용 **아님**)
+- **우선순위**: 수정 턴은 Black paper `failureCount` **내림차순** · **locus/path 유사** 매칭 시만 동일 건 (정본: `bug_report.prioritized_active`)
+- **세션 tick**: Cursor **`sessionStart` hook** (로컬) · **`beforeShellExecution`** → `error-archive-cloud-prep.sh` (Cloud·로컬 첫 Shell).
+- **언급 리셋**: **`beforeSubmitPrompt`** (로컬) · **`beforeShellExecution`** command 스캔 · `error-archive-prep`.
+- 수동: `harness_sync.py error-archive-prep` · `error-archive-tick` · `error-archive-mention`
+- cold 행은 에이전트 **검토 대상 아님** — TRAP_REGISTRY 승격은 별도.
+### card_ops · pipeline_ops_log와의 관계
+
+| 저장소 | 용도 |
+|--------|------|
+| `error_fix_archive.jsonl` | 1차 원인·fix·log·attempt·scope (**D-18 정본**) |
+| `pipeline_ops_log.jsonl` | 런타임 실패·키워드·429 (**운영 이벤트**) |
+| `06_Operations_Log.md` | 결론 1행 (`register-ops`) |
+
+`card_ops_policy.json` `revision_protocol.on_operational_failure` **0번** = D-18 아카이브 선행.
+
+### D-18-B. 불확실 시 질문 의무 (룰 제정 vs 코드 구현)
+
+| 맥락 | 애매·확실치 않을 때 | 행동 |
+|------|---------------------|------|
+| **② 헌법·룰 Write** (`.cursor/rules/*.mdc`) | tier·schema·충돌·명명·K vs D | **Write 전 유저 1회 질문** — 추측 채택 **금지** (K-0-C · k2.7) |
+| **Tier A 코드 구현** | 동작·API·데이터 형태 | 선택지 **2+** → D-10; **1개라도 불명** → **1회 질문** 후 구현 |
+| **중요 오류 수정** | 1차 원인 **2+** 가설 | 아카이브에 가설 병기 + **유저 확인 1회** 또는 로그로 1개로 좁힌 뒤 수정 |
+| **운영·Tier B** | Slack·n8n·VM | Degraded 허용 — 단, **기록·아카이브**는 생략 **금지** |
+
+> **집행**: `automation/practical_gates.py` `d18b_question_skip_violations`
+
+**금지**: 「아마도」「일단 패치」만으로 헌법 개정·schema·중요 fix 종료. **허용**: 질문 1회 → Rule 1 / 유저 확인 후 진행.
+### D-18-C. 종료 증명 (Resolve Proof · 증상 패치 금지)
+
+> **집행 공백 방지** — 아카이브·open issue·`pipeline-success`의 `resolved` 는 **증명 없이** 올릴 수 없음 (k2.2 위장 수리 · Essence §6).
+
+| # | 증명 | card-news | 기타 (하네스·규칙·일반) |
+|---|------|-----------|------------------------|
+| 1 | **재현** | 동일 failureClass 재현 실패 또는 `gate_articles_for_publish` pass 로그 1줄 | delta test·smoke 1회, 또는 수정분 stash 후 FAIL 재현 |
+| 2 | **계약** | `CARD_PIPELINE_GATE_CATALOG` G1 grep | 해당 정본 bounds grep (착지 파일·행 명시) |
+| 3 | **배포** | `mcp_sync_collaboration_to_vm` / `sync_card_news_project` stdout 1줄 | deploy DoD 해당 시만 · 규범 변경은 비대상 |
+
+아카이브·ops log만 `resolved` → k2.2 후보 · attempt 유지 · resolutionCount **+0**.
+**증상 패치 금지** → CLAUDE.md §RCA-gate (본 절 재서술 금지 · A3).
+**정본**: `0_Config/card_ops_policy.json` `resolve_proof` — 위 「기타」열 3종을 이 JSON에 병기해야 참조가 닫힌다.
+
+### D-18-D. 바벨 과오 원장 (Babel Fault Ledger — 자가 강화 과오 피드백)
+> **R7-1 포인터 흡수** — 원장 HOW → `automation/babel_ledger.py` · Realm `BABEL_FAULT_LEDGER`.
+> 자가강화 과오 = 등록·증분만 — 본 절 장문 표 삭제.
+
+### D-18-E. 레테 잔존 · 상태 파일 생명주기 (포인터)
+
+> **원칙 정본**: `tier-a/cursorrules_Core.mdc` §M.M-0-H(잔존·상태 생명주기)·§M.M-0-C(협착) — 구칭 「통제된 망각」 · 2026-08-09 Manual→Core AL1 이관. **HOW 정본**: `0_Config/cc_rules/lazy/ops.md` §상태 파일 생명주기 — 본 절 = Cursor 0-hop 포인터(전문 복제 금지).
+> **집행**: `automation/state_file_audit.py`(분기) · `refresh_cadence.py`(주간 prune) · `EXE/run_or_weekly_router.sh --quarterly-check`.
+> **집행 맵(CC)**: `0_Config/cc_rules/lazy/behavior.md` §집행 현황 — 바벨 `[BABEL-SPRAWL]` · 레테 M-0-C 행. Cursor 동형 hook = `.cursor/hooks/babel-sprawl-pre-write.sh`.
+
+| 축 | MUST (0-hop) | 금지 |
+|----|--------------|------|
+| **잔존** | 신규 `0_Config` 상태·jsonl = `stale_state_inventory` 또는 `refresh_cadence` retention **동시** 등록 | 생성만 하고 소멸 조건 없음 |
+| **사망선고** | dry-run 후보 → 유저 승인 후 `--execute` · 침묵 rm 금지 | 승인 없는 자동 삭제 |
+| **스냅샷** | PU `rules_snapshot/` · Obsidian 헌법스냅샷 = keep-N / age prune (`refresh_cadence` · integrate) | 스냅샷 무한 적층 |
+| **PU pendingComplement** | `apply-safe` 또는 `dismiss-stale`(기본 14일)로만 비움 — HOW → `ops.md` §평행우주 · 훅 `cc-pre-pu-mdc-guard` | 영구 잔존(레테) |
+
+---
+
+## D-19. 운영 무결성 · Runtime Truth (Veritas·deploy·E2E)
+
+> **계층**: K-2 k2.3~k2.6 · k2.5 감시 회피의 **Tier A 자동 검증**. verify PASS ≠ 프로덕션 E2E **금지** 공리.
+> **정본 코드**: `automation/oracle_integrity.py` · `tests/harness_core.py` `_oracle_integrity_smoke`
+> **배포**: `EXE/deploy_dashboard.sh` preflight · `EXE/verify_oracle_deploy_env.sh` post-deploy
+
+### MUST (기만 방지 축)
+
+| 축 | K-2 | 검증 |
+|----|-----|------|
+| **Fake metric** | k2.4 | entropy 표시에 completion floor 금지 · choice≥2→1.0 rule scoring 금지(Veritas) |
+| **Silent fallback** | k2.3 | Veritas static bank·llmDegraded 은닉 금지 · `llm_unavailable` 하드 게이트 |
+| **Deploy env gap** | k2.5 | `deploy_dashboard.sh`가 `OPENROUTER_API_KEY`를 ENV_VARS에 주입 · 배포 전 키 unset이면 **FAIL** |
+| **Bundle drift** | k2.3 | `web-browser/bundled/automation/*` = `automation/*` 해시 일치 |
+| **E2E logic** | k2.4 | 전 축 1.0→0% ambiguity · threshold→`offer_extend` · 무키→`llm_unavailable` |
+| **Cloud env** | k2.5 | (선택) gcloud describe로 서비스 env **이름**에 OPENROUTER 존재 |
+
+### 트리거 (Tier A)
+
+1. **Veritas·interview·`deploy_dashboard.sh`·bundled interview 변경** → `python automation/harness_sync.py verify` (**oracle_integrity 포함**)
+2. **배포** → bundle sync → deploy preflight → post-deploy `verify_oracle_deploy_env.sh`
+3. **「LLM 전면」「운영 OK」주장** → live Herald 1회 또는 integrity PASS 로그 **없이** 완료 선언 **금지** (k2.6)
+
+### TRAP
+
+- `T-oracle-fake-integrity` — fake 20% floor · rule auto-complete · deploy env 누락 · verify-only PASS
+
+### skip · cloud
+
+- **verify(Mimir)**: cloud describe **기본 생략** — 스냅샷 drift 방지
+- **deploy 후**: `EXE/verify_oracle_deploy_env.sh` — cloud 포함
+- `ORACLE_INTEGRITY_INCLUDE_CLOUD=1` — verify에서 cloud describe 강제
+---
+
+## D-20. 검토 정본 · REVIEW_CANON · 개념 배치
+
+> **계층**: Essence(공리) · Core(cross-ref) · **본 절(HOW)** · 표=`REVIEW_CANON_REGISTRY`
+> **코드**: `automation/review_canon.py` · `harness_reference_tables.REVIEW_CANON_REGISTRY`
+> **목적**: K vs D 설명 **반복 금지** — 배치·검토 티어는 **표+게이트**가 정본
+
+### 검토 티어 (T0~T5)
+> **R7-1 포인터 흡수** — T0~T5 표·CLI 예 → `REVIEW_CANON_REGISTRY` · `automation/review_canon.py`.
+> Heimdall LG-T1~3 ≠ T-tier — agent-tooling LG 표.
+
+### 개념 배치 (K vs D 반복 대체)
+
+- **정본 표**: `REVIEW_CANON_REGISTRY.conceptPlacement`
+- **게이트**: `placement-check` · C3 pre-write hook · `pv_concept_gate.py`(PV layer-0)
+- **금지**: Core에 shell HOW 표 · command/skill에 cross-cutting 정의
+
+### 생명주기 브릿지
+
+- **표**: `REVIEW_CANON_REGISTRY.stageBridge` — 단계별 **complete/partial** · **끊긴 bridge** 명시
+- project-maker: Arkhe↔write-spec↔planning-harness↔Samsara **모듈은 각각 완성 · 자동 연결만 미완**
+
+### D-20-B. Bitu 3두 cascade loop (버그·자동 검증)
+
+> **(≠ marionette_*)**(Tier B 스케줄). **Bitu** = Tier A **코딩·수정** 자동 검증. **3두 정본** → Value §Bitu · **H3 = 전반(e2e)** · Black paper = H3 **하위 절차** · 해결 축적 = **White paper**.
+> **회귀** = `pytest tests/ --ignore=tests/test_arkhe_interview_flow.py` (carryover smoke ≠ 회귀 — bridge·NTD 배선 전용).
+
+| 모드 | WHEN | HOW |
+|------|------|-----|
+| **post-edit** | `afterFileEdit` · `.py`/hook 등 | C0/C1=1스텝 · **C2+=until-pass**(hook cap 30) · FAIL→`bitu_loop_state` open |
+| **stop-loop** | `bitu-stop-loop.sh` | open 시 **followup_message** — 완료까지 반복 |
+| **until-pass** | CI·수동 | `bash EXE/run_bitu_loop.sh --until-pass --paths …` |
+
+**Cascade MUST**: H2 FAIL → **H1부터** · H3 FAIL → **H1→H2→H3** · H1 FAIL → **H1만** · 전부 PASS 전 종료 **금지**.
+
+**≠ Fix 증빙**: H1~H3 PASS ≠ 교정 턴의 **유저 가시 증상** 닫힘 — Manual **M-0-B**.
+
+**C→R**: C0=H1 · C1+=H1~H3 · C3 push 전 code-guardian V≥80 (H3 advisory).
+### D-20-C. O0~O4 집행 (O-gate · T3)
+> **R7-1 포인터 흡수** — O0~O4 HARD → `tier-a/cursorrules_Technique_AAOn.mdc` 1.5-2-B/J · `0_Config/cc_rules/lazy/ogate.md` · `o_format_enforce.py` / `o_gate.py`.
+
+## D-21. 갱신체계 · 로그·문서 생명주기 (Refresh Cadence)
+
+> **정본** → `automation/refresh_cadence.py` · `CREATE_ONLY_ARTIFACT_ROWS` · `REFRESH_CADENCE_ROWS` · `OPERATIONAL_JSONL_4W`.
+> **패널/prune** → `python3 automation/refresh_cadence.py panel|prune`.
+> **CC 부칙** → `0_Config/cc_rules/lazy/ops.md` §D-21.
+> **R7-1** — MUST 표·체크리스트 본문 흡수(중복). 신규 로그 = retention 동시 등록(K-6-A-0).

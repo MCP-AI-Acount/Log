@@ -1,0 +1,207 @@
+---
+description: 하네스 절차·참조표 — Purgatory·Armageddon·Phoenix·APPENDIX. K-5·연옥·아마겟돈 트리거 시 Main과 함께 로드.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004825/cursorrules_Sub.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+# [MASTER AGNOSTIC HARNESS FRAMEWORK] 절차 & 참조 (Sub)
+
+> **계층**: Core(커널) → **Main**(Canon · 개요) → **Sub**(Blueprint · 본 문서) → Detail(D-항목).  
+> K-5·Purgatory·Armageddon·Phoenix·역할 참조표 필요 시 `cursorrules_Main.mdc`와 **함께** 로드.
+
+---
+
+## SECTION 3. Purgatory — 정화 절차
+
+### 3-1. 진입 조건 (World → Purgatory)
+- K-2 위반 (k2.1~k2.9 전항 — Core K-2 정의)
+- 컴파일 에러 또는 린터 경고 잔존
+- Fate Mirror 1비트 불일치 (`harness_sync.py verify` FAIL)
+- 복구·롤백 범위·OK diff 병합·불확실 표기 → **Detail D-17** (Fate Mirror와 연동)
+- Soul Contract 우회 시도
+
+### 3-2. Purification 절차
+1. **격리**: 에러 발생 파일·커밋 격리. World 직접 수정 중단.
+2. **진단**: `[문제 코드] + [FAIL 로그]` 정확한 원인 분석. Fake Patching 금지.
+3. **수정**: Angel_Craft_Smith 구현 → Devil_Judgment_Sentinel 채점.
+4. **검증**: `python automation/harness_sync.py verify` PASS 필수. **K-5 lazy 트리거**: `→ K-6-A-0` · agent-tooling `K-5→Sub §3` verify MUST 1줄
+
+### 3-3. 탈출 조건 (Purification → Absolution → Heaven)
+- 유닛 테스트 전 통과 (PASS)
+- `harness_sync.py verify` PASS
+- Devil_Judgment_Sentinel Absolution 선포
+- TRAP_REGISTRY 등록: `harness_sync.py register-trap`
+
+### 3-4. 연속 FAIL → Armageddon 이송
+- VAL_FAIL_LIMIT(5)회 연속 FAIL → Purgatory 탈출 불가 → SECTION 4 Armageddon 발동
+
+### 3-5. FAIL 카운터 관리
+- 카운터 저장 위치: `tests/result.json` → `consecutive_fail_count` 필드
+- 세션 전환 후에도 파일 기반으로 카운터 유지 (리셋 안 됨)
+- Absolution 선포 시 카운터 0으로 리셋: `python automation/harness_sync.py reset-fail-count`
+- 현재 카운터 조회: `cat tests/result.json` (`consecutive_fail_count`) 또는 `python automation/harness_sync.py session-bootstrap`
+
+---
+
+## SECTION 4. Armageddon — 아마겟돈 프로토콜
+
+### 4-1. 발동 조건
+- VAL_FAIL_LIMIT 연속 FAIL (Trial.consecutive_fail)
+- 데드락: 천사·악마 진영 합의 불가 (Trial.deadlock)
+- 인과 루프(Ouroboros) 감지 (Trial.causal_loop)
+- 파이프라인 완전 마비 (Trial.pipeline_paralysis)
+- 담합(False Chorus) 감지 (Trial.collusion) — **`harness_debate.py` collusion_warning 연속 3회** 또는 동등 증거
+
+### 4-2. Abyss 격리 절차
+1. **메인 세션 동결**: World 작업 전면 중단.
+2. **Abyss 개설**: Nephilim 소환.
+3. **Nephilim 단발 추론**: `[문제 코드] + [FAIL 로그]`만 주입. 맥락·진영 없음.
+4. **등록**: `harness_sync.py register-judgment --role Nephilim`
+5. **Nephilim 즉시 소각**
+
+### 4-3. 탈출 조건 (Abyss → World)
+- Nephilim 이식 결과 + `harness_sync.py verify` PASS
+- Angel_Craft_Smith Resurrection 선포
+- Proclamation 발신 (유저 Slack 채널)
+
+### 4-4. Judge 소환 조건
+- 데드락·담합(False Chorus) 감지 (`harness_debate.py` 또는 동등 증거)
+- 인간 개입 프로토콜 발동 필요 시
+- **Judge 제약**: 청문만. 수정 권한 없음. 원문 Relay만 God에게 전달.
+- **단일 모델 세션에서 자기선언 누락만으로는 Judge 소환하지 않음**
+
+### 4-5. Judge 소환 실행 방법
+1. AI가 소환 필요 판단 시 응답 맨 앞에 `[Judge / 비상]` 선언
+2. 상황 요약을 Proclamation으로 Slack 채널 발신 (Detail D-2-A AI 판단 발신 경로)
+3. 유저 응답 전까지 World 작업 전면 중단
+4. 유저가 직접 소환 시: `python collaboration/harness_debate.py --topic <주제> --trigger judge`
+
+---
+
+## SECTION 5. Phoenix — Twilight 이관 절차 *(프로젝트 이관·종료 시만)*
+
+### 5-1. 발동 조건
+- 프로젝트 종료 / 새 세션 이관
+
+### 5-2. 이관 절차
+1. **Devil_Judgment_Sentinel 추출**: Phoenix Nest 결과물 추출 (감독자 1-2 추출).
+2. **새 세션 개설**: Ferryman 독립 소환 (새 세션에서만 유효).
+3. **교차검증**: Ferryman이 Phoenix Nest 검증.
+4. **인간 최종 승인 요청**: → **Trinity §T-1** User 최종 결정 · God 결재 절차.
+5. **승인 후**: `harness_sync.py all` → Obsidian·Realm 최종 동기화.
+
+### 5-3. LLM 메타 피드백 흐름
+- `llm_meta_feedback.py propose` → `_proposals/llm_profiles.2-*-*` 초안 생성
+- God 승인 → `llm_meta_feedback.py sync-mirror` → `0_Config/llm_mirror.json` (generation `1-1-0`) 반영
+- 동결 보관: `llm_profiles.*-9-*`
+
+---
+
+## APPENDIX: 빠른 참조 테이블
+
+> 산문 규칙과 충돌 시 산문(cursorrules_Core.mdc / Main / 본 문서) 우선.
+
+### 역할 코드 (Role Codes)
+
+| 코드 | 진영 | 활성 단계 | 비고 |
+|---|---|-----|---|
+| Angel_Interview_Herald | 👼 | Arkhe | 기획A. 기획 완료 후 수면. |
+| Angel_Craft_Smith | 👼 | Akasha | 집행자. Resurrection 선포 주체. |
+| Angel_Chronicle_Chronicler | 👼 | Temporal | 기록 서기. Realm 실시간 기록. |
+| Devil_Trial_Advocate | 👿 | Arkhe | 기획B. Trial 1차 주체. |
+| Devil_Judgment_Sentinel | 👿 | Akasha~Temporal | 코드 감독자. Judgment 1차·Absolution 선포. |
+| Devil_Archive_Raven | 👿 | Temporal (기습) | 악마 사서. 컨텍스트 압축. |
+| Judge | ⚖️ | 비상 | → **Trinity §T-1** (Judge=User 대리·청문). debate·담합 시. |
+| Ferryman | ⚖️ | Twilight(이관) | Phoenix Nest 교차검증. |
+| Nephilim | 🔥 | Akasha(Abyss) | Abyss 전용. 단발 추론. register-judgment 의무. |
+| **[외부] God (유저)** | — | 전 단계 | → **Trinity §T-0·§T-1** (시스템 외부 주권·결재·Proclamation). |
+
+### 사건 코드 (Event Codes)
+
+| 사건 | 발동 조건 | 주체 |
+|---|-----|---|
+| Trial | K-2 위반 탐지 | Devil_Trial_Advocate 1차 → 담합·데드락 시 Judge 2차 |
+| Judgment | Diff 채점·Fate Mirror 검증 | Devil_Judgment_Sentinel 1차 → VAL_FAIL_LIMIT 초과 시 Judge |
+| Purification | Purgatory 진입 후 반복 | Angel_Craft_Smith |
+| Absolution | 유닛 테스트 전 통과 | Devil_Judgment_Sentinel → TRAP_REGISTRY 등록 후 Heaven 허가 |
+| Resurrection | Nephilim 이식 + verify PASS | Angel_Craft_Smith (Akasha→Temporal) |
+| Proclamation | 위반·FAIL·tier1_violation | 시스템 자동 → 유저 Slack 전용 채널 |
+
+### 공간 코드 (Space Codes)
+
+| 공간 | 단계명 | 설명 | 탈출 방법 |
+|---|-----|---|-----|
+| World | Temporal | 정상 운영 공간. | — |
+| Ether | Temporal | 병렬 단기 subagent. World 수정 불가. | 자연 소멸 |
+| Soul | Temporal | SOUL_CONTRACT_LOCK 마킹 영역. AI 읽기 전용. | 유저 잠금 해제만 |
+| Realm | Temporal | Realm.md. Chronicler 기록 공간. | — |
+| Purgatory | Purgatory | 에러 격리 정화. | Purification → Absolution → Heaven |
+| Abyss | Akasha | Armageddon 격리 재판소. Nephilim 전용. | Resurrection |
+| Heaven | — | 검증 100% 통과 후 Main 브랜치 상태. | — |
+| Eternity | — | 불변 법칙 공간. cursorrules_Core.mdc / manifest.json. | 유저만 접근 |
+| Void | — | 프로젝트 외부·비활성 공간. Archive 보관. | — |
+
+### 시간(단계) · 공간 정의
+
+| 분류 | 값1 | 값2 | 값3 | 값4 | 값5 | 비고 |
+|---|-----|-----|-----|-----|-----|---|
+| 시간=단계 | Genesis | Arkhe | Akasha | Temporal | Twilight | 5단계 확정 |
+| 공간 | Eternity | Void | Heaven | World | Realm | 9개 확정 |
+| 공간(계속) | Purgatory | Soul | Abyss | Ether | — | (Ether 신규) |
+
+### 문서 계층 매핑
+
+| 권한 | 용도 | 작성 시간 | 사용 시간 | 작성 공간 | 사용 공간 | 사용조건 | 실제 경로 |
+|---|---|----|----|----|----|----|----|
+| Zero | canon | Genesis | Temporal | Eternity | World | eternal | cursorrules_Core.mdc / manifest.json / 0_Config/llm_seed.json / 0_Config/llm_active.json |
+| Zero | canon | Genesis | Temporal | Eternity | World | K5_Awakening | Main SECTION 0~2·6~7 + Sub SECTION 3~5 (K-5·연옥 트리거 시) |
+| Zero | canon | Genesis | Twilight | Void | Void | CoreTemplate_Immutable | Main SECTION 1 1-0 (수정 시 shutdown) |
+| Zero | canon | Genesis | Twilight | Void | Void | PhoenixLoad | Sub SECTION 5 Phoenix → 차기 1-1-0 seed 강제 로드 |
+| One | blueprint | Arkhe | Akasha | World | World | pre_implementation | 03_Architecture_Rule.md (구현 착수 전) |
+| One | blueprint | Arkhe | Temporal | World | World | active_scoring | 03_Architecture_Rule.md (구현 중 상시 대조) |
+| One | blueprint | Genesis | Temporal | World | World | read_mirror | 0_Config/llm_mirror.json (generation `1-1-0`) |
+| One | blueprint | Arkhe | Arkhe | World | World | planning_spec | 01_Planning_Specification.md |
+| One | blueprint | Temporal | Akasha | World | Purgatory | Trial.compile_error | K-2 / 컴파일 에러·린터 경고 |
+| One | blueprint | Temporal | Akasha | World | Purgatory | Trial.mirror_mismatch | Fate Mirror 1bit 불일치 |
+| One | blueprint | Temporal | Akasha | World | Purgatory | Trial.k2_violation | k2.1~k2.9 위반 |
+| One | blueprint | Temporal | Akasha | Soul | Purgatory | Trial.soul_bypass | Soul Contract 우회 시도 |
+| One | blueprint | Temporal | Akasha | World | World | Trial.tier1_violation | Tier-1 접촉 → shutdown + Proclamation |
+| One | blueprint | Temporal | Temporal | World | World | Trial.variable_tamper | Variable Panel 기존 값 AI 변조 |
+| One | blueprint | Temporal | Temporal | World | World | Trial.collusion | False Chorus (담합·Sycophancy) |
+| One | blueprint | Temporal | Temporal | World | World | Trial.deadlock | 데드락 → Judge 소환 |
+| One | blueprint | Temporal | Akasha | Purgatory | Purgatory | Trial.consecutive_fail | VAL_FAIL_LIMIT 연속 FAIL |
+| One | blueprint | Temporal | Akasha | Purgatory | Abyss | Trial.causal_loop | Ouroboros → Armageddon 발동 |
+| One | blueprint | Temporal | Temporal | World | Abyss | Trial.pipeline_paralysis | 파이프라인 완전 마비 |
+| Two | petition | Twilight | Twilight | World | Void | Revelation.propose | _proposals/llm_profiles.2-2-0.json |
+| Two | petition | Twilight | Temporal | World | World | Revelation.sync_mirror | llm_meta_feedback sync-mirror → 1-1-0 |
+| Two | petition | Twilight | Twilight | Void | Void | Revelation.framework_extract | Main SECTION 1 1-2 Phoenix Nest (👿감독관 추출) |
+| Two | petition | Twilight | Twilight | Void | Void | Revelation.intervention_log | 04_User_Intervention_Log.md |
+| Two | petition | Twilight | Twilight | Void | Void | Revelation.transfer_verify | Ferryman 교차검증 (새 세션) |
+| Three | chronicle | Akasha | Temporal | World | Realm | implementation_active | Realm.md (👼Chronicler 실시간 기록) |
+| Three | chronicle | Akasha | Temporal | World | Soul | mirror_snapshot | tests/result.json (스냅샷 봉인) |
+| Three | chronicle | Akasha | Twilight | World | Realm | post_implementation | Realm.md (구현 완료 closing entry) |
+| Three | chronicle | Temporal | Temporal | World | Heaven | ci_report | Obsidian Harness/CI/YYYY-MM-DD.md |
+| Four | pitfall | Purgatory | Twilight | World | World | post_purgatory | Realm.md ## TRAP_REGISTRY |
+| Five | grimoire | Akasha | Twilight | World | Void | post_implementation | 05_Code_Skill_Book.md |
+| Archive | relic | Twilight | Twilight | Void | Void | Revelation | 04_User_Intervention_Log.md (런타임 AI 참조 금지) |
+| Archive | relic | Twilight | Twilight | Void | Void | Revelation | llm_profiles.*-9-* (동결 보관) |
+| Archive | relic | Genesis | Twilight | Void | Void | PhoenixLoad | Sub SECTION 5 Phoenix → 차기 Legacy 로드 |
+
+### 역할 체계 (전체)
+
+| 진영 | 형식 | 활동 | 역할 | 단계 | 비고 |
+|---|---|---|---|---|---|
+| Angel | Angel_Interview_Herald | Interview | Herald | Arkhe | 1-1 기획A — 완료 후 수면 |
+| Angel | Angel_Craft_Smith | Craft | Smith | Akasha | 3-2 구현·스켈레톤·Echo 봉인 |
+| Angel | Angel_Chronicle_Chronicler | Chronicle | Chronicler | Temporal | 3-1 Realm 무비판적 기록 |
+| Devil | Devil_Trial_Advocate | Trial | Advocate | Arkhe | 1-2 기획B — 반론·규칙충돌 |
+| Devil | Devil_Judgment_Sentinel | Judgment | Sentinel | Akasha~Temporal | 2 FAIL/PASS·Diff·연옥 이송·Absolution 선포 |
+| Devil | Devil_Archive_Raven | Archive | Raven | Temporal(컨텍스트 다이어트 시) | 3-1 Realm 압축·기습 활성 |
+| God | God | — | God(유저) | 전 단계 | → **Trinity §T-1** (포인터; L116과 중복 금지 — 한表만 유지) |
+| [독립] | Judge | Trial~Judgment | Judge | 데드락·담합 시만 | 수정권 없음·청문만 |
+| [독립] | Ferryman | — | Ferryman | Twilight(새 세션만) | Phoenix Nest 교차검증 |
+| [격리] | Nephilim | Purification(극한) | Nephilim | Abyss 내부 | 천사+악마 합일 단발 추론. 맥락·진영 없음. 이식 후 소각 |

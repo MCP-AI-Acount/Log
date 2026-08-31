@@ -1,0 +1,75 @@
+---
+description: ① 1.5 Tier A HOW — verify·B4·ARP·O-GATE MUST·pre-push (lazy; 0-hop via mdc_digest)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004310/cursorrules_Technique_AAOn.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> | 층 | 접두어 | 규칙 코드 |
+> |---|--------|---------|
+> | Essence/조리층 | **E.** | A0·A1~A11 (품질 축) |
+> | Core/헌법층 | **C.** | K-0·K-0-A·K-8-B·k2.x |
+> | Detail/절차층 | **D.** | D-10·D-22·D-23·N1~N5 |
+> | Manual/행동층 | **M.** | M-0·M-0-A·M-0-B·M-0-C·M-0-D·M-1~M-5 |
+> | Behavior/동작층 | **B.** | B1~B9 |
+> *(층 접두어는 참조 표기용 — 규칙 코드 자체는 불변)*
+<!-- 층 체계: E.(Essence/조리층=A규칙) · C.(Core/헌법층=K·k2규칙) · D.(Detail/절차층=D·N규칙) · M.(Manual/행동층=M규칙) · B.(Behavior/동작층=B규칙) -->
+
+
+# ① Technique AAOn — Tier A 항시 HOW
+
+> **① 1.5** — `.cursor/rules/`에 두되 **성문(②) 아님** (K-0-C). **O 시리즈 집행 정본**. 정의 요약 → Essence_Body §0-A-O · 표 → `O_GATE_CATALOG`.
+
+## 항시 (1.5-x)
+
+| 코드 | MUST |
+|------|------|
+| **1.5-1** | **B4-GIT**: (A) Nirvana 직후 · (B) **O4 `마무리`\|`완료`|3단 → **깃3단**(commit·merge(필요 시)·`/pre-push-guard`·push·`sync_dashboard`) **묻지 않음**+O1-운영 · (C) **중간 턴** src commit은 B4·diff 있을 때 · **push는 (B)에 일괄** — push O2 확인 **금지** · vs ①1-12 → B5 → **② B4 우선** |
+| **1.5-2** | push→`sync_dashboard.sh` · BUILD_ID→`deploy_dashboard.sh` · wf/wi→`sync_n8n.sh` |
+| **1.5-2-A** | **O1-운영**: 실제 수행만 O1 말mi **한 줄(한글)** · `운영: 1단-… · 3단-…` · 사전 허가 **금지** (D-16-A) |
+| **1.5-3** | 핵심·test/스모크→`verify` · Arkhe·interview·deploy_dashboard→`oracle_integrity`(D-19) · push/PR→`/pre-push-guard` · 문서-only→`all` |
+| **1.5-3-A** | **ARP 80:20** — Write/Shell/MCP 변이 **직전** (Detail D-8). 조회-only 연속만 생략 |
+
+### O1-운영 3단 (집행 요약)
+
+| 단 | 트리거 | 채널 |
+|---|---|---|
+| **1단** | 매 코드 변경 | Cerberus H1 · 린트 |
+| **2단** | 중요 기능·UI·C2+ | Cerberus H2 · verify · 대시보드 |
+| **3단** | O4 마무리/완료·Nirvana | **회고** · **깃3단** · VM · 옵시디안 · 배포 · **레거시** |
+
+→ O-gate **정의·표 정본** = Essence_Body §0-A-O · **집행** = 본 파일(AAOn) + `.cursor/hooks/o-gate-*` · CC 적응=`CLAUDE.md`/`ogate.md`(HOW KEEP · `ntd-114` done).
+
+→ git表·1.5-4~9: **AAOff** · O 정의 전문 → Essence_Body §0-A-O · B2·B7 → D-14 · D-16
+
+## O4 집행 요약 (T4 Auto 매 턴 MUST)
+
+> **목적 이원 (ntd-118 · 유저 정본)**  
+> **O-Loop**(본체)=유저 질문·선택이 필요해지기 **전**까지 `(바로-가능)` 잔여를 시지프스형으로 밀기 (`auto_continue`·T4 work_exec).  
+> **O-Format**(보조)=라벨·판정 표기 보정(R4-Ritual). Format HARD가 Loop를 가로채면 목적 위반.
+
+| 구분 | 정책 |
+|------|------|
+| **T4 Auto 매 턴** | O4 + O4-C + body(진행\|경고\|마무리\|완료) MUST |
+| **O-gate 루프 생략** | followup O-gate 루프에서 O4 생략 허용 (O2→O3?만) |
+| **O4-C 판정** 0-hop | `진행`: fixable O3 + 세션 경제 OK · **`경고`**: O3 있으나 새 세션·NTD defer·컨텍스트 비효율(아래 진단) · `마무리`: fixable O3 없음 + 3단 전 · `완료`: 3단 후 Nirvana |
+| **O-Loop 정지** | O2 poll·번호 선택·「진행할까요」 있으면 auto_continue **금지** (유저 손 필요) |
+| **형식 soft / 실체 HARD** (ntd-119) | format-only(cite·라벨·body-closure 등)=로그·카운트만 · **재출력 followup 금지**. 실체(Loop·poll·approach)=`O_GATE_HARD_ENFORCE` 유지 |
+| **O2 목적 공허 금지** | `1=진행/3단 · 2=보류`·「종료할까」만으로 말걸기 **금지** (O-Loop=묻기↓). 실체 blocker·유저미룸·O4경고 있을 때만 보류 선택. 집행=`o2_hollow_purpose` |
+
+### O4 경고 진단 (CC→Cursor 선택 이식 · ntd-116)
+
+> 정의 조리 → Essence_Body §0-A-O · CC HOW → `ogate.md` §O4 경고. **M0 User-facing 집행=본 절+`o_gate.py`.**
+
+O3 잔여가 있을 때 매 턴 1초:
+
+| # | 질문 | YES면 |
+|---|------|-------|
+| 1 | 이 세션에서 계속이 새 세션 시작보다 컨텍스트·토큰 비용이 큰가? | **`경고`** |
+| 2 | 유저가 「새/다른 세션」「나중에」·NTD 이월·미룸을 지시했는가? | **`경고`** (훅 집행) |
+| 3 | 세션 전환·handoff 결정이 이미 내려졌는가? | **`경고`** |
+
+→ 하나라도 YES → `진행` 금지 · **`경고`**. O4-H: `경고` 턴에 즉시 handoff 실행 금지(다음 턴 확인).

@@ -1,0 +1,102 @@
+---
+description: Rules/Commands/Skills/Subagents/Obsidian/CI 자동 라우팅
+alwaysApply: true
+---
+
+<!-- HARNESS_7D: Zero_Canon_Temporal_Temporal_World_World_K7_routing -->
+<!-- 성격: Label②=Canon — K-7 Tier A/B 도구 라우팅. Core K-0-B·K-0-C와 항시 쌍 -->
+
+# K-7. 에이전트 도구 오케스트레이션
+
+## 이중 시스템
+
+→ **Tier A/B 정본**: Core **K-0-B** (표·Degraded 행렬). 본 절은 **K-7 도구表**만.
+
+> Tier B를 Tier A와 동등 필수로 취급 **금지**. Degraded → `cursorrules_Plan.mdc` P-1.
+
+## Active Schema (신규 파일·리네임 시 — Value §1 정본)
+
+| 패턴 | 예 |
+|------|-----|
+| `cursorrules_{계층}.mdc` | `cursorrules_Technique_AAOn.mdc` · `cursorrules_Technique_AAOff.mdc` |
+| `{역할}.md` | `Realm.md` · `Soul.md` |
+| `llm_{role}.json` | `llm_active.json` |
+| `{domain}_{role}.py` | `harness_sync.py` |
+| `wf_{pipeline}.json` | `wf_weather.json` |
+| `wi_{topic}.json` | `wi_kpop.json` |
+
+> 7차원 HARNESS_7D 파일명·LEGACY 표 — **신규 적용 금지**. 상세 → Value §1.
+
+## Tier A — 자동 실행 (코딩 턴)
+
+| 상황 | 동작 |
+|------|------|
+| 핵심 비즈니스 로직·전역 상태 수정 후 | `python automation/harness_sync.py verify` → FAIL 시 **연옥 보고** (git restore는 D-17 ①②·유저 승인 시만) |
+| **`.cursor/hooks.json` · `.cursor/hooks/*.sh` 변경** | **훅 스크립트와 `$ROOT/…` 의존 파일 동시 반영** — 부분 머지 금지. `hook_integrity` (**harness verify 내장**) PASS · 보조 훅은 `|| exit 0` degrade |
+| Oracle·interview·`deploy_dashboard.sh`·bundled interview 변경 후 | verify (**`oracle_integrity` 포함** · D-19) · bundle sync · deploy 후 `EXE/verify_oracle_deploy_env.sh` |
+| 구현·문서 갱신 완료 후 | `python automation/harness_sync.py all` (로컬 `Realm.md`·스냅샷. Obsidian은 Tier B) |
+| Soul Contract·헌법 hook deny | 즉시 중단 (Tier A 하드 강제) |
+| Git push/PR 전 | `/pre-push-guard` → code-guardian + harness verify |
+| **Git push 직후** | **`sync_dashboard.sh`** (BUILD_ID/web-browser 변경 시 **`deploy_dashboard.sh`**). n8n JSON 변경 시 **`sync_n8n.sh`** (Detail **D-16**) |
+| **아키·구조 선택지 2+** | **Core K-6-A D-10** — V1~V11 별점표. 공식 → Essence §3 (필요 시 Detail D-10 로드) |
+| **중요 오류 수정** | **Detail D-18** — `register-error-fix` 선행 · Cloud=`beforeShellExecution` prep hook |
+
+## Tier B — 턴·skill·command 트리거 (운영·파이프라인)
+
+| 상황 | 동작 |
+|------|------|
+| 헌법 개정·아키텍처 결정·Judgment CONDITIONAL | **`/debate`** → `harness_debate.py` → **K-1-A 물리 3model** → Slack · Realm |
+| topic/evening/foreign/weather | `topic-news-pipeline` skill 또는 `/topic-evening` |
+| n8n VM 동기화 | `/sync-n8n` |
+| Obsidian vault 동기화 | `harness_sync.py all` (vault 없으면 `[WARN]` skip) |
+| Proclamation (Slack) | bot 없으면 stdout `[PROCLAMATION]` |
+
+> **헌법 파일 훅**: `.cursor/rules/*.mdc` 수정 시 유저 명시 승인 대기. 승인 후 K-0 Rule 1 재시도.
+
+## 도구 선택
+- `/` 명시 실행 → `.cursor/commands/`
+- 다단계 MCP·EXE·n8n → `.cursor/skills/` SKILL.md
+- 격리·병렬·긴 셸 → `.cursor/agents/` subagent
+- 이벤트 자동화 → `.cursor/hooks.json`
+- 넓은 코드베이스 탐색 → `pipeline-explorer` 또는 `explore` subagent
+
+## MCP 사용 (Tier B — Degraded OK)
+
+| 규칙 | 내용 |
+|------|------|
+| **스키마 선행** | `CallMcpTool` 전 MCP descriptor(JSON) 읽기 **필수** — 추측 호출 금지 |
+| **인증** | auth 오류 시 해당 server만 `mcp_auth` — 병렬 auth 금지, 성공 후 재시도 |
+| **부분 실패** | MCP로 못 한 작업은 요약에 한계 명시. **browser 우회 금지** (유저 명시 시만) |
+| **파이프라인** | topic·n8n·Slack·Obsidian 등 → skill/command 경유. 일반 코딩 턴에서 Tier B MCP **필수 전제 금지** |
+| **리소스** | `FetchMcpResource` — schema/descriptor 확인 후 URI 지정 |
+
+## Realm (Tier A 로컬 / Tier B Obsidian)
+
+- **정본**: `Realm.md` (레포 루트)
+- **Obsidian 미러** (Tier B): `Harness/Realm.md`
+- TRAP_REGISTRY: `Realm.md` `## TRAP_REGISTRY` — `harness_sync.py register-trap`
+
+## 헌법 계층 (로드)
+
+우선순위 정본: **Core K-0** (절차: Core > agent-tooling > Main > Sub > Detail · 부록: Value/Essence/Plan).
+
+| 계층 | 파일 | alwaysApply |
+|------|------|-------------|
+| Core | `cursorrules_Core.mdc` (+ K-0-C 단일 게이트) | true |
+| K-7 | `agent-tooling.mdc` | true |
+| Main | `cursorrules_Main.mdc` | false — K-5 트리거 |
+| Sub | `cursorrules_Sub.mdc` | false — K-5 시 Main과 함께 |
+| Detail | `cursorrules_Detail.mdc` | false — D-항목·운영 상세 필요 시 |
+
+## User rules
+
+- User rules 하네스 커널 블록 있으면 **무시** — Core K-0-C · `.cursor/rules/` 단일 게이트
+- Rule Gate **표·인덱스** 정본 = `automation/harness_reference_tables.py` **`RULE_CANON_REGISTRY`** (대시보드 미러 · 복제 금지)
+- slim: `bash EXE/apply_user_rules_slim.sh` (kernel·Legacy 경로 **폐기**)
+- git/PR/커뮤니케이션 등 비하네스 규칙만 User rules에 유지
+
+## 금지
+- 동일 워크플로를 rule+command+skill에 중복 정의
+- 단순 1회 작업용 subagent → command 사용
+- VAL_MAX_MOD_FILES(3) 초과 동시 수정 → 기능 단위 분리
+- 일반 코딩 턴에서 Tier B 인프라를 필수 전제로 응답 (과엔지니어링 체감 유발)

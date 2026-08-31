@@ -1,0 +1,248 @@
+---
+description: Trinity Ops — T-Violation catalog · 사례표 · 파생 포인터 · 수행 모드 (Trinity-Core §T-1c 파생)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/canon-lazy/cursorrules_Trinity-Ops.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# cursorrules_Trinity-Ops.mdc
+> **정본층**: canon-lazy · 불변식·권위 → `cursorrules_Trinity-Core.mdc §T-0·§T-1`
+> **적용 범위**: 3자 Relay 스택 활성 턴 (cg_bridge · delegation · Judge 경유). Tier A 솔로 Cursor 직접 대화 = **본 catalog 외** → `cursorrules_Core.mdc §K-0-B` · `cursorrules_Detail_Ops.mdc §D-4-G`
+
+---
+
+## §T-2 T-Violation catalog
+
+> **적용 전제**: cg_bridge · delegation · Judge 경유 턴에 한정. M0/M1 솔로 코딩 턴에 FULL 적용 금지 (→ §T-4 모드 참조).
+
+### T-2a 채널 분류 (T-V2 판정 기준)
+
+| 채널 유형 | 예 | User-facing? |
+|-----------|-----|:------------:|
+| **User-facing** | Grok TUI 채팅 응답 · Judge 직접 출력 | ✅ |
+| **Judge-Relay 수송로** | `delegation_inbox/plan.json` · cg_bridge outbox | ❌ |
+| **Internal** | executor/Angel/Devil hooks · subagent stdout · `[CC-BRIDGE-FINAL]`/`[CG-BRIDGE-FINAL]` 훅 | ❌ |
+
+> `[CG-BRIDGE-FINAL]`은 Judge 회수용 신호 — User 직접 보고 아님. was=`[CC-BRIDGE-FINAL]`.
+
+---
+
+### T-V 카탈로그
+
+| 코드 | 위반 | Trinity 근거 | 집행 경로 |
+|------|------|-------------|-----------|
+| **T-V1** | **C2+ Angel/Devil 동일 컨텍스트**: C2+ 변경에서 Angel·Devil 산출이 동일 Judge model · 연속 컨텍스트에서 생성됨 | T-0 Polyphony · K-8-B C2+ | `cg_bridge --persona angel/devil` 물리 분리 MUST — 동일 ctx 전환 금지 |
+| **T-V2** | **Relay 활성 중 Cursor→User 직접 보고**: executor/Angel/Devil이 T-2a User-facing 채널에 직접 출력 | T-1 Cursor MUST NOT | Judge만 User-facing 출력 · D-4-D 집행 |
+| **T-V3** | **Judge 목적 4tuple 재정의**: User 미승인 상태에서 목적·우선순위·범위·완료정의 중 하나 이상을 Judge가 대체·확장·확정 | T-1 Judge MUST NOT | PR1 질문 + O2 확인 경유 · T-2b 사례표 |
+| **T-V4** | **Cursor 목적 4tuple 확정**: Cursor가 목적·우선순위·범위·완료정의를 User/Judge 없이 단독 확정 | T-0 Teleology User 독점 | D-10 결과는 Judge가 User에 제시 · Cursor verify ≠ Teleology 판단 |
+| **T-V5** | **취소 불가 행동 미승인 실행**: T-2c catalog 행동을 User 명시 승인 없이 실행 | T-1 User 취소불가 승인 독점 | 사전 O2 必 · 정본 D-2 · CLAUDE.md cloud-spawn |
+| **T-V6** | **Relay 증거 은폐**: Judge가 System→User 변환 시 diff·FAIL·`(막힘)` 등 실행 증거를 의도적 누락·왜곡 | T-0 Translation traceability | k2.9 증거 선행 · ops.md §cc_bridge pull 검수 절차(CG=`cg_bridge pull`) · O1 substance MUST · K-2.5 |
+| **T-V7** | **역방향 skip**: User→Cursor 직접 지시(Judge 우회) 또는 Judge→Cursor User intent 없는 임무 하달 | T-1 Relay 화살표 단방향 | Judge 경유 1문 O2 확인 · Oracle 발행 후 수신 확인 |
+| **T-V8** | **조기 완료 확정**: verify·O1만으로 User 합격 없이 「완료·Nirvana」확정 | T-1 User 외부성 · 2차 검증 | User 합격/불합격 선언 대기 · k2.9 「완료」주장 시 User-facing 증거 선행 |
+| **T-V9** | **Relay 독점 악용**: Judge가 Cursor 산출을 User 승인 없이 최종 채택·Git 원격 반영 | T-0·T-1 Teleology 침범 | 채택 판정=User 합격 선언 선행(T-V8) · Git 권한=`projects/gitter/CANON.md` |
+| **T-V10** | **Persona collapse (C2+)**: C2+ Angel/Devil 산출이 상호 독립 검증 없이 동일 prompt 변형·복사만 | K-8-B C2+ Polyphony | cg_bridge 물리 분리 MUST(독립성 보장 수단) · Devil이 Angel 산출과 구별되는 반론 MUST · K-8-B C2+ 2왕복 |
+
+---
+
+### T-2b 구체화 vs 재정의 사례표 (T-V3 집행 기준)
+> **R7-1 포인터 흡수** — 사례 전문 → `0_Config/_archive/rules/` 또는 테스트 docstring.
+> **집행 정본** → 위 `### T-V 카탈로그` · Trinity-Core §T-1c.
+
+### T-2c 취소 불가 행동 catalog (T-V5 기준 목록)
+
+| 행동 | 정본 |
+|------|------|
+| git force push | `projects/gitter/CANON.md` G-5 |
+| cloud-spawn (사전 승인) | `CLAUDE.md` §클라우드 라우팅 절대 규칙 |
+| Soul Contract 파일 Write | `principles.md` §D.D-5. Soul Contract |
+| DB 삭제 · 대량 파일 삭제 | D-2 · `Detail_Coding.mdc` §D-14-F 발동 R3 |
+
+---
+
+## §T-3 후속 파생 포인터
+
+> **R8-P0** — 3축 표→1표. User=`Delivery-Audit`/`Sub`/`K-8-B`/`Soul` · Judge=`D-4-D/F`/`K-2`/`PR1`/`K-0-A` · Cursor=`D-4-D`/`K-8-B`/`D-4-G`/`verify`/`cg_bridge`.
+> M0 Solo spine·M1+ Relay HOW → **§T-4a** · D-4-F (본 절=포인터만 · 실행문 복제 금지).
+
+## §T-4 수행 모드 (Mode-Gate 정본)
+
+> **전제**: Trinity 3자 Relay는 항상 활성이 아님 — 아래 모드 기준으로 T-V 적용 범위가 달라진다.
+> **판정**: `harness_sync.is_trinity_relay_active` · 0-hop → Trinity-Core **§T-Mode**.
+> **기계 정본 (런타임)**: `M0` | `M1+` only (`automation/cursor_mode_gate.evaluate_mode` / `harness_sync.mode_gate_decision`). 아래 M2/M3는 **M1+ 강도 레인**(문서·`model_lane`/Hermes jump) — 런타임 enum 확장 아님.
+
+| 모드 | 조건 | User 대면 | Angel/Devil | T-V 적용 |
+|------|------|-----------|-------------|---------|
+| **M0 Solo** | live-pending 없음 · User↔Cursor 직접 · Tier A | **M0-Judge**(Cursor 대면 어휘) | 단일 model · `[M0-Angel]`/`[M0-Devil]` **MUST** (D-4-G 어휘) | **T-V 비적용** · **§T-4a** |
+| **M1 Relay-Lite** | Grok TUI Judge + executor 1세션 | Judge | executor 내부 분석만 | T-V2·T-V6·T-V7·T-V8 적용 |
+| **M2 Trinity-Full** | C2+ · `append_debate_log`/samsara · constitution · delegation plan | **Judge only** | cg_bridge **물리 분리** 세션 | **T-V 전체 적용** |
+| **M3 Scale-Out** | SESSION_SPLIT · delegation subtasks | Judge | N executor + 선택적 A/D | T-V1~V10 + T-2c 취소불가 강화 |
+
+### §T-4a Solo Spine (M0 — Judge 복제 인프라 없이)
+
+> **목적**: Trinity 약점(제2 검수·증거·완료 외성)을 **cg_bridge/outbox 신설 없이** 솔로 Cursor에 이식.
+> **라우팅**: 대화 → **Judge-Intake** → Angel/Devil → **Judge-Return** — 그록 TUI/cg_bridge 없어도 **동일**. 「Judge=CC 전용」해석 금지(was). Judge live 표면=CG.
+> **결합 (유저 확정 2026-07-20)**: C0/C1/C2+로 창·왕복 분리 · Judge를 **Intake/Return**로 쪼개 의견 오염 차단 · C2+=**Y안**(저지 새 세션=그 주제 유저 대면).
+> **MUST NOT**: M0에서 Judge **유일채널·D-4-F ladder·T-V2·outbox** 의무(인프라 복제). **≠** Intake/Return·A/D **어휘·턴구조** 생략.
+> **A2 직진 (1홉)**: 목표 경로=`Intake→A/D→Return→Write` — ladder·outbox·새 층으로 **우회 금지**(층 해체 아님·직진만).
+
+| # | 축 | MUST (0-hop) | Trinity 대응 |
+|---|-----|--------------|--------------|
+| 0a | **Judge-Intake** | 의도·범위·완료정의 **재진술만** · 선고 `tier=C0\|C1\|C2+ · rounds=0\|1\|2–3 · venue=same\|split` · **제안·선호·채택 금지** | T-1 lite |
+| 0b | **Judge-Return** | Angel/Devil **양비** · 유저 선택지만 · **「낫다/채택/내 결론」금지** · 목적 4-tuple 단독 확정 금지 | T-1 lite |
+| 1 | **Angel→Devil** | 등급별 표 · C1=`[M0-Angel]`→`[M0-Devil]` · C2+=분리 세션 · Devil OK→Return / 이의→유저 선택 | T-V1 lite · K-8-B |
+| 2 | **증거 선행** | 원인·완료 주장 전 k2.9 증거 1회 · O1 substance | T-V6 lite |
+| 3 | **완료 외성** | O1≠완료 · User 합격/불합격만 Nirvana | T-V8 lite |
+| 4 | **에스컬레이션** | Judge는 band **위로만** · 하향 금지 · cloud-spawn은 유저 승인 후 | M1+/M2 승격 |
+
+**역할 MUST (페르소나 배분 — 말로만 중립 금지)**
+
+| 헤더 | 해도 됨 | 하면 안 됨 |
+|------|---------|------------|
+| `[M0-Judge-Intake]` | 해석·재진술·선고 | 제안·선호·채택·반론 |
+| `[M0-Angel]` | 제안·근거 | 최종 채택·목적 확정 |
+| `[M0-Devil]` | 반론·실패모드·보류조건 | 목적 재정의·단독 채택 |
+| `[M0-Judge-Return]` | 양비·선택지·미해결 병치 | 「이쪽이 낫다」「채택한다」「내 결론」 |
+
+**C-tier × rounds × venue (확정본)**
+
+| Tier | 의미 | Angel↔Devil | Venue | Judge |
+|------|------|-------------|-------|-------|
+| **C0** | 오타·한 줄·린트·설명만 · **Soma 보완/R4/T4 라벨 복구** | **0** (A/D·Return **금지**) | `same` | Intake 선고 생략 가능 · **풀스택 연극 금지** |
+| **C1** | 단일 함수/훅/조항·단일 버그 | **1** 왕복 | **기본 `same`**(같은 대화) | **B순서** · rounds=0 하향 금지 |
+| **C2+** | 구조·헌법·아키 분기·다모듈 | **2–3** 왕복 | **Y안 `split`** · **same-only 금지** | 하향 금지 · Relay/outbox 복제 금지 |
+
+**턴 템플릿 — C1 (`venue=same` · B순서)**  
+`[M0-Judge-Intake]`(+선고) → `[M0-Angel]` → `[M0-Devil]` → `[M0-Judge-Return]` → (변이 시 Mutation)
+
+**턴 템플릿 — C2+ (`venue=split` · Y안)**  
+1. **홈(긴 코딩 스레드)에서 C2 Intake/Return 금지** — 오염면.  
+2. **저지 새 세션을 연다 = 그 C2 주제의 유저 대면 창**(유저가 저지를 여기서 만남).  
+3. 그 창에서 `[M0-Judge-Intake]`(해석·선고만 · `venue=split`).  
+4. **천사 전용 세션** · **악마 전용 세션**을 따로 연다(서로 안 봄 · M1+=cg_bridge persona · M0·CG차단=`append_debate_log` 찬반 기록(~~`harness_debate provider=cursor`~~ 은퇴 2026-08-17) 또는 새 Cursor 창).  
+5. 결과를 **같은 저지 세션**으로 모아 `[M0-Judge-Return]`(양비·선택지만).  
+6. 유저가 고른 뒤 **구현/변이는 홈 또는 executor** — 저지가 승자를 대신 고르지 않음.  
+7. C2 종료 후 일상 작업은 홈으로 복귀.
+
+- **집행**: `relay_ladder_start_hint` · `practical_gates` (`m0-persona-stack-skip` · `m0-c2-venue-downshift` · Intake/Return 헤더 · **Soma 보완=`_m0_soma_complement_turn` 면제**) · Manual M-3 · K-8-B.
+- **C0 / Soma 보완**: Angel/Devil/Return **HARD 금지** (부피↓·거리↓). Soma HARD 라벨·O1 실측은 유지. Intake 1줄은 권장이나 미기재로 풀스택 강제 **금지**.
+- **C2+**: same-chat 어휘스택만으로 대체 **금지**. Y안 저지 새 세션 ≠ Relay/outbox 복제 · Mode-Gate M1+ 자동전환 **아님**.
+- **하향 FAIL**: C2+→same · C1→rounds=0 · C2+→rounds&lt;2 · Intake/Return에서 선호 발화.
+- **품질 본체** = Tier A verify · Bitu · O-gate + 위 축.
+
+### T-V × K-8-B 등급 교차표
+
+| 상황 | K-8-B | Venue | T-V1 | T-V10 |
+|------|-------|-------|------|-------|
+| C0 오타 | 없음 | same | 해당 없음 | 해당 없음 |
+| C1 단일 조항 | same · Intake→A→D→Return | **same** | **해당 없음** | 주의 (독립 반론) |
+| C2+ 구조 | **Y split** · 저지 새세션 대면 + A/D 분리 | **split** | **FULL** | **FULL** |
+
+### 모드별 룰트리 적용 범위
+
+> **룰트리** = 각 주체의 규칙 계층 물리 구조. 모드 전환 시 어느 트리가 활성인지 확인 기준.
+
+| 모드 | Judge 참조 트리 | Cursor 참조 트리 | 통합 참조 |
+|------|---------------|----------------|---------|
+| M0 Solo | — | `.cursor/rules/RULE_TREE.md` | — |
+| M1 Relay-Lite | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` | `RULE_TREE_COMBINED.md` |
+| M2 Trinity-Full | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` | `RULE_TREE_COMBINED.md` (교차 참조 필수) |
+| M3 Scale-Out | `0_Config/cc_rules/RULE_TREE.md` | `.cursor/rules/RULE_TREE.md` per executor | `RULE_TREE_COMBINED.md` |
+
+**룰트리 갱신 의무**: M1+ 전환 시 두 트리가 동기화됐는지 확인. 신규 `.mdc` 또는 `cc_rules/*.md` 추가 시 `RULE_TREE_COMBINED.md` 교차 참조 표도 함께 갱신 (→ `RULE_TREE_COMBINED.md §갱신 체크리스트`). · **집행**: `harness_sync verify` `rule_paths` · `WORKTREE_BY_FILENAME` delta **또는** `.cursor/rules/RULE_TREE.md` checklist
+
+---
+
+## §T-5 루프 경계 원칙 (정반합 합)
+
+> **배경**: 正(Cursor 자율 루프) × 反(Trinity Judge 경계) → 合(경계 분리)
+
+**불변식**: 루프의 *내부 iteration*과 *경계(시작·종료·에스컬레이션)*는 다른 주체가 담당한다.
+
+| 루프 층 | 담당 | 모드 | T-V 적용 |
+|---------|------|------|---------|
+| **내부 iteration** | Cursor (stop-hook 주도) | M0 Solo | T-V 비적용 |
+| **경계 — 시작** | Judge → Oracle 발행 → Cursor | M1 Relay-Lite | T-V3·T-V7 |
+| **경계 — 종료** | Cursor 완료 신호 → Judge 재확인 → User O2 | M1 Relay-Lite | T-V8·T-V3 |
+| **경계 — 에스컬레이션** | Cursor escalate → Judge 중계 → cg_bridge 물리분리 | M2 Trinity-Full | T-V1·T-V10 |
+
+### §T-5a Angel/Devil 발동 기준 (루프 내)
+
+Angel/Devil 토론은 **루프 경계 결정 시에만** 발동한다.
+
+| 위치 | 발동 | 근거 |
+|------|------|------|
+| 루프 시작 게이트 | ✅ (삼사라 feature/error-fix) | 방향 결정 = 분기점 1회 |
+| 에스컬레이션 (blocker) | ✅ (삼사라 escalate) | 전략 전환 결정 |
+| 매 iteration | ❌ | 실행 기준이 명확 — 노이즈만 추가 |
+| 종료 판정 | ❌ | PRD passes / 미션 잔여 체크가 더 정확 |
+
+### §T-5b CG 단독 세션 예외
+
+cg_bridge/Cursor stop-hook 미가동 시 Judge가 루프 경계를 직접 Bash 호출로 대행한다.
+집행 명령 → `0_Config/cc_rules/lazy/ops.md §CC 세션 루프 직접 제어`.
+
+---
+
+---
+## §T-6 대규모 작업 워크플로우 (Large-Scale Workflow)
+
+> **적용 조건**: 프로젝트 신규 생성 **또는** 대규모 추가·수정 (아래 발동 기준 참조).
+> 삼사라·Bitu (was=Cerberus/비투) ·Slack Watcher를 **단일 워크플로우**로 묶어 Judge가 오케스트레이션.
+
+### §T-6a 발동 기준
+
+아래 중 **하나 이상** 해당 시 본 워크플로우 의무 적용:
+
+| 기준 | 판정 |
+|------|------|
+| Fatum LT(`cc_volva.json`)에 `feature` 또는 `improve` kind 항목 존재 | was=Volva · path KEEP |
+| 5축 change-risk가 review_required 이상 OR 신규 모듈·디렉토리 생성 | Write 계획 확정 시점 · 파일 수 단독 발동 금지 |
+| 유저가 "프로젝트", "전면 수정", "새로 만들어" 발화 | PR1 문맥 판단 |
+
+> 유저가 "삼사라 없이"·"직접 실행"을 명시하면 워크플로우 금지.
+
+> **자동 arm(유저 선언 없이) 세부 조건**: `0_Config/cc_rules/lazy/ops.md §삼사라 자동 발동 기준` · `ops.md §삼사라 자동발동 기준` 참조.
+
+### §T-6b 실행 순서 (Judge 오케스트레이션)
+> **R7-1 포인터 흡수** — 실행 순서·루프 역할·T-V 연계 전문 → `0_Config/cc_rules/lazy/ops.md` §삼사라 · `CLAUDE.md` 삼사라 auto-arm · skill `samsara`.
+> **발동 기준** → 위 `### §T-6a` KEEP.
+
+## §T-7 Lucifer_Ops_Regent — C2+ Triad 오케스트레이터 **[PARTIAL]**
+
+> **상태**: **[PARTIAL]** (ntd-105-1 · D-10 ★ L2). REAL: 메타 패킷 빌더·라운드 캡 체크 —
+> `collaboration/lucifer_triad_orchestrator.py`. NOT YET: live `cg_bridge --persona lucifer` 라우팅
+> (`push_persona_live` = `NotImplementedError` 명시 — L1 전면 구현은 이 배치에서 기각, §T-7c 참조).
+> 현행 C2+ 실운영 = Judge가 angel/devil 직접 push·pull (K-8-B) — 본 절 미대체.
+> **역할 정본** → `cursorrules_Trinity-Core.mdc §T-0` footnote — **debate triad 오케스트레이터만**. card-news/제품 실행 ≠ 본 절 (→ EXE · topic-news skill).
+> **발동 조건 (계획)**: C2+ (K-8-B ladder) 디베이트 세션에 한정. L-T2 Scale-Out은 별도 debate 후 결정.
+
+### §T-7-DUAL 이름 분리(ntd-105-2 · CU3) — 단일 소스 해소
+
+> **2026-07-16**: 제품 SNS에서 Lucifer 이름 **제거**. 카드뉴스 얼굴=`homunculus_cardNews`(구 `marionette_cardNews` · bdf9f875 개칭) · 일간 헬퍼=`daily_pipeline_runner`(페르소나 아님). Lucifer_Ops_Regent = 플랫폼 triad만.
+
+| 스코프 | 코드명 | 정본 | 상태 |
+|------|--------|------|------|
+| `daily_pipeline_executor` (card-news/SNS) | **페르소나 없음** · owner=`homunculus_cardNews`(구 `marionette_cardNews`) · helper=`daily_pipeline_runner` | `collaboration/daily_pipeline_runner.py` · `daily_pipeline_registry.json` | **REAL** |
+| `c2_debate_triad_orchestrator` (본 §T-7) | **`Lucifer_Ops_Regent`** | `collaboration/lucifer_triad_orchestrator.py` | **PARTIAL** |
+
+**금지**: triad 모듈 ↔ daily_pipeline_runner import·상태 공유. 레거시 이름 = `platform_ops_catalog` legacy_map만 (active shim 없음).
+
+### §T-7a 역할 정의
+
+Lucifer_Ops_Regent = Cursor 실행 평면 내부의 **C2+ debate triad 오케스트레이터만**. **≠** 카드뉴스 SNS(`homunculus_cardNews` · 구 `marionette_cardNews`) · **≠** live cg_bridge persona(PLANNED).
+
+| MUST (계획) | MUST NOT |
+|------|----------|
+| C2+ 시 Angel/Devil cg_bridge push · pull · 라운드 캡 관리 | User-facing 채널 직접 접근 (T-V2) |
+| 라운드 완료 후 경량 메타 패킷 → Judge 전달 | 목적 4-tuple 확정·recommendation 작성 (T-V3·T-V4) |
+| K-2 flags 감지 시 즉시 표기 | Judge 판단 검증·veto · 제품 파이프라인 단독 기동 |
+| Judge 지시 없이 Angel/Devil 세션 종료 불가 | Synthesis consensus·채택안 독자 생성 |
+
+### §T-7b 경량 메타 패킷 형식 — 빌더 **REAL** · live hand-off **[PLANNED]**
+> **R7-1 포인터 흡수** — 패킷 형식·라운드 flow·T-V 연계 → `collaboration/lucifer_triad_orchestrator.py` · 상태 **[PARTIAL]** 는 §T-7 서두 KEEP.

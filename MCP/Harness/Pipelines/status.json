@@ -1,0 +1,94 @@
+{
+  "updated_at": "2026-08-24 22:20:11 KST",
+  "harness_ok": false,
+  "harness_exit_code": 1,
+  "optimize": {
+    "timestamp": "2026-08-24 22:20:10 KST",
+    "rules": [
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Detail.mdc",
+        "lines": 61
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Detail_Coding.mdc",
+        "lines": 518
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Detail_Ops.mdc",
+        "lines": 463
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Essence.mdc",
+        "lines": 340
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Essence_Body.mdc",
+        "lines": 287
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Main.mdc",
+        "lines": 185
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Sub.mdc",
+        "lines": 202
+      },
+      {
+        "file": ".cursor/rules/canon-lazy/cursorrules_Trinity-Ops.mdc",
+        "lines": 243
+      },
+      {
+        "file": ".cursor/rules/reference-lazy/cursorrules_Delivery_Audit.mdc",
+        "lines": 39
+      },
+      {
+        "file": ".cursor/rules/reference-lazy/cursorrules_Plan.mdc",
+        "lines": 102
+      },
+      {
+        "file": ".cursor/rules/reference-lazy/cursorrules_Value.mdc",
+        "lines": 384
+      },
+      {
+        "file": ".cursor/rules/technique-lazy/cursorrules_Technique_AAOff.mdc",
+        "lines": 109
+      },
+      {
+        "file": ".cursor/rules/tier-a/agent-tooling.mdc",
+        "lines": 163
+      },
+      {
+        "file": ".cursor/rules/tier-a/cursorrules_CCLayer.mdc",
+        "lines": 137
+      },
+      {
+        "file": ".cursor/rules/tier-a/cursorrules_Core.mdc",
+        "lines": 402
+      },
+      {
+        "file": ".cursor/rules/tier-a/cursorrules_Manual.mdc",
+        "lines": 272
+      },
+      {
+        "file": ".cursor/rules/tier-a/cursorrules_Technique_AAOn.mdc",
+        "lines": 92
+      },
+      {
+        "file": ".cursor/rules/tier-a/cursorrules_Trinity-Core.mdc",
+        "lines": 95
+      }
+    ],
+    "rules_total_lines": 4094,
+    "always_apply_lines": 565,
+    "collaboration_py_count": 141,
+    "exe_sh_count": 252,
+    "commands_count": 30,
+    "skills_count": 13,
+    "agents_count": 2,
+    "suggestions": [
+      "alwaysApply 565줄 — agent-tooling 슬림화·Tier B 지연 로드 (목표 ≤150)",
+      "cursor rules 총 라인이 400 초과 — file-specific rule로 분리 검토",
+      "rules 파일 수 과다 — agent-tooling 외 glob rule로 분리 검토"
+    ]
+  }
+}

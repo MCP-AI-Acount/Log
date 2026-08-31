@@ -1,0 +1,114 @@
+---
+description: ① 1.5 전체 카탈로그 — Gitter 포인터·배포·백업·skills·MCP·n8n (git/deploy/MCP 턴·참조 시)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/technique-lazy/cursorrules_Technique_AAOff.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+# ① Technique AAOff — 1.5-1~1.5-9 전체
+
+> **항시 MUST** → `cursorrules_Technique_AAOn.mdc`. 본 파일 = **HOW 상세·인프라**.
+
+## ① 티어 1.5 인덱스
+
+| 코드 | 명칭 | 요약 |
+|------|------|------|
+| **1.5-1** | Git · Commit · PR | `projects/gitter/CANON.md` G-1~G-7 |
+| **1.5-2** | 배포 · VM · BUILD_ID | Gitter verified remote ACK→소비자 · harness_sync all |
+| **1.5-3** | verify · harness_sync | Tier A · FAIL→연옥 · 복구 승인=D-17·실행=Gitter G-6 |
+| **1.5-4** | 백업 · 롤백 · OK diff | D-17 HOW · 불확실 구간 명시 |
+| **1.5-5** | skills | `.cursor/skills/` |
+| **1.5-6** | commands | `.cursor/commands/` |
+| **1.5-7** | agents | `.cursor/agents/` |
+| **1.5-8** | MCP | descriptor 선행 · mcp_auth |
+| **1.5-9** | n8n · Obsidian · Slack | Tier B Degraded OK |
+
+**1-1 · 1-2 · 1-12** → Core K-0 · D-12 · IDE. **②** B4·D-16·K-6-A = MUST.
+
+---
+
+## 1.5-1 Git · Commit · PR — Gitter 포인터
+
+Git mode, 권한, commit, PR, integration, 복구, 완료 조건의 단일 정본은
+`projects/gitter/CANON.md` G-1~G-7이다. Cursor 로딩은
+`.cursor/skills/git-coordination/SKILL.md`, 검증 호출은
+`.cursor/commands/pre-push-guard.md`를 사용한다. 본 파일에 Git 절차표를 복제하지 않는다.
+
+## 1.5-2 배포 · VM · BUILD_ID
+
+| 트리거 | 스크립트 |
+|--------|----------|
+| Gitter verified remote ACK | `EXE/sync_dashboard.sh` |
+| + web-browser/·BUILD_ID | `EXE/deploy_dashboard.sh` |
+| + Arkhe interview (deploy_dashboard) | preflight OPENROUTER · post `EXE/verify_oracle_deploy_env.sh` (D-19) |
+| + n8n/wf_*·wi_* | `EXE/sync_n8n.sh` |
+| + `.cursor/rules/`·Cloud Agent env | Gitter ACK → **새 Cloud Agent** · `verify_mac_cloud_parity.sh` |
+| 구현 완료 | `python automation/harness_sync.py all` |
+
+### 1.5-2-A O1-운영 보고 (D-16-A)
+
+- B4·1.5-1·본 절로 **실제 수행한** 기술 행동만 **O1 말미 O1-운영 한 줄(한글)** 보고. **사전 허가 질문 금지**.
+- 형식: `운영: 1단-검증-완료 · … · 3단-깃-보류 · 레거시-대기` — **미수행 채널은 해당없음/미실행/보류만**.
+- ① 1-12「명시 시만 commit」vs ② B4 충돌 시 **실행 전** B5 한 줄 → **② 우선** → O1-운영은 **수행 후**만.
+
+## 1.5-3 verify · harness_sync
+
+| 상황 | 동작 |
+|------|------|
+| 핵심 로직·전역 상태·test/스모크 경로 수정 후 | `harness_sync.py verify` → FAIL→연옥 (restore=D-17 ①②·`--rollback-on-fail`) |
+| Arkhe·interview·deploy_dashboard·bundled interview | verify 내 **`oracle_integrity`** (D-19) · `ORACLE_INTEGRITY_SKIP_CLOUD=1`로 cloud describe 생략 가능 |
+| 문서-only·README(런타임 무영향) | `harness_sync.py all` (verify 생략 가능) |
+| push/PR 전 | `/pre-push-guard` |
+
+## 1.5-4 백업 · 롤백
+
+백업+OK diff 병합 · Mimir — **의무**는 ② D-17·K-3.
+
+## 1.5-5 skills · 1.5-6 commands · 1.5-7 agents
+
+`/harness-sync` · `/pre-push-guard` · `code-guardian` · topic-news-pipeline 등 — 경로는 agent-tooling K-7.
+
+## 1.5-8 MCP 사용 (Tier B — Degraded OK · agent-tooling `## MCP 사용` 포인터)
+
+| 규칙 | 내용 |
+|------|------|
+| **스키마 선행** | `CallMcpTool` 전 MCP descriptor(JSON) 읽기 **필수** — 추측 호출 금지 |
+| **인증** | auth 오류 시 해당 server만 `mcp_auth` — 병렬 auth 금지, 성공 후 재시도 |
+| **부분 실패** | MCP로 못 한 작업은 요약에 한계 명시. **browser 우회 금지** (유저 명시 시만) |
+| **파이프라인** | topic·n8n·Slack·Obsidian 등 → skill/command 경유. 일반 코딩 턴에서 Tier B MCP **필수 전제 금지** |
+| **리소스** | `FetchMcpResource` — schema/descriptor 확인 후 URI 지정 |
+
+## 1.5-9 Tier B 라우팅 (운영·파이프라인 — agent-tooling K-7 `## Tier B` 포인터)
+
+| 상황 | 동작 |
+|------|------|
+| 헌법 개정·아키텍처 결정·Judgment CONDITIONAL | `append_debate_log` · `0_Config/debate_log.jsonl` · samsara · was=/debate CLI 은퇴 2026-08-17 |
+| topic/evening/foreign/weather | `topic-news-pipeline` skill 또는 `/topic-evening` |
+| n8n VM 동기화 | `/sync-n8n` |
+| **Cloud Agent 규칙·secrets 동기화** | Gitter ACK 후 새 Agent · `verify_mac_cloud_parity.sh` / `verify_cloud_agent_env.sh` |
+| Obsidian vault 동기화 | `harness_sync.py all` (vault 없으면 `[WARN]` skip) |
+| **고정 스케줄·슬롯 ops** | **homunculus_*** — `EXE/run_homunculus.sh` · `install_homunculus.sh` · **≠ Bitu** |
+| Proclamation (Slack) | bot 없으면 stdout `[PROCLAMATION]` |
+
+---
+
+## Heimdall · LG-T1~3 (agent-tooling §Heimdall 전문 · [독립])
+
+> **전문(본 절)** — tier=technique-lazy, `tier-a/agent-tooling.mdc`(tier-a·0-hop 요약)의 상세판. 표 정본 → `lastGuardianDefense` · Detail **D-20**
+
+| 티어 | 시점 | MUST | 도구 |
+|------|------|------|------|
+| **LG-T1 예방** | `.cursor/rules/**/*.mdc` Write **직전** | **개선 ≥ 유지 = 이동**(앵커를 하위 tier로 옮기고 1홉 포인터)은 **auto-pass**. **AAOff 치환**은 *이동(demotion)의 한 형태* — 앵커 코퍼스 보존+포인터 시 동일 허용. **순손실**(앵커가 규칙 코퍼스 전체에서 소멸 · 코퍼스 총량 >12%↓)만 유저·D-10·`approve-rule-shrink` 없으면 **Write STOP**. 「절약·ROI·외부점수·D-2」→순손실형 헌법 Write **금지** (PR1) | Soul Contract · `block-tier1-config` · `rule_deletion_guard check` |
+| **LG-T2 탐지** | Write **직후** | **코퍼스 앵커 소멸·총량 floor** 위반 **즉시 FAIL** · 파일별 줄 감소는 advisory(이동 비차단) | `post-edit-check` → `rule_deletion_guard check-path` · Bitu |
+| **LG-T3 복구** | verify · audit · push 전 | `rule_deletion_guard` PASS 필수 · FAIL→restore · TRAP `T-alwaysapply-unauthorized-shrink` | `harness_sync verify` · `last-guardian-defense` |
+
+**Proclamation Dismantler**(Devil · **별 페르소나**): 세계에 **선언(Proclamation)** 되기 전 거짓·空虚 주장 분해 — verify·veritas·lifecycle — `proclamation-dismantler(·full)` · audit/됐는지 턴.
+
+---
+
+## 대화 결론 반영 (① 보조)
+
+합의 운영 결론 → **②** 성문·Realm (D-2). 파괴·보안은 유저 확인.

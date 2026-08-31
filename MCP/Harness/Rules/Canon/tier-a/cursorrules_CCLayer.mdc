@@ -1,0 +1,142 @@
+---
+description: CG Judge 레이어 — cg_bridge·룰 변경 게이트·페르소나 (lazy; 0-hop via mdc_digest · was=Claude Code live)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/tier-a/cursorrules_CCLayer.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# K-8. CG Judge 레이어 (was=Claude Code live 연결 제거)
+
+> **Trinity §T-0·§T-1** — User · Cursor(오케스트레이터) · Grok TUI(수행) 정본. **정본**: `cursorrules_Trinity-Core.mdc` · Cursor 측 본 문서.
+
+## K-8-A. 운영 구조
+
+> **Trinity §T-0·§T-1** — User·Judge(Grok TUI / CG 게이트)·Cursor 3자 Relay 정본. 아래는 **CG 구현 매핑**만. was=Claude Code live 연결 제거(2026-08-20 L1).
+> **Mode-Gate**: **M0 Solo** = User↔Cursor 직접 Agent(Angel/Devil/executor 세션 **아님**) · **M1+**만 아래 매핑.
+
+- **수행** = Grok TUI — `collaboration/grok_cli_client.py` `grok_work` · `EXE/cg_bridge.sh --persona executor` (`acceptEdits`)
+- **지휘** = Cursor — 유저 대면 · 배정 · 회수 · 검증. 쿼타/CLI 없음만 변이
+- **Debate Judge** = Grok TUI plan — `grok_role_chat` (**변이 금지**)
+- **Cursor (M0 Solo)** = 오케스트레이터 · 역할명=어휘만 (D-4-G) · Solo spine → Trinity-Ops §T-4a
+- **물리 토폴로지·화살표** → `cursorrules_Trinity-Core.mdc` **§T-1** · **§T-Mode** (본 절 ASCII 다이어그램 **삭제**)
+- **삼사라·Bitu·debate** — 제한적 상황만 (토큰 비용 고려)
+
+## K-8-B. 룰 변경 게이트 (페르소나 토론 시스템)
+
+> **모든 `.mdc` 헌법 변경**은 아래 게이트를 거친다. LG-T1과 **병렬 적용** (중복 아님).
+
+| 등급 | 트리거 | 토론 | 결과 |
+|------|--------|------|------|
+| **C0** | 오타·포인터 수정 | 없음 | LG-T1 → 자동 적용 |
+| **C1** | 단일 조항 추가·수정 | Angel → Devil | Devil OK → 자동 / 이의 → 유저 |
+| **C2+** | 구조·헌법급 변경 | Angel → Devil → Angel | **항상** 유저 판단 |
+
+> **채택 (권한축)**: `규칙권한 = C0|C1|C2+ ; 수정조건 = [M?][D?][path] — 5단 사다리 폐기.`
+
+### K-8-B-1. 직교 수정조건 (권한축 ≠ 수정조건축)
+
+| 축 | 기호 | 의미 | 집행 | ≠ |
+|---|---|---|---|---|
+| **권한** | `C0` \| `C1` \| `C2+` | 심각도·승인 주체 (위 표 정본) | LG-T1 · Angel/Devil · 유저 판단 | M·D·path로 **승격·하향 금지** |
+| **모델 재검토** | `M?` | 상위·독립 모델 품질 재검토 (선택) | C1+ 찬반 기록(`append_debate_log`) · `cc_bridge` · ~~`harness_debate`~~ 은퇴 2026-08-17 | C등급 추가·「상위=허용」 **아님** |
+| **의존 전수** | `D?` | 영향 범위 정합 스캔 (선택) | N3~N5 · M-R — **C와 무관 AND** · HOW→`rule_change`/`D-7` | M 통과 = D 생략 **금지** |
+| **집행경로** | `path` | 런타임 실행면 | `cursor` \| `cc` (동일 C라도 집행 상이) | 등급·권한 **아님** |
+
+**표기**: `권한 = C{n}` · `수정조건 = [M?][D?] path={cursor|cc}` — 대괄호는 **직교 AND**(사다리 아님). C는 수정조건에 **재삽입 금지**.  
+**C0 allowlist**: 오타·포인터만. Soul · N1/N2 · C1+ 본문 = **C0 불가**.  
+**path=cc C0**: 1줄 보고 후 Write(Silent 자동 금지) — `rule_change.md` LG-T1 대체.  
+**금지**: 선형 5단(유저만→허락→상위모델→의존전수→AI 자유수정)을 권한 사다리·등급번호로 쓰지 말 것. 「AI 자유수정」단 **폐기**.
+**AL(자율도) ≠ 권한축**: 「이 경로를 AI가 혼자 고칠 수 있나」 = **AL0~AL5** (6티어 · 유저 확정 2026-08-09) **별개 축** — C 승격·하향 **아님**(입력 상이: AL=**파일 종류**(경로 테이블) / C=내용 delta) → `automation/autonomy_level.py` (view · 새 차단 없음). **AL0**=자기참조 보호물(보호목록·훅등록 — AI Write 경로 없음 · 유저가 apply) · **AL3**=집행 코드 · 검증은 **누적**(AL3 위로 전부 테미스).
+
+**C1 토론 형식:**
+
+| 항목 | 규칙 |
+|------|------|
+| 라운드 캡 | 기본 2~4라운드 · 복잡도 높으면 ×2 까지 허용 |
+| 미검증 클레임 | Angel/Devil 발화 중 1차 소스 없는 클레임은 `[미검증]` 태그 명시 |
+| 판정 기준 | Devil 이의 없음 → 자동 적용 · 이의 있음 → 유저 에스컬레이션 |
+| Transcript | 단일 컨텍스트 내에서는 불필요 (C2+ 물리 분리 시에만 명시 전달) |
+
+**C2+ 유저 전달 포맷 (최소화):**
+
+```
+[변경 요약] 한 줄
+[Devil 핵심 이의] 1~2줄
+[Angel 반론] 1~2줄
+[미해결 지점] 한 줄
+→ 승인/거부?
+```
+
+**토론 실행 방식:**
+
+- **C0**: 토론 없음 · `venue=same` · rounds=0 · Intake/Return 생략 가능
+- **C1**: **same-chat B순서** — `[M0-Judge-Intake]`→`[M0-Angel]`→`[M0-Devil]`→`[M0-Judge-Return]` · 1왕복 · Judge 상향 시에만 `venue=split`
+- **C2+ · Y안**: **저지 새 세션 = 그 주제 유저 대면** · 홈 긴 스레드에서 Intake/Return **금지** · 천사 세션·악마 세션 **각각** 분리 · Return은 저지 세션에서 양비·선택지만 · M1+=`cc_bridge --persona` · M0·CC차단=`append_debate_log` 찬반 기록(~~`harness_debate provider=cursor`~~ 은퇴 2026-08-17)/새 Cursor 창 · same-chat-only = 하향 금지
+- **선고**: Intake에 `tier=… · rounds=… · venue=…` (정본 → Trinity-Ops §T-4a)
+- **저지 중립**: Intake=해석·선고 · Return=양비 · 의견/채택 금지 (Manual M-3)
+
+**cc_bridge 실행 검증:**
+
+- 결과 확인: `0_Config/cc_bridge/outbox_{persona}.json` · `0_Config/cc_bridge/outbox/{tid}.json` status=`ready`(완료) — failed/blocked 시 → trinity_work_manual.md §5-B
+- 한계: hook이 `sessionStart` 기반 → 기존 Cursor 세션에서는 자동 주입 안 됨
+- 유저 확인 방법: Cursor 화면 직접 확인 또는 `cc_bridge.sh pull` 후 outbox 상태 점검
+
+## K-8-C. CC 시스템 파일
+
+| 파일 | 역할 |
+|------|------|
+| `0_Config/cc_bridge/inbox_{persona}.json` · `0_Config/cc_bridge/inbox_queue/{tid}.json` | Claude Code → Cursor 태스크 전달 |
+| `0_Config/cc_bridge/outbox_{persona}.json` · `0_Config/cc_bridge/outbox/{tid}.json` | Cursor → Claude Code 결과 반환 |
+| `EXE/cc_bridge.sh` | Claude Code 측 유틸리티 |
+| `.cursor/hooks/cc-bridge-session-inject.sh` | sessionStart 시 inbox 주입 |
+| `.cursor/hooks/cc-bridge-stop-result.sh` | stop 시 outbox 저장 |
+| `0_Config/cc_volva.json` | **Fatum(파툼)** — 장기 예언서(LT only · 자동 착수 금지) · was=Volva(레거시 호출 수용) · path KEEP · 정본 `ops.md §Fatum 운영` |
+| `0_Config/next_session_missions.json` · `session_plan.json` | 근기 세션 이월(NTD 아님) |
+| `0_Config/cc_error_log.jsonl` | 블랙페이퍼 — 오류 재발 추적 |
+| `0_Config/cc_resolution_log.jsonl` | 화이트페이퍼 — 해결 기록 |
+| `0_Config/cc_customary.json` | 관습 헌법 레지스트리 |
+| `0_Config/cc_session_journal.json` | CC 세션 저널 **읽기 전용 포인터**(심링크→`0_Config/_journals/{scope}.json` · Write 금지 — 정본=CLAUDE.md·`ops.md §저널-스키마`) · Cursor 편집 금지 · 실저널만 24h 후 `_archive/journals/` 자동 이동 |
+| `CLAUDE.md` | Claude Code 진입점 (항시 로드) |
+
+## K-8-D. Artifact Registry (세션 간 중복 방지)
+
+> **목적**: named artifact(대시보드·브릿지·게이트·스크립트)를 세션이 중복 생성하는 것을 방지.
+> **정본**: `0_Config/artifact_registry.json`
+
+### 세션 시작 MUST (Claude Code · Cursor 공통)
+
+`0_Config/artifact_registry.json` 읽기 — `next_session_missions`/`session_plan`과 **동일 우선순위**, 생략 불가. Volva는 LT 인식만.
+
+### Named Artifact 생성 전 Pre-check (Write 직전 MUST)
+
+```
+1. artifact_registry.json에서 동일 type·기능 항목 검색
+2. 발견 → 기존 경로 재사용. 신규 생성 금지.
+3. 미발견(진짜 신규) → 생성 후 registry 등록 (path·type·desc·status).
+   **AI 직접 쓰기 금지**(Tier-1 가드) — `cc_rules/_proposals/` 초안 + O2 제출, 확정은 유저
+```
+
+**금지**: registry 미확인 상태로 dashboard·bridge·gate·panel·orchestrator 신규 생성.
+
+### Registry 갱신 규칙
+
+| 시점 | 행동 |
+|------|------|
+| 새 artifact 생성 직후 | registry 등록 요청 — AI는 `_proposals/` 초안 + O2, 확정은 유저 |
+| artifact 삭제·폐기 | `status → "archived"` (항목 삭제 금지) |
+| drift 감지 필요 시 | `python3 automation/artifact_registry_scan.py` 실행 |
+
+## K-8-E. 제약 (Claude Code에도 동일 적용)
+
+- **K-2 기만 금지** — Claude Code 행동 기준
+- **K-0-A** — 헌법 충돌 시 유저 확인 먼저
+- **상위 룰 수정** — 유저 명시 허락 + K-8-B 게이트 필수
+- **C2+ 자동 확정 금지** — AI가 헌법 변경을 스스로 통과시키지 않음
+
+> **≠ K-0-C**: CLAUDE.md는 Claude Code 전용 진입점 — Cursor `.cursor/rules/` 단일 게이트와 대상 시스템이 다름. 경쟁 아님.

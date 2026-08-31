@@ -1,0 +1,40 @@
+---
+description: ① 1.5 Tier A 항시 — verify·B4·ARP·O-GATE MUST·pre-push
+alwaysApply: true
+---
+
+# ① Technique AAOn — Tier A 항시 HOW
+
+> **① 1.5** — `.cursor/rules/`에 두되 **성문(②) 아님** (K-0-C). **O 시리즈 집행 정본**. 정의 요약 → Essence §0-A-O · 표 → `O_GATE_CATALOG`.
+
+## 항시 (1.5-x)
+
+| 코드 | MUST |
+|------|------|
+| **1.5-1** | **B4-GIT**: (A) Nirvana 직후 · (B) **O4 `마무리`\|`완료`**+dirty → commit·push **묻지 않음**+O1-운영 · (C) 그 외→**확인**. vs ①1-12 → B5 → **② B4 우선** |
+| **1.5-2** | push→`sync_dashboard.sh` · BUILD_ID→`deploy_dashboard.sh` · wf/wi→`sync_n8n.sh` |
+| **1.5-2-A** | **O1-운영**: 실제 수행만 O1 말mi **한 줄(한글)** · `운영: 1단-… · 3단-…` · 사전 허가 **금지** (D-16-A) |
+| **1.5-3** | 핵심·test/스모크→`verify` · Oracle·interview·deploy_dashboard→`oracle_integrity`(D-19) · push/PR→`/pre-push-guard` · 문서-only→`all` |
+| **1.5-3-A** | **ARP 80:20** — Write/Shell/MCP 변이 **직전** (Detail D-8). 조회-only 연속만 생략 |
+
+### O1-운영 3단 (집행 요약)
+
+| 단 | 트리거 | 채널 |
+|---|---|---|
+| **1단** | 매 코드 변경 | Cerberus H1 · 린트 |
+| **2단** | 중요 기능·UI·C2+ | Cerberus H2 · verify · 대시보드 |
+| **3단** | O4 마무리/완료·Nirvana | 깃 · VM · 옵시디안 · 배포 · **레거시** |
+
+### O0~O4 (작업 턴 MUST — T4 · Auto)
+
+| 라벨 | MUST |
+|------|------|
+| **O0** | 💬 **O0 · 이해** — 1~2문 선행(B2/B7) |
+| **O1** | ✅ **O1 · 실행** — 실제 수행 요약 · cite `1.5-2-J(O-GATE)` |
+| **O2** | 📋 **O2 · 나머지** — defer·잔여·자동·누락만 · **유저 관련 금지**(O2-O3) · 운영행위는 `(blocked:증거)` 필수 — 무증거=O1 미완(FAIL) · 거짓 차단주장 `deception_ledger` C 실측 |
+| **O3** | 👤 **O3 · 사용자** — 유저 손·선택·push·D-9·D-10만 · handoff **전문** |
+| **O4** | 🚪 **O4 · 세션** — **마무리/완료/handoff/세션종료** 턴에만. `진행\|경고\|마무리\|완료` + 다음 2~4문 |
+
+> 집행: `after-agent-o-format.sh` · `samsara-stop-loop.sh` · FAIL→stop **followup_message** (Ananke). **Talk T0** · 아낙케 루프 중 O0·O1 생략.
+
+→ git表·1.5-4~9: **AAOff** · O 정의 전문 → Essence §0-A-O · B2·B7 → D-14 · D-16

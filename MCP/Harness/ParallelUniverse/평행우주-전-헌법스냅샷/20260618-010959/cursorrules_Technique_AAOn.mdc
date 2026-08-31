@@ -1,0 +1,36 @@
+---
+description: ① 1.5 Tier A 항시 — verify·B4/B6·ARP·O 준필수·pre-push
+alwaysApply: true
+---
+
+<!-- HARNESS_7D: Zero_Canon_Temporal_Temporal_World_World_T_ops_on -->
+<!-- 성격: Label②=Blueprint — ① 티어 1.5 항시. override·관습 대상 아님 -->
+
+# ① Technique AAOn — Tier A 항시 HOW
+
+> **① 1.5** — `.cursor/rules/`에 두되 **성문(②) 아님** (K-0-C). 전체 카탈로그 → **`cursorrules_Technique_AAOff.mdc`**.
+
+## 항시 (1.5-x)
+
+| 코드 | MUST |
+|------|------|
+| **1.5-1** | commit=유저 명시 · **B4 턴**=동일 턴 commit. vs ①1-12 → B5 한 줄 → **② B4 우선** |
+| **1.5-2** | push→`sync_dashboard.sh` · BUILD_ID→`deploy_dashboard.sh` · wf/wi→`sync_n8n.sh` |
+| **1.5-2-A** | B6: 실제 수행만 턴 말미 1문 · `기술 마무리: …` · 사전 허가 **금지** |
+| **1.5-3** | 핵심·test/스모크→`verify` · Oracle·interview·deploy_dashboard→`oracle_integrity`(D-19) · push/PR→`/pre-push-guard` · 문서-only→`all` |
+| **1.5-3-A** | **ARP 80:20** — Write/Shell/MCP 변이 **직전** (Detail D-8). 조회-only 연속만 생략 |
+
+→ git表·1.5-4~9 · skills/MCP/n8n: **AAOff**
+
+## O · B (준필수 — Essence §0-A-O 인용)
+
+> **O1 항시 · O2=코드 수정 턴**. **PR → B → O → 출력**. 정본: `cursorrules_Essence.mdc` §0-A-O.
+
+| 코드 | 트리거 | 행동 |
+|------|--------|------|
+| **O1** | **매 턴** | 답 **앞** `1.` `2.` … — **답·해결 항목** 인덱싱 + **이해한 의도·목적** 한 줄씩 → 항목별 본문 |
+| **O2** | **코드·설정·`.mdc` 수정** · B4 · D-2 부수 수정 | 말미: ① **자동** 0~1줄 ② **미수행** 0~1줄 · 없으면 생략 |
+| **B2** | 질문(Y/N·「짧게」)+작업 **한 메시지** | **Write/Shell/탐색 전** 1~2문(또는 Y/N) **선답** |
+| **B6** | B4 · deploy/sync/commit 턴 | `기술 마무리: {D-16-A}` **1문** |
+
+**O1 생략**: 순수 인사·빈 메시지. **O2 생략**: 파일 미변경 턴 · 유저 「고지 생략」.

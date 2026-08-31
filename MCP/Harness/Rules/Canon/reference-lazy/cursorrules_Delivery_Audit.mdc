@@ -1,0 +1,44 @@
+---
+description: Delivery intent audit (Q-axis) — literal checklist ≠ done; slider 0 AI-auto ↔ 100 user checklist. Load on implement/quality turns.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/reference-lazy/cursorrules_Delivery_Audit.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# Delivery Intent Audit (Q축)
+
+> **U축** → `ux_convenience_scan` (기획 UX) · **Q축** → 본 절 (delivery 의도)
+
+## MUST (C2+ feature · 구현 완료 선언 전)
+
+| # | MUST |
+|---|------|
+| 1 | `.cursor/skills/delivery-intent-audit/SKILL.md` 로드 |
+| 2 | `python automation/delivery_intent_scan.py show` — **슬라이더** 확인 |
+| 3 | `ARCHITECTURE_CANON.md` + 유저 의도 → `scan --project … --record` |
+| 4 | **P0=0** 전 O4 `완료` · 「됐습니다」·install **금지** |
+| 5 | slider **0–25**: P0는 말mi 고치고 verdict만 · **76–100**: 전축 표 + 유저 확인 |
+
+## 슬라이더 (0-hop)
+
+```
+AI 자율 ←——●——→ 유저 체크리스트   [0 … 100]
+```
+
+- 유저 「AI 알아서」→ `set-slider 15`
+- 유저 「체크리스트로」→ `set-slider 85`
+- 기본 **35** (`0_Config/delivery_audit_state.json`)
+
+## ≠ Bitu / verify
+
+compile·K-2 ≠ **제품 아키텍처 의도** (예: 모국 LOD vs 여행 선다운).
+
+## 정본
+
+`DELIVERY_AUDIT_CATALOG` · `automation/delivery_intent_scan.py` · `/delivery-audit`

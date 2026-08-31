@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "policy_id": "card-ops-policy",
+  "policy_version": "2026-07-29.6",
+  "status": "active-refinement",
+  "status_note": "주간·일일알림 통합 이후 첫 안정 운영 전. 레거시 플로우 전체 롤백 금지 — 현행 방식 보완·버전업. 2026-07-29.5: economy/weather 필드 실패는 스냅샷 재수집 후 재검증 · weekly_inform은 bridge 전체 재실행만 허용. 2026-07-29.6: catchup never-ran carve-out · n8n bridge host/errorWorkflow · missed-pipeline Slack — 포인터만(아래 publish_workflow.regression_guards).",
+  "canonical_paths": {
+    "policy": "0_Config/card_ops_policy.json",
+    "schedule": "0_Config/card_pipeline_schedule.json",
+    "aux_schedule_index": "0_Config/aux_project_schedule_index.json",
+    "aux_schedule_fatum": "volva-LT-aux-project-schedule-canons",
+    "schedule_loader": "collaboration/sns_publish_gate.py#_evening_sched (reads schedule JSON)",
+    "or_weights": "0_Config/or_router.json",
+    "ops_log": "0_Config/pipeline_ops_log.jsonl",
+    "error_fix_archive": "0_Config/error_fix_archive.jsonl",
+    "error_fix_archive_cold": "0_Config/_archive/error_fix_archive_cold.jsonl",
+    "newsapi_budget": "collaboration/newsapi_budget.py",
+    "homepage": "web-browser · cardOps 스냅샷",
+    "realm_section": "Realm.md ## CARD_OPS_POLICY (harness_sync all 자동 렌더)",
+    "publish_workflow_parent": "collaboration/card_publish_workflow.py",
+    "article_quality_child": "collaboration/_card_summary_policy.py",
+    "weekly_settings_child": "collaboration/weekly_inform_settings.py",
+    "daily_settings_child": "collaboration/card_news_settings.py",
+    "history_selection_child": "collaboration/history_today_fetch.py#ITEM_SPECS",
+    "sns_aspect_profiles": "0_Config/sns_aspect_profiles.json",
+    "sns_aspect_runtime": "collaboration/sns_aspect_transform.py"
+  },
+  "publish_workflow": {
+    "tier": "parent",
+    "module": "collaboration/card_publish_workflow.py",
+    "api": "run_pre_publish",
+    "flow": [
+      "품질검사 (child gate 래핑 · 로컬)",
+      "실패 부분만 OR 대체 (텍스트 brief / 이미지 sketch / 역사 enrich)",
+      "재시도 ≤2",
+      "슬랙 알람 (pipeline_failure_hook → daily_failure_report)"
+    ],
+    "max_part_retries": 2,
+    "repair_exceptions": {
+      "weekly_inform": "부분 필드 생성은 금지. 원본 데이터와 템플릿 매핑을 다시 만드는 weekly_inform_bridge 전체 재실행만 복구 경로로 인정한다."
+    },
+    "or_stages": [
+      {
+        "id": "text_or",
+        "order": 1,
+        "provider": "openrouter",
+        "api": "brief_chain/summarize_article|history enrich",
+        "homunculus": "require before image"
+      },
+      {
+        "id": "image_or",
+        "order": 2,
+        "provider": "openrouter",
+        "api": "generate_sketch/card_sketch_gate",
+        "homunculus": "require after text_or"
+      },
+      {
+        "id": "quality_attempt",
+        "order": 3,
+        "provider": "openrouter_on_fail",
+        "api": "card_publish_workflow.run_pre_publish + repair_*_via_or",
+        "max_retries": 2,
+        "slack": "pipeline_failure_hook",
+        "homunculus": "own quality attempts"
+      }
+    ],
+    "or_layers": {
+      "deprecated_alias_of": "or_stages"
+    },
+    "applies_to": [
+      "foreign_news",
+      "topic_news",
+      "topic_evening",
+      "weather",
+      "economy",
+      "history_today",
+      "weekly_inform",
+      "kpop_ranking",
+      "netflix_ranking"
+    ],
+    "slack": {
+      "path": "collaboration/pipeline_failure_hook.py#on_pipeline_failure",
+      "report": "collaboration/daily_failure_report.py",
+      "note": "일일 기사형만이 아님 — 전 카드뉴스류 동일",
+      "missed_pipelines": "collaboration/homunculus.py#notify_missed_pipelines → daily_failure_report.record_ops"
+    },
+    "regression_guards": {
+      "catchup_never_ran": "collaboration/homunculus_or_stages.py#gate_catchup_pipelines (entry None → catchup 허용)",
+      "n8n_bridge_host": "recovery_preflight.check_n8n_bridge_host · EXE/sync_n8n.sh N8N_DAILY_BRIDGE_HOST=172.17.0.1",
+      "error_workflow": "recovery_preflight.check_error_workflow · 0_Config/n8n_workflow_canon.json · n8n/wf_n8n_error_slack_notify.json"
+    },
+    "children_delta_only": {
+      "article": "title/subject/summary bounds · repair_article_parts_via_or",
+      "history_today": "슬롯1=100년+최근(한)·2=100년+최오래(한)·3·4=해외사건동일·슬롯5=한국 사망100년+ 중 가장 최근(내용=탄생·사망)·백업=세계 · repair_history_parts_via_or",
+      "weekly_kpop": "CONTENTS=앨범·장르·레이블 · cap=20 (유저 2026-07-29 재확정)",
+      "economy_weather": "핵심 Canva 필드 non-empty · OR text/image 미사용(로컬)",
+      "schedule_times": "0_Config/card_pipeline_schedule.json (시각 Archetype 미복제)"
+    },
+    "quality_note": "or_stages 순서: (1)text_or (2)image_or (3)quality_attempt — Homunculus가 quality_attempt(≤2·슬랙) 소유. 로컬 child gate는 검사만 — 수리는 repair_*_via_or. 전 카드: run_pre_publish → 부분대체≤2 → 슬랙."
+  },
+  "essence_review": {
+    "reviewed_at": "2026-06-10",
+    "verdict": "conditional-pass",
+    "notes": [
+      "A1: NewsAPI 단일 카운터(newsapi_budget)로 통합 — 이중 집계 제거",
+      "A7/U: 브리프 체인·홈page 정본 — 적정",
+      "A8: RSS=한도소진만, 수집실패=키워드 — 정합",
+      "A1: 전체 레거시 롤백 대신 policy_version 단위 보완·기록",
+      "A6: pipeline_ops_log + 홈page + Slack — 검토성 확보",
+      "A3: JSON 정본 ↔ Realm 렌더 ↔ cardOps 패널 — 일관성 유지"
+    ]
+  },
+  "brief_chain": {
+    "order": [
+      {
+        "step": 1,
+        "id": "or_free",
+        "label": "OpenRouter 무료"
+      },
+      {
+        "step": 2,
+        "id": "or_paid",
+        "label": "OpenRouter 유료",
+        "note": "summarization value 가중치 · 실험마다 조정 가능 · 홈page 상세"
+      },
+      {
+        "step": 3,
+        "id": "gemini_studio",
+        "label": "AI Studio (stage2)",
+        "note": "OR 5단·OR sketch 전부 실패 시 · N8N_GEMINI_ALLOW_STUDIO=1"
+      }
+    ],
+    "google_ecosystem_exception": "Google Calendar·Sheets·Drive API 직접 연동만 gemini_studio_client",
+    "default_llm": "openrouter_client.chat_escalating — 명시 거절 없으면 전 기능 동일",
+    "on_quality_fail": "기사 유지 → 해당 기사(부분)만 다음 AI · 상위 run_pre_publish 재시도≤2 후 슬랙",
+    "on_publish": "4칸 중 1칸 실패 시 카드 전체 미게시"
+  },
+  "publish_quality": {
+    "note": "SNS 게시 전 Canva 완성 필수 — preview/emergency 금지",
+    "gate_module": "collaboration/sns_publish_gate.py",
+    "smoke": "automation/smoke_sns_publish_gate.py",
+    "rules": [
+      "Canva canva_ok=true · png_url 필수",
+      "preview_png · emergency · temp/ URL SNS 게시 금지",
+      "catchup·수동·에이전트: DAILY_SNS_APPROVED=1 없으면 :8795 차단",
+      "정상 파이프라인: SOCIAL_PUBLISH_SOURCE=pipeline"
+    ],
+    "incidents": [
+      "2026-06-09",
+      "2026-06-18"
+    ]
+  },
+  "sns_closure_gate": {
+    "rule_ref": "Detail D-19-A",
+    "module": "collaboration/daily_ops_closure.py",
+    "cli": "EXE/run_daily_sns_closure.sh",
+    "endpoint": "GET /v1/closure-report",
+    "scope": "morning",
+    "pipelines": [
+      "weather",
+      "economy",
+      "foreign_news"
+    ],
+    "success_statuses": [
+      "ok",
+      "skipped"
+    ],
+    "must_before_claim": [
+      "오늘 SNS 올렸다 / 게시 완료 / 세션 종료(카드뉴스)",
+      "catchup·recovery 완료 선언"
+    ],
+    "wired": [
+      "run_daily_catchup.sh",
+      "run_daily_recovery.sh"
+    ],
+    "incidents": [
+      "2026-06-18-false-session-closure"
+    ]
+  },
+  "openrouter_scoring": {
+    "formula": "가중 평균: norm(AA)·w_aa + norm(Epoch)·w_e + norm(LMSYS)·w_l + norm(price)·w_p",
+    "rejected_formula": "AA × (LMSYS + Epoch) — 신호 누락 시 순위 불가",
+    "summarization_value_weights": {
+      "aa": 0.4,
+      "epoch": 0.25,
+      "lmsys": 0.3,
+      "price": 0.05
+    },
+    "weight_rationale": {
+      "aa": "Artificial Analysis — 유료 요약 정확도 최우선 (40%)",
+      "epoch": "SimpleQA·GDPval — 사실·요약 정확도 보조 (25%)",
+      "lmsys": "LMSYS Arena 텍스트 — 실사용 요약 체감 (30%)",
+      "price": "토큰 가격 역수 — 과금 억제 (5%)"
+    }
+  },
+  "newsapi": {
+    "daily_limit": 100,
+    "global_soft_max": 99,
+    "schedule_ids": [
+      "foreign_news",
+      "economy_topic",
+      "tech",
+      "culture",
+      "health",
+      "history_today"
+    ],
+    "base_per_pipeline": "global_soft_max / n (균등 cap)",
+    "max_backup_mult": 3,
+    "surplus_rollover": "없음 — 타 파이프라인 quota 이전 금지. 3×는 자기 슬롯 재시도만",
+    "rss_fallback": "일일 한도 소진 시에만 (기사 수집 실패 ≠ RSS)",
+    "fetch_fail": "키워드/쿼리 로테이션 (pipeline_ops_log)",
+    "counter_canonical": "newsapi_budget.py 단일 (legacy newsapi_quota_*.json shim)"
+  },
+  "error_resolution": {
+    "ruleRef": "Detail D-18 · D-18-B",
+    "activeArchive": "0_Config/error_fix_archive.jsonl",
+    "coldArchive": "0_Config/_archive/error_fix_archive_cold.jsonl",
+    "register": "harness_sync.py register-error-fix",
+    "prep": "harness_sync.py error-archive-prep",
+    "enforceGate": "improvement_enforce.py · .cursor/hooks/error-fix-enforce-gate.sh",
+    "enforceState": "0_Config/improvement_session_state.json",
+    "enforceRule": "errorFixLatch 활성 시 register-error-fix diagnosed 전 Write/Shell deny",
+    "sessionTick": "harness_sync.py error-archive-tick",
+    "sessionStartHook": ".cursor/hooks/error-archive-session-start.sh",
+    "mentionHook": ".cursor/hooks/error-archive-mention.sh",
+    "cloudShellHook": ".cursor/hooks/error-archive-cloud-prep.sh",
+    "idleSessionsToCold": 3,
+    "resolutionsToPurge": 3,
+    "lifecycleRule": "미해결 유지 → 완전 해결 3회 누적 시 cold/목록 제거 · 등록·해결 시 harness_snapshot 자동 갱신",
+    "scopeLevels": [
+      "L1 implementation",
+      "L2 function",
+      "L3 stage",
+      "L4 workflow",
+      "L5 harness"
+    ],
+    "attemptScopes": {
+      "1": [
+        "L1",
+        "L2"
+      ],
+      "2": [
+        "L3",
+        "L4"
+      ],
+      "3": [
+        "L5"
+      ]
+    }
+  },
+  "evening_batch_cooldown": {
+    "scope": "topic_news_evening_batch — tech/culture/health 순차 실행 사이",
+    "fast_sec": 12,
+    "fast_when": "직전 토픽 성공·429/rate-limit 없음",
+    "stress_sec": 75,
+    "stress_when": "직전 토픽 실패 또는 429/rate-limit 감지",
+    "note": "패스트 쿨다운은 OR/Gemini 분당 한도 버스트 방지용 최소 간격. 성공이면 짧게, 실패·429면 길게."
+  },
+  "rate_limit": {
+    "priority_order": [
+      "mission_complete",
+      "token_economy",
+      "deadline_compliance"
+    ],
+    "priority_note": "임무 완수 > 토큰 절약 > SNS 마감 준수",
+    "per_minute_429": {
+      "if_deadline_lt_wait_sec": "paid_openrouter",
+      "if_no_surplus_and_pipeline_used_gte_base": "paid_openrouter",
+      "else": "sleep_or_defer_parallel",
+      "defer_note": "surplus 이월·base 미만 사용 중이면 sleep/defer 유지. 그 외 유료 OR 즉시.",
+      "surplus_note": "앞 스케줄이 base 미만으로 끝나면 surplus 이월 → 뒤 파이프라인 시도 횟수 증가(현행 유지)"
+    },
+    "daily_429": "paid_openrouter 또는 해당 콘텐츠 유닛 중단",
+    "quality_fail": "next_provider_same_article"
+  },
+  "pipeline_gates": {
+    "note": "평가→검수 흡수 (2026-06-14). 표 정본: harness_reference_tables CARD_PIPELINE_GATE_CATALOG",
+    "G1_text_contract": "generator MUST use card_news_settings bounds only; hardcoded title/line cap 금지",
+    "G2_deploy_contract": "collaboration/*.py 변경 → mcp_sync_collaboration_to_vm 또는 sync_card_news_project MUST before cron",
+    "G3_preflight": "8791-8799 /health OK; else failureClass bridge-timeout",
+    "G4_or_budget": "429 → rate_limit 우선순위; evening 전 academic OR 소진 방지"
+  },
+  "failureClass_map": {
+    "text-contract-violation": "G1",
+    "vm-stale-code": "G2",
+    "bridge-timeout": "G3",
+    "or-rate-limit": "G4",
+    "quality-gate": "G1 downstream",
+    "quality-bypass": "G1 downstream (gate gap)",
+    "evening-recovery-fail": "G1|G4"
+  },
+  "implementation_coherence": {
+    "note": "규칙 일관성(A3) 하위 — 코드·정책·gate 3-way. Detail D-18-C · D-20 R2",
+    "C1_single_canon": "생성·검증·표시 규격 정본 = collaboration/card_news_settings.py (policy bounds 동기)",
+    "C2_impl_match": "generator 상수·hardcap이 정본 bounds와 grep 일치 — deny: ', 15)' ', 30)' on title/line paths",
+      "C3_resolve_proof": "D-18 resolved / open issue resolved 전 C2 + 재현 실패 또는 gate pass + (card-news) VM sync 1줄"
+  },
+  "resolve_proof": {
+    "ruleRef": "Detail D-18-C",
+    "must": [
+      "재현 실패 또는 gate_articles_for_publish pass 로그 1줄",
+      "G1 contract grep 통과 (CARD_PIPELINE_GATE_CATALOG)",
+      "card-news: mcp_sync_collaboration_to_vm 또는 sync_card_news_project stdout 1줄"
+    ],
+    "must_harness": [
+      "재현: delta test·smoke 1회, 또는 수정분 stash 후 FAIL 재현",
+      "계약: 해당 정본 bounds grep — 착지 파일·행 명시",
+      "배포: deploy DoD 해당 시만 · 규범(.md/.mdc) 변경은 비대상"
+    ],
+    "axis_note": "must=card-news · must_harness=하네스·규칙축. 정본 표 = Detail_Ops.mdc §D-18-C 「기타」열",
+    "symptom_fix_ban": "gate만 강화·로그만 변경·env 우회·wrapper만 패치 → resolved 불가 (K-2.2)"
+  },
+  "spec_vs_workaround": {
+    "ruleRef": "Detail D-18-D",
+    "canon": [
+      "card_news_settings.py",
+      "card_ops_policy implementation_coherence",
+      "README.md",
+      "README.txt",
+      "CONTRACT.md",
+      "skill 정본"
+    ],
+    "workaround_only": [
+      "env flags",
+      "recovery one-off",
+      "pipeline_ops_log",
+      "D-18 attempt without policy_version"
+    ],
+    "promotion": "3회+ 동일 workaround → TRAP 또는 policy_version·유저 확인"
+  },
+  "revision_protocol": {
+    "strategy": "in_place_refinement",
+    "legacy_full_revert": false,
+    "legacy_note": "주간·일일알림 통합 이전 '카드뉴스만' 플로우로의 전면 롤백은 유저 확인 없이 금지. 현행 policy_version에서 보완.",
+    "on_operational_failure": [
+      "0. D-18 register-error-fix — 1차 원인·해결안·logSnippet (수정 전)",
+      "0.5 Gate0 ops_auth_preflight — 실패 로그 tail 스캔 → 토큰·권한·oauth 우선 검사 · blocks_catchup FAIL 시 recovery/catchup 중단",
+      "0.55 ensure_daily_bridges → Gate0 순서 (catchup) — bridge health 선행",
+      "0.7 D-19-A sns_closure — catchup/recovery·세션 종료 전 run_daily_sns_closure --assert",
+      "0.6 D-21 갱신체계 — 신규 로그·문서면 retention 등록(refresh_cadence) · 규칙 없으면 유저 질문 · 자동 prune 전후 알림",
+      "1. pipeline_ops_log + 홈page 실패 로그에 failureClass·원인 기록",
+      "2. policy_version patch (0_Config/card_ops_policy.json) — 실패 규칙만 수정",
+      "3. harness_sync all → Realm·Obsidian·홈page 스냅샷 갱신",
+      "4. register-ops로 06_Operations_Log에 결론 1행",
+      "5. 연속 실패 시 TRAP_REGISTRY 후보 — register-trap 검토"
+    ],
+    "version_bump": "규칙 변경 시 policy_version 날짜.순번 증가 (예 2026-06-11.1)",
+    "homepage_display": true
+  }
+}

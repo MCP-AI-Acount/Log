@@ -1,0 +1,52 @@
+---
+description: Delivery intent audit (Q-axis) — literal checklist ≠ done; slider 0 AI-auto ↔ 100 user checklist. Load on implement/quality turns.
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004825/cursorrules_Delivery_Audit.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> | 층 | 접두어 | 규칙 코드 |
+> |---|--------|---------|
+> | Essence/조리층 | **E.** | A0·A1~A11 (품질 축) |
+> | Core/헌법층 | **C.** | K-0·K-0-A·K-8-B·k2.x |
+> | Detail/절차층 | **D.** | D-10·D-22·D-23·N1~N5 |
+> | Manual/행동층 | **M.** | M-0·M-0-A·M-0-B·M-0-C·M-0-D·M-1~M-5 |
+> | Behavior/동작층 | **B.** | B1~B9 |
+> *(층 접두어는 참조 표기용 — 규칙 코드 자체는 불변)*
+<!-- 층 체계: E.(Essence/조리층=A규칙) · C.(Core/헌법층=K·k2규칙) · D.(Detail/절차층=D·N규칙) · M.(Manual/행동층=M규칙) · B.(Behavior/동작층=B규칙) -->
+
+
+# Delivery Intent Audit (Q축)
+
+> **U축** → `ux_convenience_scan` (기획 UX) · **Q축** → 본 절 (delivery 의도)
+
+## MUST (C2+ feature · 구현 완료 선언 전)
+
+| # | MUST |
+|---|------|
+| 1 | `.cursor/skills/delivery-intent-audit/SKILL.md` 로드 |
+| 2 | `python automation/delivery_intent_scan.py show` — **슬라이더** 확인 |
+| 3 | `ARCHITECTURE_CANON.md` + 유저 의도 → `scan --project … --record` |
+| 4 | **P0=0** 전 O4 `완료` · 「됐습니다」·install **금지** |
+| 5 | slider **0–25**: P0는 말mi 고치고 verdict만 · **76–100**: 전축 표 + 유저 확인 |
+
+## 슬라이더 (0-hop)
+
+```
+AI 자율 ←——●——→ 유저 체크리스트   [0 … 100]
+```
+
+- 유저 「AI 알아서」→ `set-slider 15`
+- 유저 「체크리스트로」→ `set-slider 85`
+- 기본 **35** (`0_Config/delivery_audit_state.json`)
+
+## ≠ Cerberus / verify
+
+compile·K-2 ≠ **제품 아키텍처 의도** (예: 모국 LOD vs 여행 선다운).
+
+## 정본
+
+`DELIVERY_AUDIT_CATALOG` · `automation/delivery_intent_scan.py` · `/delivery-audit`

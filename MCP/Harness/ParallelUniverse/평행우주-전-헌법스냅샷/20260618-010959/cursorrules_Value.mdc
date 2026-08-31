@@ -1,0 +1,507 @@
+---
+description: 하네스 값 정의 — 파일명 원칙·용어 분류·LLM 파라미터. 설정·명명·파라미터 참조 시 사용.
+alwaysApply: false
+---
+
+<!-- HARNESS_7D: One_Blueprint_Genesis_Temporal_Eternity_World_naming_ref -->
+<!-- 성격: Label②=Blueprint — §1 인덱스·Rule Gate·§4-B. 정책 정본은 Core K-0-C -->
+
+# cursorrules_Value — 값 정의 & 명명 원칙
+
+# ==========================================================================
+# 1. 파일명 명명 원칙 (Naming Convention)
+# ==========================================================================
+
+## 룰 게이트 단일화 (Rule Gate — Single Source)
+
+**정책 정본**: `cursorrules_Core.mdc` **K-0-C** (항시). **표·인덱스 데이터 정본**: `automation/harness_reference_tables.py` → **`RULE_CANON_REGISTRY`** (대시보드 규칙·Value 탭 미러). **본 절·User rules·skill·Obsidian에 표 복제 금지** — 포인터만.
+
+| 계층 | 위치 | 역할 |
+|------|------|------|
+| **문장** | `.cursor/rules/*.mdc` | 헌법 유일 정본 (K·D·V·P 조항) |
+| **표** | `harness_reference_tables.py` | Rule Gate · §1-A 인덱스 · 성격표 |
+| **포인터** | User rules slim · skill | 위 두 경로만 참조 |
+
+### 레거시 소거·단일 게이트
+
+K-0-C 실행 세부·이관표만 본 절에 유지. K vs D → Core K-0-C · 대시보드 `kdTaxonomy`.
+
+### 삭제된 도메인 룰 이관표
+
+| 구 룰 파일 | 이관 위치 | 로드 방법 |
+|-----------|----------|----------|
+| `cardnews-length.mdc` | `collaboration/card_news_settings.py` (글자수 상수) · `content_validator.py` · `tests/harness_core.py` 스모크 | 파이프라인 턴 → `topic-news-pipeline` skill |
+| `mcp-auto-core.mdc` | `cursorrules_Core.mdc` K-0~K-6 + `agent-tooling.mdc` K-7 + `cursorrules_Detail.mdc` D-2~D-9 | Tier A/B 분할로 흡수 |
+
+## .cursor/rules/ — 헌법 파일 성격표 (7원칙 · Label=②번째 축)
+
+**7원칙 스키마** (주석 전용 LEGACY): `{Tier}_{Label}_{WriteStage}_{ReadStage}_{PrimarySpace}_{SecondarySpace}_{UsageCondition}`
+
+**계층 우선순위**: Core K-0 **3-a** 참조. **조리(Essence)** 는 경쟁 없음. **성문 ②**: Core > agent-tooling > Main > Sub > Detail. **Technique = ① 1.5 — 3-a 미포함**.
+
+> **성격표 전체 행** → `RULE_CANON_REGISTRY["character"]` (대시보드 규칙 탭). 본 절에 표 중복 금지.
+
+**HARNESS_7D 주석** (파일 상단 2줄 — 런타임 참조 금지, LEGACY 보존용):
+
+| 파일 | HARNESS_7D UsageCondition |
+|------|---------------------------|
+| Core | `eternal` |
+| agent-tooling | `K7_routing` |
+| Main | `K5_overview` |
+| Sub | `K5_procedure` |
+| Detail | `D_ops` |
+| Value | `naming_ref` |
+| Essence | `axiom_doctrine` |
+| Plan | `bootstrap` |
+
+### Main vs Sub (7원칙 Label② 기준)
+
+| | Main (Canon) | Sub (Blueprint) |
+|---|-------------|-----------------|
+| **담는 것** | SECTION 0 전역·1 역할·2 K-2 위임·6 방화벽·7 문서관리 | SECTION 3 Purgatory · 4 Armageddon · 5 Phoenix · APPENDIX |
+| **질문** | 무엇이·누가·언제 트리거되는가 | 어떤 순서로·어떻게 탈출하는가 |
+| **로드** | K-5 단독 불완전 — Sub와 **쌍** | Main 없이 절차만으로는 맥락 부족 |
+| **충돌** | 개요·원칙 우선 | 절차·표는 Main에 종속 |
+
+> `cursorrules.mdc` 단일 파일 폐기. Sub 삭제·Main 흡수 **금지** (이전 AI 오류 복구 완료).
+
+## §1-A. 주제별 룰 인덱스 (Quick Lookup)
+
+> 별도 `cursorrules_Index.mdc` 없음. **탐색 표 정본** = `RULE_CANON_REGISTRY["index"]` · 대시보드 Value/규칙 탭. HARNESS_7D 주석은 각 `.mdc` frontmatter 직후 2줄.
+
+### 도메인 룰 (formalize — `rules/domains/` 대신)
+
+| 도메인 | 정본 | 로드 |
+|--------|------|------|
+| cardnews 길이·검증 | `collaboration/card_news_settings.py` · `content_validator.py` | `/topic-evening` · topic-news skill |
+| (추가 도메인) | 코드 + skill/command — **`.mdc` 복원 금지** (K-0-C) | 해당 skill |
+
+## 파일명 이중 표기 — 결론 (정본 규칙)
+
+**단계가 둘이 아니다.** 아래 세 축은 **별개 분류체계**이며, 같은 단어가 다른 축에 재사용될 뿐이다.
+
+| 축 | 예시 단어 | 의미 |
+|----|----------|------|
+| **A. 프로젝트 생명주기** (5단계) | Genesis · Oracle · Manifest · Temporal · Twilight | 문서·프로젝트가 거치는 시간 축 (Value §2) |
+| **B. 역할 자기선언 단계** (K-1-A) | Oracle · Temporal · Purgatory · Manifest | Cursor 세션에서 AI가 선언하는 **역할 활성 모드** — A와 동형어 |
+| **C. 공간** (9개) | World · Purgatory · Abyss … | 물리·논리 작업 공간 |
+
+→ **A≠B**. `Temporal`이 A에서는 "운영 유지보수", B에서는 "일상 구현·감리 모드"로 쓰일 수 있음. 혼동 시 **축 이름(A/B/C)을 명시**한다.
+
+**파일 경로 표기 (런타임 정본)**:
+
+| 용도 | 헌법·코드·스크립트 표기 | 보조 ID (manifest·proposal만) |
+|------|------------------------|------------------------------|
+| LLM read mirror | `0_Config/llm_mirror.json` | generation `1-1-0` |
+| LLM seed / active | `0_Config/llm_seed.json` · `llm_active.json` | `0-0-0` · `0-1-0` |
+| Tech context | `Realm.md` | — |
+| Variable panel | `Soul.md` | — |
+
+- **코드·헌법·EXE**: 짧은 정본 경로만 사용.
+- **generation ID** (`1-1-0` 등): manifest·proposal·메타피드백 **내부 식별**용. 파일 경로 대체 아님.
+- **LEGACY 7차원 파일명**: 파일 맨 위 주석 1줄 보존용. 런타임 참조 **금지**.
+
+## 프로젝트 문서 — 숫자 접두사 계층 _(구버전 — 아래 Universal Naming 참조)_
+`{TierNumber}_{용도}.{ext}` 레거시 형식. 기존 파일 호환용으로만 유지.
+
+| 접두사 | 단계 | AI 쓰기 | 설명 |
+|--------|------|--------|------|
+| `01_` | Oracle | 금지 (생성만) | Planning Specification |
+| `02_` | Genesis | 금지 (값 변조) | Variable Panel — 유저 전용 |
+| `03_` | Temporal | harness_sync 경유만 | Realm(Tech Context) / Architecture Rule |
+| `04_` | Twilight | 금지 (런타임 참조 금지) | 신의 기록(Intervention Log) |
+| `05_` | Manifest→Twilight | Smith 생성만 | Code Skill Book |
+| `06_` | Temporal | register-ops 경유만 | Operations Log (K-6 화이트리스트) |
+
+## LEGACY Universal Naming (7차원 — 주석 전용, FROZEN)
+
+스키마: `{Tier}_{Label}_{WriteStage}_{ReadStage}_{PrimarySpace}_{SecondarySpace}_{UsageCondition}.{ext}`
+
+**신규 파일명에 적용 금지.** 구 이름은 **파일 맨 위 한 줄**에만 보존:
+
+| 형식 | 예 |
+|------|-----|
+| Markdown | `<!-- LEGACY_UNIVERSAL: {구파일명} -->` |
+| JSON (0_Config·Soul) | `"_legacy_universal_name": "{구파일명}"` 최상단 |
+| Python | `# LEGACY_UNIVERSAL: {구파일명}` (shebang 다음 줄) |
+| n8n workflow JSON | `"meta": { "legacy_universal_name": "{구파일명}" }` (n8n import 호환) |
+
+전체 매핑표는 본 절 **정본 경로** 표 참조. 코드·스크립트는 **정본(짧은 이름)만** 참조.
+
+## Active Schema (정본 — 핵심 단어)
+
+| 패턴 | 예 | 용도 |
+|------|-----|------|
+| `{역할}.md` | `Realm.md` · `Soul.md` | Realm·Variable Panel |
+| `llm_{role}.json` | `llm_seed.json` · `llm_active.json` · `llm_mirror.json` | 0_Config LLM 프로파일 |
+| `{domain}_{role}.py` | `card_news_settings.py` · `harness_sync.py` | collaboration/automation |
+| `wf_{pipeline}.json` | `wf_weather.json` · `wf_slack_vm.json` | n8n 일일·Slack (VM 동기화 동일명) |
+| `wi_{topic}.json` | `wi_culture.json` · `wi_kpop.json` | n8n 주간 inform |
+| `cursorrules_{계층}.mdc` | `cursorrules_Core.mdc` | 헌법 |
+| `cursorrules_Technique_AA{On,Off}.mdc` | AAOn(항시) · AAOff(지연) | ① 1.5 HOW |
+| `{verb}_{target}.sh` | `sync_n8n.sh` · `sync_weather_daily.sh` | EXE·VM 배포 |
+
+**정본 ↔ LEGACY 매핑 (신규 참조는 정본만):**
+
+| 정본 | LEGACY (주석용) | generation |
+|------|-----------------|------------|
+| `Realm.md` | `Three_Chronicle_Temporal_Temporal_Realm_World_.md` | — |
+| `Soul.md` | `Two_Blueprint___Soul__.md` | — |
+| `0_Config/llm_seed.json` | `Zero_Canon___Eternity__Eternal_v1.json` | 0-0-0 |
+| `0_Config/llm_active.json` | `Zero_Canon___Eternity__Eternal_v2.json` | 0-1-0 |
+| `0_Config/llm_mirror.json` | `One_Blueprint_Temporal_Temporal_Eternity__Eternal.json` | 1-1-0 |
+| `collaboration/card_news_settings.py` | `Card_News_Settings.py` | — |
+| `collaboration/weekly_inform_settings.py` | `Daily_Week_Inform_Setting.py` | — |
+| `n8n/wf_weather.json` | `daily-weather-canva.json` | VM 동일 |
+| `n8n/wf_slack_vm.json` | `slack-news-pipeline-vm.json` | VM 동일 |
+
+> 마이그레이션 스크립트: `python automation/apply_short_naming.py` (재실행 시 idempotent 아님 — 1회성)
+
+## EXE / 스크립트 파일명
+`{동사}_{대상}_{환경}.{ext}` 권장.
+- `run_` : 실행 진입점 (launchd / 직접 실행)
+- `sync_` : 원격·로컬 동기화
+- `notify_` : Slack·알림 발송
+- `apply_` : 설정 적용 (클립보드 복사 등)
+- `install_` : 환경 초기화 (1회성)
+
+## 자동화 Python 파일명 (collaboration/ automation/)
+`{도메인}_{역할}.py` 원칙.
+- `*_fetch.py` : 외부 데이터 수집
+- `*_card.py` : 카드뉴스 생성
+- `*_bridge.py` : 파이프라인 중계
+- `*_settings.py` : Soul Contract 설정값 (AI 쓰기 금지)
+
+
+# ==========================================================================
+# 2. 용어 분류표
+# ==========================================================================
+
+## 시간(단계) — 5단계 확정
+| 단계 | 순서 | 설명 | 활성 역할 |
+|------|------|------|----------|
+| Genesis | 0 | 불변 초기 상태. 헌법·시드 생성 시점. | — (유저 전용) |
+| Oracle | 1 | 기획·요구사항 수집 | Herald, Advocate |
+| Manifest | 2 | 구현·빌드 | Smith, Sentinel |
+| Temporal | 3 | 운영·유지보수 | Chronicler, Raven, Sentinel |
+| Twilight | 4 | 종료·이관 | Ferryman, Sentinel(추출) |
+
+## 공간 — 9개 확정
+| 공간 | 쓰기 주체 | 읽기 주체 | 설명 |
+|------|----------|----------|------|
+| Eternity | 유저(God)만 | 시스템 | 불변 법칙 공간 (cursorrules / manifest) |
+| World | 모든 역할 | 모든 역할 | 정상 운영 공간 |
+| Realm | Chronicler (harness 경유) | 모든 역할 | `Realm.md` |
+| Heaven | 시스템 자동 | — | 검증 100% 통과 Main 브랜치 상태 |
+| Purgatory | Smith (Purification) | Sentinel | 에러 격리 정화 공간 |
+| Abyss | Nephilim 전용 | — | Armageddon 격리 재판소 |
+| Soul | 유저(God)만 | 시스템(읽기) | SOUL_CONTRACT_LOCK 마킹 영역 |
+| Ether | 없음 (결과 반환만) | subagent | 병렬 단기 파생 공간 (World 수정 불가) |
+| Void | — | — | 비활성·Archive 보관 공간 |
+
+## 문서 권한(Tier) 분류
+| Tier | 레이블 | AI 읽기 | AI 쓰기 | 설명 |
+|------|--------|--------|--------|------|
+| Zero | canon | ✅ | ❌ | 헌법·불변 법칙. 수정 시 shutdown |
+| One | blueprint | ✅ | ❌ | 청사진·채점 기준. 유저 승인 후 생성 |
+| Two | petition | ✅ | `_proposals/`만 | 제안·이관 문서 |
+| Three | chronicle | ✅ | harness 경유만 | 기록·CI 리포트 |
+| Four | pitfall | ✅ | register-trap만 | TRAP_REGISTRY |
+| Five | grimoire | ✅ | Smith 생성만 | Code Skill Book |
+| Archive | relic | ❌ | ❌ | 동결 보관. 런타임 참조 금지 |
+
+
+# ==========================================================================
+# 3. LLM 파라미터 정의
+# ==========================================================================
+
+## 공급자별 파라미터 매핑
+
+| 변수명 | 공급자 | 타입 | 범위 | 설명 |
+|--------|--------|------|------|------|
+| `temperature` | 공통 | float | 0.0–2.0 | 출력 다양성·무작위성. 0=결정적, 2=최대 창의 |
+| `reasoning_effort` | OpenAI / LiteLLM | string | `low` / `medium` / `high` | 추론 깊이 제어 (o-series 모델) |
+| `thinking` | Anthropic (Claude) | object | `{"type":"enabled","budget_tokens":N}` | Adaptive thinking 예산. budget_tokens=최대 thinking 토큰 |
+| `max_completion_tokens` | OpenAI | int | 1–모델 한도 | 최대 출력 토큰 (completion 포함) |
+| `max_output_tokens` | Anthropic / Gemini | int | 1–모델 한도 | 최대 출력 토큰 |
+| `frequency_penalty` | OpenAI / LiteLLM | float | -2.0–2.0 | 반복 단어 억제. 양수=억제 강화 |
+| `presence_penalty` | OpenAI / LiteLLM | float | -2.0–2.0 | 새 토픽 등장 촉진. 양수=다양성 강화 |
+| `top_p` | 공통 | float | 0.0–1.0 | Nucleus sampling 임계. temperature와 동시 조정 비권장 |
+
+## 역할별 파라미터 기준값 (참고 — 실제값은 llm_profiles에서)
+
+| 역할 | temperature | reasoning_effort / thinking | 의도 |
+|------|------------|---------------------------|------|
+| Angel_Interview_Herald | 0.7–0.9 | low | 창의적 인터뷰·질문 생성 |
+| Angel_Craft_Smith | 0.2–0.4 | high | 정밀 코드 구현 |
+| Angel_Chronicle_Chronicler | 0.1–0.2 | low | 무비판적·중립적 기록 |
+| Devil_Trial_Advocate | 0.6–0.8 | high | 날카로운 비판·반론 |
+| Devil_Judgment_Sentinel | 0.1–0.3 | high | 엄격한 채점·검증 |
+| Devil_Archive_Raven | 0.2–0.4 | low | 기계적 압축·정리 |
+| Judge | 0.3–0.5 | high | 중립 청문·리포트 (Claude Opus 유지) |
+| Nephilim | 0.0–0.2 | high (max budget) | 단발 극한 추론. 맥락 없음 |
+
+## 파라미터 수정 권한
+- `0-0-0` seed: **AI 접촉 절대 금지** (유저만)
+- `0-1-0` active delta: **AI 접촉 절대 금지** (유저만)
+- `1-1-0` read_mirror: AI 읽기만 (자동 sync-mirror 생성)
+- `_proposals/2-2-0`: Smith / Sentinel이 제안 가능 → 유저 승인 후 `llm_meta_feedback.py promote`
+
+
+# ==========================================================================
+# 4. D-10 추천도 채점 — 항목 요약 & 가중치
+# ==========================================================================
+
+> **상세 정의·관계망·후보 풀·채점 공식 → `cursorrules_Essence.mdc`** (D-10 채점 시 로드)
+
+## 활성 항목 요약 (가중치 내림차순 · 코드 고정)
+
+| 코드 | 명칭 | 가중치 |
+|---|---|---|
+| V1 | 무결성 | ×2.0 |
+| V10 | 일관성 | ×2.0 |
+| V2 | 효과성 | ×1.8 |
+| V3 | 정합성 | ×1.6 |
+| V4 | 명료성 | ×1.3 |
+| V9 | 제어성 | ×1.2 |
+| V5 | 확장성 | ×1.1 |
+| V6 | 절약성 | ×1.0 |
+| V8 | 검토성 | ×0.85 |
+| V7 | 가역성 | ×0.75 |
+| V11 | 완결성 | ×0.5 |
+
+**가중치 합계: 14.1** (자기정규화 공식으로 합계 변경 불필요)
+
+> **M/C 축별 w** → Essence **§1-B**. 맥락 Δ → 본 절 **§4-C**.
+
+## 총점 산출 공식
+
+```
+총점 = Σ(w_i × s_i) / Σ(w_i × 5) × 100
+```
+
+표시: `raw / max → X.Xpt` (예: `23.0 / 37.5 → 61.3pt`)
+
+## 항목 추가·수정 규칙
+
+1. `cursorrules_Essence.mdc §1`에 행 추가 (정의·가중치·관계 포함)
+2. 본 요약 표 동시 갱신
+3. 총점 공식·기존 가중치 **변경 불필요** (자기정규화 자동 처리)
+4. 가중치 기본값 변경 시 `§4-A` 유동 범위(±값)도 일관성 재검토
+
+
+# ==========================================================================
+# 4-A. 가중치 동적 조정 정책 (Context-Adaptive Weighting)
+# ==========================================================================
+
+> §4의 기본 가중치에 맥락별 ±조정을 적용하는 정책. 자기정규화 공식은 유지 — 개별 조정 후 총점 공식 변경 불필요.
+
+## 항목별 유동 범위
+
+| 코드 | 명칭 | 기본값 | 유동 범위 | 트레이드오프 파트너 |
+|---|---|---|---|---|
+| V1 | 무결성 | ×2.0 | ±0.6 | V6 절약성 (역방향) |
+| V10 | 일관성 | ×2.0 | ±0.4 | V6 절약성 (역방향) |
+| V2 | 효과성 | ×1.8 | ±0.3 | V6 절약성 (역방향) |
+| V3 | 정합성 | ×1.6 | ±0.4 | V5 확장성 (역방향) |
+| V4 | 명료성 | ×1.3 | ±0.2 | — |
+| V9 | 제어성 | ×1.2 | ±0.3 | — |
+| V5 | 확장성 | ×1.1 | ±0.3 | V3 정합성 (역방향) |
+| V6 | 절약성 | ×1.0 | ±0.6 | V1 무결성 (역방향) |
+| V8 | 검토성 | ×0.85 | ±0.2 | — |
+| V7 | 가역성 | ×0.75 | ±0.3 | — |
+| V11 | 완결성 | ×0.5 | ±0.25 | V6 절약성 (역방향) |
+
+## §4-C. M/C 축 가중치 동적 조정 (Essence §1-B 연동)
+
+> §4-A는 **전역** V 항목 Δ. 본 절은 **축(M/C)별 matrix 셀** Δ. `w_eff = matrix[축][i] + Δ4-A[i] + Δ4-C[축][i]` (matrix=0 → 제외).
+
+### 단계별 — 축별 Δ (Stage × Axis)
+
+| 단계 | **M** (메타) | **C** (행동) | 의도 |
+|---|---|---|---|
+| Oracle (기획) | V10 +0, V3 **−0.3**, V6 **+0.2** | V6 **+0.2**, V11 **−0.2** | 탐색·브레인스토밍 |
+| Temporal (평시) | 0 | 0 | 기본 |
+| Purgatory (연옥) | V1 **+0.3**, V10 **+0.2** | V1 **+0.5**, V11 **−0.2**, V6 **−0.3** | 정확·형식 우선 |
+| Debate | V5 **+0.2** (M), V6 **+0.1** (M) | V5 **+0.2** (C) | 다각 탐색 |
+| **`.mdc` 개정 턴** | V10 **+0.3**, V4 **+0.2** | — | 성문 형식 집중 |
+
+### 유저 신호 — 축별 Δ
+
+| 유저 신호 | **M** | **C** | 지속 |
+|---|---|---|---|
+| "짧게" / "요약" / "핵심만" | V6 **+0.2** | V6 **+0.6**, V11 **−0.3** | 1턴 |
+| "자세히" / "설명해" | — | V6 **−0.3** | 1턴 |
+| "빠르게" / "간단히" | V10 **−0.3**, V6 **+0.2** | V1 **−0.2**, V6 **+0.4**, V11 **−0.2** | 1턴 |
+| "정확하게" / "꼼꼼히" | V10 **+0.3**, V1 **+0.2** | V1 **+0.3** | 1턴 |
+| "일단 넣어" / slim·User rules만 | V10 **−0.4**, V6 **+0.3** | — | 1턴 |
+| **"한 번에" / "끝까지" / "완결"** | — | V11 **+0.4**, V6 **−0.2** | 1턴 |
+
+### 누적 트리거 — 축별 Δ
+
+| 상황 | **M** | **C** | 리셋 |
+|---|---|---|---|
+| verify FAIL·`consecutive_fail_count`>0 | V1 **+(×0.1, max+0.3)** | V1 **+(×0.1, max+0.5)** | verify PASS |
+| 3턴+ 200줄 초과 | — | V6 **+0.3**, V11 **−0.15** | "자세히" 또는 단계 전환 |
+
+## 단계별 조정 (Stage Modifiers)
+
+> **동형어 주의 (Value §1 파일명 결론 참조)**: 아래 Oracle·Temporal·Purgatory는 **축 B — K-1-A 역할 선언 단계**. `Value §2` 5단계 생명주기(**축 A**)와 단어가 겹칠 뿐 **별개 체계**이다.
+
+| 단계 | 진입 조건 | V1 무결성 | V6 절약성 | 기타 | 의도 |
+|---|---|---|---|---|---|
+| Oracle (기획) | K-5 기획 단계 | −0.4 (→×1.6) | +0.4 (→×1.4) | V3 −0.3 | 브레인스토밍. 탐색 우선 |
+| Temporal (구현) | 기본값 (평시) | 기본 (×2.0) | 기본 (×1.0) | — | 정밀 구현 |
+| Purgatory (연옥) | harness FAIL 후 | +0.5 (→×2.5) | −0.5 (→×0.5) | V2 +0.3 | 정확도 집중. 절약 포기 |
+| Debate (토론) | harness_debate.py 호출 | −0.2 (→×1.8) | +0.1 (→×1.1) | V5 +0.2 | 다각도 탐색 허용 |
+
+## 유저 신호 기반 1회성 조정
+
+| 유저 신호 | 조정 | 지속 |
+|---|---|---|
+| "짧게" / "요약" / "핵심만" | V6 +0.6 (임시 최우선) | 해당 응답 1턴 |
+| "자세히" / "설명해" | V6 −0.3 | 해당 응답 1턴 |
+| "빠르게" / "간단히" | V1 −0.2, V6 +0.4, **V10 −0.3** | 해당 응답 1턴 |
+| "정확하게" / "꼼꼼히" | V1 +0.3, **V10 +0.3** | 해당 응답 1턴 |
+| "일단 넣어" / "slim에만" / "User rules에만" | **V10 −0.4**, V6 +0.3 | 해당 응답 1턴 — **성문과 별도 ad-hoc 규범** 추가 시 |
+
+## 누적 피드백 조정 (자동 트리거)
+
+| 상황 | 조정 | 리셋 조건 |
+|---|---|---|
+| 연속 3턴 이상 응답 200줄 초과 | V6 +0.3 (자동 간소화 방향) | 유저 "자세히" 신호 또는 단계 전환 |
+| `tests/result.json` `consecutive_fail_count` > 0 | V1 +(fail_count × 0.1), 최대 +0.5 | harness verify PASS 후 리셋 |
+| D-11-B 연속 동의 트리거 발동 후 | V2 +0.2 (직접 경로 재강조) | 비판 관점 1회 제시 후 리셋 |
+
+
+# ==========================================================================
+# 4-B. 절약 상수 & 동적 한도 정책 (Economy Constants & Limits)
+# ==========================================================================
+
+> **절약 대원칙**: 1회 턴 소모 비용은 일반 개발자 평균 대비 2배를 초과하지 않는다.
+> §4-A의 가중치 조정과 독립된 절대 상수 레이어.
+
+## 기준값 & 절대 상한
+
+| 상수명 | 기본값 | 설명 |
+|---|---|---|
+| `BASE_TOKENS_PER_TURN` | 1,500 | 일반 개발자 1회 쿼리 평균 토큰 (입력+출력 합산) |
+| `ECONOMY_CEILING` | 2,500 | Tier A 코딩 턴 절약 상한 (Core `VAL_ECONOMY_CEILING`) |
+| `ECONOMY_CEILING_OPS` | 4,000 | Tier B·debate·schema·헌법 개정 (Core `VAL_ECONOMY_CEILING_OPS`) |
+| `ECONOMY_WARN_THRESHOLD` | 2,250 | Tier A 경보 (`CEILING × 1.5` ≈ 3,750은 OPS 턴) |
+| `MAX_THINKING_BUDGET` | 8,000 | 1회 턴 thinking tokens 최대 (Claude `budget_tokens`) |
+| `MAX_CONTEXT_TURNS` | 50 | 누적 턴 수 상한. 초과 시 Devil_Archive_Raven 소환 권고 |
+| `MAX_FILES_IN_CONTEXT` | 10 | 턴 내 누적 참조 파일 수. 초과 시 컨텍스트 다이어트 신호 |
+
+## 유형별 ceiling (5:5 — `automation/token_economy.py`)
+
+| 턴 유형 | `kind` | ceiling | 줄 max | 차단 |
+|---------|--------|---------|--------|------|
+| 일상 코딩·버그·sync | `tier_a_coding` | 2,500 | 200 | **집행** (tok·줄 **동시** 초과 시) |
+| 분석·리뷰·평가·능률·트레이드오프 | `analysis` | 4,000 | 400 | 코칭만 |
+| `.mdc`·schema·cross-ref·k2.7 | `schema` | 4,000 | 350 | 코칭만 |
+| Oracle·기획·planning-harness | `planning` | 4,000 | 350 | 코칭만 |
+| `/debate`·harness_debate | `debate` | 4,000 | 300 | 코칭만 |
+| n8n·topic·Obsidian·배포 | `tier_b_ops` | 4,000 | 300 | 코칭만 |
+
+분류: `classify_turn_kind()` — debate > schema > planning > **analysis** > tier_b > tier_a.
+
+## 동적 턴 한도 (§4-B — `compute_dynamic_ceiling`)
+
+대시보드 `VAL_ECONOMY_*` = **floor(최소 보장)**. 매 턴 hook이 질문 길이·세션 누적으로 **effective ceiling** 을 계산.
+
+```
+effective = min(hard_cap, floor + prompt×α + session_bonus + base_buffer)
+hard_cap  = floor × (VAL_DYNAMIC_CAP_MULT / 100)   # OPS 턴 +0.30
+α         = VAL_DYNAMIC_ALPHA / 100
+session_bonus = min(turn_count × VAL_DYNAMIC_SESSION_BONUS
+                    + session_prompt_total × α × 0.15,
+                    VAL_DYNAMIC_SESSION_CAP)
+base_buffer   = (VAL_BASE_TOKENS − floor) × 0.25  when prompt > 180tok else 0
+```
+
+| 상수 | 기본 | 설명 |
+|---|---|---|
+| `VAL_DYNAMIC_ALPHA` | 55 | 질문 1tok당 ceiling 가산 (0.55) |
+| `VAL_DYNAMIC_CAP_MULT` | 220 | Tier A hard cap 2.2× floor |
+| `VAL_DYNAMIC_SESSION_BONUS` | 280 | 완료 턴 1회당 세션 가산 |
+| `VAL_DYNAMIC_SESSION_CAP` | 8000 | 세션 가산 누적 상한 |
+
+**줄 수**도 `prompt_est`·effective 비율에 따라 `line_max` 동적 상향 (`compute_dynamic_lines`).
+
+### 상한(cap) ≠ 목표(quota) — 낭비 유도 아님
+
+| 구분 | 의미 |
+|---|---|
+| **floor** (`VAL_ECONOMY_*`) | 대시보드 최소 보장 — 짧은 턴의 기본 천장 |
+| **effective** | floor + 질문·세션 headroom — **위반 판정선** |
+| **실제 소비** | 에이전트가 **필요한 만큼만** 출력 (K-4·V6·User rules) |
+
+- hook은 **초과할 때만** `[절약 경보]`·차단 — 한도까지 **채울 의무 없음**.
+- 짧은 질문(~50tok) → effective ≈ floor+수십 tok — 거의 기존과 동일.
+- 긴 질문만 headroom 확대; hard_cap(2.2×~)으로 무한 낭비 **구조적으로 불가**.
+- 개념 정본: `COSMIC_CONSTANTS_CATALOG.economyDynamicCeiling` · PV `elasticEconomyCeiling`.
+
+**hook 집행** (Cursor 로컬 Agent):
+- `beforeSubmitPrompt` → `.cursor/hooks/before-economy-gate.sh`
+- `afterAgentResponse` → `.cursor/hooks/after-economy-response.sh`
+- **집행(차단)**: `tier_a_coding` 만 — 연속 경보 ×3 · 직전 턴 위반
+- **코칭(경고만)**: `analysis` · `schema` · `planning` · `debate` · `tier_b_ops`
+- 해제 키워드: `절약 해제` · `economy override` · `계속 진행` · `고지 생략`
+- **세션 첫 턴** (Detail D-13): hook **집행·차단·경보 미적용** — schema·헌법·규칙 정렬 우선. `절약 해제` **불요**
+
+## 토큰 불가측 — 프록시 한도 (측정 가능한 대체 지표)
+
+| 프록시 지표 | 경보 임계 | 절대 상한 | 헌법 연동 |
+|---|---|---|---|
+| 응답 줄 수 (코딩 턴) | 150줄 | 200줄 | D-3 |
+| 응답 줄 수 (analysis 턴) | 250줄 | 400줄 | — |
+| 턴당 파일 읽기 수 | 4개 | 5개 | — |
+| 턴당 도구 호출 수 | 6회 | 8회 | — |
+| 누적 대화 턴 수 | 40턴 | 50턴 | MAX_CONTEXT_TURNS |
+
+## 상한 도달 시 행동
+
+| 상황 | 행동 |
+|---|---|
+| 경보 임계 진입 | 응답 서두에 `[절약 경보]` 선언 후 계속 |
+| 절대 상한 초과 예상 | 서술형 → 표·불릿 간소화 강제 |
+| 연속 3턴 이상 경보 구간 | D-2-A Proclamation 발신 (Slack) |
+| MAX_CONTEXT_TURNS 도달 | Devil_Archive_Raven 소환 권고 — 유저에게 보고 후 승인 대기 |
+
+## D-10 채점 출력 (§4-B 연동 — 충돌 시 본 절 우선)
+
+| 상황 | D-10 별점 표 | 대안 |
+|---|---|---|
+| 아키텍처·구조 결정 (Detail D-10 판정 3번) | 허용 — 관련 V항목만 | — |
+| 일상 구현 A/B·단일 파일 선택 | **금지** | 1~3문장 trade-off + 권장 1개 |
+| 애매함 | **금지** | 경량 대안 (§4-B 절약 우선) |
+| **유저가 별점·100점·옵션 비교 요청** | **허용** — Core K-6-A · Detail D-10 판정 4 | — |
+| D-10 표 + 본문이 150줄 경보 임계 초과 예상 | **축소** — 핵심 V 3개 이하만 채점 |
+
+> 판정 순서는 `cursorrules_Detail.mdc D-10 적용 판정` 4단계를 따른다. 매 턴 재해석 금지.
+
+## 재보정 정책 (Recalibration)
+
+**주간 고정 대비 git 커밋 밀도 기반이 나은 이유**:
+주간 고정은 프로젝트 활동과 무관하게 7일마다 실행 → 집중 개발 구간에서 과소 감지.
+git 커밋 밀도는 실제 사용 강도에 비례 → 바쁜 구간에 자동 긴축, 휴면 구간에 자동 완화.
+
+**재보정 트리거 조건 (셋 중 하나 충족 시):**
+
+| 조건 | 판단 | BASE_TOKENS_PER_TURN 조정 |
+|---|---|---|
+| `git log --since="7d" --oneline \| wc -l` > 20 | 집중 개발 중 | ×0.8 → 1,200 (절약 강화) |
+| 동일 결과 5–20 | 정상 운영 | 기본값 유지 |
+| 동일 결과 < 5 | 프로젝트 휴면 | ×1.3 → 1,950 (완화) |
+| `consecutive_fail_count` > 3 | 연속 FAIL — 무결성 우선 | ×1.5 → 2,250 (상한도 비례 상승) |
+| 유저 "절약 모드" 명시 | 즉시 강제 | `ECONOMY_CEILING` 임시 2,000 |
+
+**최소 재보정 간격**: 3일 (빈번한 진동 방지. 단, 유저 명시 신호는 즉시 적용)
+
+**재보정 실행 방법**:
+```
+git log --since="7d" --oneline | wc -l
+```
+→ 위 표 조건 매칭 → `[재보정] BASE_TOKENS_PER_TURN: 기존값 → 신규값` 선언 → 해당 세션부터 적용.
+`harness_sync.py all` 실행 시 함께 수행 가능.

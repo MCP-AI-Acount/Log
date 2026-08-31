@@ -1,0 +1,80 @@
+---
+description: ① 1.5 전체 카탈로그 — git·배포·백업·skills·MCP·n8n (git/deploy/MCP 턴·참조 시)
+alwaysApply: false
+---
+
+<!-- HARNESS_7D: Zero_Canon_Temporal_Temporal_World_World_T_ops_off -->
+<!-- 성격: Label②=Blueprint — ① 티어 1.5 지연. override·관습 대상 아님 -->
+
+# ① Technique AAOff — 1.5-1~1.5-9 전체
+
+> **항시 MUST** → `cursorrules_Technique_AAOn.mdc`. 본 파일 = **HOW 상세·인프ra**.
+
+## ① 티어 1.5 인덱스
+
+| 코드 | 명칭 | 요약 |
+|------|------|------|
+| **1.5-1** | Git · Commit · PR | 명시 commit · B4 턴 push · pre-push-guard |
+| **1.5-2** | 배포 · VM · BUILD_ID | push→sync→deploy→sync_n8n · harness_sync all |
+| **1.5-3** | verify · harness_sync | Tier A · FAIL→연옥 · git restore=D-17 ①② |
+| **1.5-4** | 백업 · 롤백 · OK diff | D-17 HOW · 불확실 구간 명시 |
+| **1.5-5** | skills | `.cursor/skills/` |
+| **1.5-6** | commands | `.cursor/commands/` |
+| **1.5-7** | agents | `.cursor/agents/` |
+| **1.5-8** | MCP | descriptor 선행 · mcp_auth |
+| **1.5-9** | n8n · Obsidian · Slack | Tier B Degraded OK |
+
+**1-1 · 1-2 · 1-12** → Core K-0 · D-12 · IDE. **②** B4·D-16·K-6-A = MUST.
+
+---
+
+## 1.5-1 Git · Commit · PR
+
+| 항목 | 절차 |
+|------|------|
+| commit | 유저 **명시** 시. **B4** 턴은 동일 턴 commit 포함 |
+| PR | `gh` · 명시 요청 없으면 생성 금지 |
+| 금지 | git config 변경 · `--no-verify` · main force push(유저 명시 없으면) · `-i` |
+
+## 1.5-2 배포 · VM · BUILD_ID
+
+| 트리거 | 스크립트 |
+|--------|----------|
+| git push | `EXE/sync_dashboard.sh` |
+| + web-browser/·BUILD_ID | `EXE/deploy_dashboard.sh` |
+| + Oracle interview (deploy_dashboard) | preflight OPENROUTER · post `EXE/verify_oracle_deploy_env.sh` (D-19) |
+| + n8n/wf_*·wi_* | `EXE/sync_n8n.sh` |
+| 구현 완료 | `python automation/harness_sync.py all` |
+
+### 1.5-2-A 기술 마무리 보고 (B6 · D-16-A)
+
+- B4·1.5-1·본 절로 **실제 수행한** 기술 행동만 턴 말미 **1문** 보고. **사전 허가 질문 금지**.
+- 형식: `기술 마무리: {D-16-A 표준 라벨 · 구분}` — **미수행 항목 열거 금지**.
+- ① 1-12「명시 시만 commit」vs ② B4 충돌 시 **실행 전** B5 한 줄 → **② 우선** → B6는 **수행 후**만.
+
+## 1.5-3 verify · harness_sync
+
+| 상황 | 동작 |
+|------|------|
+| 핵심 로직·전역 상태·test/스모크 경로 수정 후 | `harness_sync.py verify` → FAIL→연옥 (restore=D-17 ①②·`--rollback-on-fail`) |
+| Oracle·interview·deploy_dashboard·bundled interview | verify 내 **`oracle_integrity`** (D-19) · `ORACLE_INTEGRITY_SKIP_CLOUD=1`로 cloud describe 생략 가능 |
+| 문서-only·README(런타임 무영향) | `harness_sync.py all` (verify 생략 가능) |
+| push/PR 전 | `/pre-push-guard` |
+
+## 1.5-4 백업 · 롤백
+
+백업+OK diff 병합 · Fate Mirror — **의무**는 ② D-17·K-3.
+
+## 1.5-5 skills · 1.5-6 commands · 1.5-7 agents
+
+`/harness-sync` · `/pre-push-guard` · `code-guardian` · topic-news-pipeline 등 — 경로는 agent-tooling K-7.
+
+## 1.5-8 MCP · 1.5-9 인프ra
+
+MCP: descriptor 선행. n8n/Obsidian/Slack: Tier B.
+
+---
+
+## 대화 결론 반영 (① 보조)
+
+합의 운영 결론 → **②** 성문·Realm (D-2). 파괴·보안은 유저 확인.

@@ -1,0 +1,42 @@
+---
+description: Describe what this rule covers
+alwaysApply: true
+---
+
+# My Rules
+
+You are an expert developer working on this project. Follow these rules strictly.
+
+## Code Style
+- Use const for variables that are never reassigned
+- Use template literals instead of string concatenation
+- Prefer async/await over raw Promises and callbacks
+- Use early returns to reduce nesting and improve readability
+- Use clear, descriptive variable and function names
+
+## CSS Methodology
+- Use CSS custom properties for theming and reusable values
+- Write mobile-first responsive styles with min-width queries
+- Avoid using !important except for utility classes
+
+## Accessibility
+- Use semantic HTML elements (nav, main, article, etc.)
+- All images must have meaningful alt text
+- All interactive elements must be keyboard accessible
+- Use ARIA labels for interactive elements without visible text
+- Maintain visible focus indicators for keyboard users
+- Ensure sufficient color contrast ratios (WCAG AA)
+
+## File Structure
+- Use PascalCase for component file names
+- Keep related files close together (tests, styles, etc.)
+
+## Forbidden Patterns
+- Remove console.log statements in production code
+- Extract magic numbers into named constants
+- Avoid deeply nested ternary operators
+- Never use the any type in TypeScript
+- Use let or const instead of var
+
+## Documentation
+- Add comments for complex logic

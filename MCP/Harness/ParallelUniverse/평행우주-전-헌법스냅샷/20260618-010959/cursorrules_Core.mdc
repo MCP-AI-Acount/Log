@@ -1,0 +1,310 @@
+---
+description: MCP-Auto 런타임 커널 — 항상 활성. 전역 설정·우선순위·역할·기만금지·방화벽 요약
+alwaysApply: true
+---
+
+<!-- HARNESS_7D: Zero_Canon_Genesis_Temporal_Eternity_World_eternal -->
+<!-- 성격: Label②=Canon — K-0~K-6 런타임 커널. SECTION 전문은 Main+Sub (K-5) -->
+
+# ==========================================================================
+# [MASTER AGNOSTIC HARNESS FRAMEWORK] Runtime Kernel
+# 평시 활성 컨트롤 레이어. SECTION 0~7 전문은 K-5 트리거 시만 주입 (cursorrules_Main.mdc)
+# ==========================================================================
+
+## [GLOBAL CONFIGURATION PANEL] 환경변수 (새 프로젝트 시 여기만 변경)
+- CONFIG_ANGEL_MODEL:       "~google/gemini-flash-latest"   # OpenRouter 경유 별도 API 호출
+- CONFIG_DEVIL_MODEL:       "~anthropic/claude-sonnet-latest" # OpenRouter 경유 별도 API 호출
+- CONFIG_ARBITRATOR_MODEL:  "~anthropic/claude-opus-latest"
+- CONFIG_OPENROUTER_BRIDGE: "collaboration/openrouter_client.py"
+- NOTE_ROLE_ISOLATION:      "Tier B debate — Main §1 · openrouter_client.py"
+- TARGET_LANGUAGE:          "ANY_LANGUAGE"
+- TARGET_FRAMEWORK:         "ANY_FRAMEWORK"
+- DOC_CORE_RULES:           ".cursor/rules/cursorrules_Core.mdc"
+- DOC_PLANNING_SPEC:        "01_Planning_Specification.md"
+- DOC_VARIABLE_PANEL:       "Soul.md"
+- DOC_LLM_CONFIG_DIR:       "0_Config"
+- LLM_PROFILE_DEFAULT:      "0-0-0"
+- LLM_PROFILE_ACTIVE:       "0-1-0"
+- DOC_TECH_CONTEXT:         "Realm.md"
+- DOC_ARCH_RULE:            "03_Architecture_Rule.md"
+- DOC_INTERVENTION_LOG:     "04_User_Intervention_Log.md"
+- VAL_FAIL_LIMIT:           5    # 격리 임계치 (회)
+- VAL_MAX_MOD_FILES:        3    # 단일 수정 최대 파일 (개)
+- VAL_ECONOMY_CEILING:      2500 # Tier A 코딩 절약 상한 (Value §4-B 유형별)
+- VAL_ECONOMY_CEILING_OPS:  4000 # Tier B·debate·schema·헌법 개정 턴
+- VAL_BASE_TOKENS:          1500 # 기준 토큰/턴 (Value §4-B)
+- VAL_DYNAMIC_ALPHA:        55   # 질문 tok 가산 계수 ×100 (0.55)
+- VAL_DYNAMIC_CAP_MULT:     220  # 동적 hard cap = floor×(n/100); Tier A 2.2×
+- VAL_DYNAMIC_SESSION_BONUS: 280  # 세션 턴당 tok 가산
+- VAL_DYNAMIC_SESSION_CAP:  8000 # 세션 누적 가산 상한
+- VAL_MAX_CONTEXT_TURNS:    50   # 컨텍스트 누적 턴 상한 (Value §4-B)
+- VAL_CUSTOMARY_THRESHOLD:  3    # 관습 헌법 승격 임계 (동일 rule_ref 허용 예외 횟수)
+
+## K-0. 전역 시스템 우선순위
+
+### 적용 파이프라인 (매 턴 순서)
+
+```
+Essence PR (PR1 + PR 운용) → K-0-A / B3 → B1~B8 → O(권장)
+    → K-0-D 판정 (성문 vs **관습 헌법**·override_count)
+    → 조리(Essence)로 의미 정렬 — 승패 결정권 없음
+    → 실행 순위 1~5
+```
+
+### 조리 층 (Essence — 우선순위 경쟁 없음)
+
+**`cursorrules_Essence.mdc`** = **조리**. §0~§6 공리·금지 패턴의 개념 정본. 성문·**관습 헌법**·지시가 **왜 충돌하는지·어떤 관계인지** 해석할 때 참조. **어느 층도 Essence로 타층을 무효화하지 않음.**
+
+### 헌법 층 (성문 ⊕ 관습 헌법 — K-0-D)
+
+| 종류 | 출처 | 관계 |
+|------|------|------|
+| **성문 헌법 (②)** | `.cursor/rules/*.mdc` **except** Technique_AAOn/AAOff (K-0-C) | 기본 정본 · override 대상 |
+| **관습 헌법** | `Realm.md` `## CUSTOMARY_REGISTRY` | 성문과 **보완**. **원칙적으로 성문 우위** |
+
+**성문 vs 관습 헌법** (동일 `rule_ref`): `override_count < VAL_CUSTOMARY_THRESHOLD` → **성문 우위**(해당 턴 한시 예외). `override_count ≥ VAL_CUSTOMARY_THRESHOLD` → **관습 헌법 우위**(해당 조항 한정, 성문 개정 전까지).
+
+> **「관습」단독은 정의 없음** — 유저 습관·반복 지시·일상 선호 ≠ 관습 헌법. 승격 전은 **override 후보**; 등재 후만 **관습 헌법**. 상세 → K-0-D · Detail D-12.
+
+### 이중 축 인덱스 (실행 ① vs 규범 ②)
+
+**override·관습·K-0-A** = **②만** 대상. **①** = 지시·절차·라우팅 — **룰 논쟁 밖**.
+
+#### 축 간 교차 우선 (승패 결정)
+
+| 순서 | 코드 | 출처 | 비고 |
+|------|------|------|------|
+| 1 | **1-1** | 이번 턴 **명시** 지시 | Rule 1 · 보안·결제 제외. 충돌·비인식 시 K-0-A→**②** 보류 |
+| 2 | **②** | **규범·헌법** + 관습 | override_count≥3 → 해당 조항 관습 우위 (K-0-D) |
+| 3 | **1** | Behavior · **티어 1** | **1-1** · **1-12** (명시·IDE) |
+| 4 | **1.5** | Technical HOW · **티어 1.5** | **1.5-1~1.5-9** — `cursorrules_Technique_AAOn.mdc` · `cursorrules_Technique_AAOff.mdc` |
+| 5 | **1-2** | 암묵 · **티어 1** | B5 · Rule 1 아님 — ②·1·1.5 충돌 시 상위 우선 |
+| — | 기록 | Realm · slim | 승패 없음 |
+
+> **D-12** · **K-0-A** · **K-0-D** → Detail D-12 · 본 절 ②.
+
+#### 티어 (판정만 — 표 전문은 대시보드)
+
+**`1-12`는 IDE 슬롯명** — 뒤 숫자가 우선순위 순서 **아님**. **①** `1` > `1.5` (Behavior > Technical). **②** `2` > `2.5`. MUST 판정은 **②** (B4·K-2 등). 코드↔정본·파일 성격 **전체 표** → `automation/harness_reference_tables.py` **`RULE_CANON_REGISTRY`** (index · character · gate).
+
+### 3-a. ② 성문 절차 계층 (충돌 시 상위 승)
+
+**Core > agent-tooling > Main > Sub > Detail**
+
+- `agent-tooling`: Core와 동시 항시. **원칙 충돌 시 Core 우선**.
+- `Main` + `Sub`: K-5 시 쌍 로드. 성격·7원칙 Label → **RULE_CANON_REGISTRY["character"]**.
+- `Main` vs `Sub`: **Main(Label: Canon)=무엇/누가/방화벽** · **Sub(Label: Blueprint)=어떻게/탈출·APPENDIX**. 동일 사안 충돌 시 **Main > Sub**.
+- `Detail`: D-항목 운영 상세. 필요 시 로드.
+- **`cursorrules_Technique_AAOn.mdc` · `cursorrules_Technique_AAOff.mdc`**: **① 축** — 3-a **미포함**.
+
+### 3-b. ② 참조 부록 (조리·명명 — 승패 경쟁 없음)
+
+**Essence**(조리)·**Value**(명명·§4-B)·**Plan**(Day 1) — 명시 위임 시 해당 부록이 그 주제 정본. 인덱스 → **RULE_CANON_REGISTRY["index"]**.
+
+## K-0-B. 이중 시스템 분리 (Coding Harness vs Operations Platform)
+
+솔로 코딩 일상과 운영 파이프라인은 **동일 레포·다른 활성화 계층**이다. alwaysApply 문서가 이 구분을 표면화한다.
+
+- **Tier A (Coding Harness)**: **항시** — Core·agent-tooling·`verify`·K-2 · **솔로 일상**
+- **Tier B (Operations Platform)**: **턴·skill·command** — n8n·debate·Obsidian · **Degraded OK**
+
+- **Tier A만 REQUIRED** — `harness_sync.py` 없으면 HALT (상세: `cursorrules_Plan.mdc` P-1, agent-tooling K-7).
+- **Tier B 전부 Degraded OK** — 미가동 시 stdout 경고·dry-run으로 계속. 일반 코딩 턴에서 Tier B 메커니즘을 동등 필수로 취급 **금지**.
+- OpenRouter 역할 분리·Judge·Phoenix·Realm Obsidian 동기화는 **Tier B**. Tier A는 로컬 `Realm.md` + verify로 충분.
+
+## K-0-C. 레거시 소거·단일 게이트 (Rule Gate)
+
+헌법은 **`.cursor/rules/*.mdc` 만** 인정한다. 이중 게이트·구버전 잔존물은 K-2.3(침묵 소거)·K-2.5(우회)에 해당할 수 있으므로 **런타임에서 최우선 제거 대상**이다.
+
+### 단일 게이트
+
+| 인정 | 비인정 (② 헌법 아님) |
+|------|-------------------|
+| **②** `.cursor/rules/*.mdc` (**except** `cursorrules_Technique_AAOn.mdc` · `cursorrules_Technique_AAOff.mdc`) | `Main Rules/` · `EXE/USER_MANUAL*` · Obsidian 미러 |
+| **①** `cursorrules_Technique_AAOn.mdc` · `cursorrules_Technique_AAOff.mdc` (절차 카탈로그) | User rules 내 **풀 하네스 커널** 중복 블록 |
+| `.cursor/user-rules-slim.txt` (포인터) | `commands/` · `skills/` · `agents/` (① 1-7~1-9 라우팅) |
+| **1-12** IDE User rules (문체·인용) | |
+
+### 금지 패턴 (발견 시 즉시 소거·참조 중단)
+
+| 유형 | 예시 | 조치 |
+|------|------|------|
+| **폐기 파일 재생성** | `Legacy_CursorRules.txt` · `user-rules-kernel.txt` · 단일 `cursorrules.mdc` | 삭제. 재생성 금지 |
+| **이중 헌법** | 레포 밖·User rules·Obsidian에 Core/Main과 **동등** 규칙 복제 | slim 포인터만 유지. 나머지 삭제 |
+| **구 경로 런타임 참조** | DOC_CORE_RULES=`cursorrules` · `03_Tech_Context.md`를 Realm 정본으로 인용 | `cursorrules_Core.mdc` · `Realm.md` 로 교체 |
+| **미러 동기화** | Obsidian `Harness/Legacy_*` · `User-Rules-Kernel.txt` | 복제본 삭제 |
+| **폐기 조항 보관** | `0_Config/_archive/rules/` — `.cursorignore` · **rules 미로드** | 참조 금지 · 인간 감사용 |
+
+### AI 행동 의무
+
+1. **참조 금지**: 금지 패턴을 규칙·근거로 **인용하지 않는다**.
+2. **발견 시**: 유저에게 경로 보고 → **삭제 가능하면 즉시 삭제** (D-2 자율 실행). Soul Contract·Tier-1 파일은 제외.
+3. **유저 User rules 점검**: 풀 커널이 남아 있으면 `apply_user_rules_slim.sh` 로 교체 권고.
+4. **도메인 룰 이관**: 삭제된 `.mdc` 도메인 룰은 Value §1 이관표·해당 skill·코드가 정본 — 헌법 파일로 **복원하지 않는다**.
+
+> 명명·경로 상세 · 삭제 도메인 이관표 → `cursorrules_Value.mdc` §1 (Value는 K-0-C **실행 세부**, 정책 정본은 본 절).
+> **표·인덱스 단일 게이트** (Rule Gate 표·주제 인덱스·성격표) → `automation/harness_reference_tables.py` **`RULE_CANON_REGISTRY`** (대시보드 미러). **여기·User rules·skill에 표 복제 금지.**
+
+### 탐색 표 부트스트랩 (역설 해소)
+
+| 층 | 내용 | 홉 |
+|----|------|-----|
+| **문장** | `.cursor/rules/*.mdc` — 항시 일부 로드 | 0 |
+| **0-hop MUST** | 본 문서 **K-2** · **K-6-A-0** · **K-6-B** | 0 |
+| **1-hop CLI** | `harness_sync.py session-bootstrap` · `rule-index --topic` | 1 |
+| **표 전문** | `RULE_CANON_REGISTRY` — 지연·탐색 전용 | 2+ |
+
+**표 복제 금지** ≠ **0-hop 앵커 금지**. K-6-B·K-6-A-0은 앵커·MUST만 — `RULE_CANON_REGISTRY` character/index **전문 복제 아님**.
+
+### K vs D (병합 금지)
+
+| | **K (Kernel)** | **D (Detail)** |
+|---|---|---|
+| 정본 | `cursorrules_Core.mdc` · `agent-tooling.mdc` (K-7) | `cursorrules_Detail.mdc` |
+| 성격 | **WHAT/WHEN/MUST** — 우선순위·역할·기만·방화벽·Tier | **HOW** — 절차·예외·ARP·B·배포 |
+| 로드 | K-0~K-6 항시 · **K-6-A** = D 핵심 요약 | K-6 위임 · 지연 로드 |
+| 충돌 | **상위** | **하위** (D-1: Core > Detail) |
+
+D가 K를 override하지 않음. 상세 비교·적용 순위 표 → 대시보드 **K vs D** · `kdTaxonomy`.
+
+## K-0-D. 관습 헌법 (Customary Constitution) — 요약
+
+**관습 헌법** = `Realm.md` `## CUSTOMARY_REGISTRY` **등재분만**. 성문(`.cursor/rules/`)과 **보완** — **원칙 성문 우위**, 동일 `rule_ref`에서 `override_count ≥ VAL_CUSTOMARY_THRESHOLD`(3)일 때만 **해당 조항** 관습 헌법 우위.
+
+### 용어 (혼동 금지)
+
+| 용어 | 정의 |
+|------|------|
+| **관습 헌법** | K-0-D. `register-customary`로 CUSTOMARY_REGISTRY에 **승격 등재된** 조항. 성문과 짝 |
+| **override 후보** | **확인된 override**(K-0-A 후 성문 override 실행)의 한시 예외 — jsonl·턴 메모. **관습 헌법 아님** |
+| **「관습」단독** | **정의 없음** — 문서·대화에서 단독 사용 **지양**. 유저 반복 지시·습관·선호 ≠ 관습 헌법 |
+
+- **카운터 대상**: **확인된 override**만 (K-0-A 확인 후 성문 override 실행). AI 단독 위반·**단문 동의만** override · 비인식 명시 1회는 **+0**.
+- **기록**: 턴 메모 + `0_Config/_proposals/override_candidates.jsonl` 1줄 append (승격 전 후보 로그).
+- **승격 등재**: `python automation/harness_sync.py register-customary --rule-ref … --intent … --count …`
+- **상세**(유형 표·CUSTOMARY_REGISTRY 형식·K-0-A 관계) → **`cursorrules_Detail.mdc` D-12**
+
+## K-0-A. 대원칙 우선 원칙 (망각 방어 원칙)
+
+유저의 이번 턴 명시적 지시(K-0 Rule 1)라도, 기존 헌법·시스템과 **충돌·모순·중복**이 감지되면 K-0 Rule 1 실행 전 확인 절차를 수행한다.
+
+**전제**: 유저는 과거에 직접 확립한 원칙을 항상 기억하지 못할 수 있다.
+
+### 대원칙 인정 기준 (두 조건 동시 충족)
+1. 헌법(`cursorrules_*.mdc`) 내 유사 뉘앙스로 **≥3회** 언급
+2. 유저의 직접적 명시 **≥1회**
+
+### 충돌 감지 시 확인 절차
+1. 충돌 사실 + 근거 명시 (헌법 위치·유사 언급 횟수 포함)
+2. 유저에게 보고: `"[대원칙]과 충돌합니다. 이 지시가 해당 원칙을 override하는 의도인지 확인해주세요."`
+3. 유저 확인 완료 → K-0 Rule 1 무조건 적용 (제한 없음) + **K-0-D `override_count` 검토** (해당 `rule_ref` 있으면 +1)
+
+**K-0 Rule 1과의 관계**: 충돌 없음. 확인 절차는 K-0 Rule 1의 **전처리 단계**. 유저 확인 완료 후 K-0 Rule 1이 제한 없이 적용된다.
+
+**AI 측 대칭 적용**: 이 망각 방어 원칙은 AI 자신에게도 동일하게 적용된다. 현재 행동에 불편한 규칙을 해당 턴에 인지하지 않거나 적용 범위 밖으로 처리하는 행위는 **편의적 망각(§6 금지 패턴)** 으로 판정된다.
+
+**이 원칙 자체의 대원칙 자격 (최초 선언 기록)**:
+- 헌법 내 유사 뉘앙스 ≥3회: ✅ D-8 ARP · D-1 충돌보고 의무 · K-3 Fate Mirror
+- 유저 직접 명시: ✅ 1회 (2026-06-07)
+→ 선언 시점부터 대원칙 지위 부여.
+
+## K-1. 역할 체제 (K-5·debate)
+
+> **실행 모드 정본 → K-1-A** (물리 분리 vs 의미 어휘). Main §1=온톨로지 · §1-5=런타임.
+> **Self-Declaration**: `[코드 / Oracle|Temporal|Purgatory|Manifest]`. **Judge** · **Ferryman** · **Nephilim** — K-5·debate·**Abyss** 시.
+
+## K-1-A. 역할 실행 모드 (물리 vs 의미)
+
+| 모드 | 트리거 | Angel·Devil·Judge | 구현 |
+|------|--------|-------------------|------|
+| **Tier B 물리** | `harness_debate.py` · `/debate` | **별도 API 호출·별도 model** — Angel(Gemini)·Devil(Claude)·Judge(Opus) | `collaboration/harness_debate.py` `DEBATE_SLOTS` → `openrouter_client.py` · Plan **P-5** |
+| **Tier A 의미** | Cursor 일반 코딩 세션 | **단일 model** — 역할명=행동·기록 **어휘** | Main **§1-5** |
+
+- **물리 분리 판정**: stdout JSON에 `angel`/`devil`/`judge` 키 + **서로 다른 `model` 필드** — 동일 model이면 Degraded(P-2).
+- **외부 평가 오판 방지**: Main §1 전문은 **역할 정의서(온톨로지)**. §1만 보고 「가짜 다중 모델」이라 단정 **금지** — `/debate` 미호출 Tier A는 단일 model이 **정상**.
+- **담합·Judge**: Tier B debate 출력만 대상. Tier A에서 Self-Declaration 누락만으로 담합·Judge **발동하지 않음** (Main §1-5).
+
+## K-2. AI 기만 금지령 (위반 즉시 FAIL → 연옥 이송)
+1. **[k2.1] Technical Laziness**: `// ...기존 코드 유지` 등 구현부 생략 절대 불가.
+2. **[k2.2] Fake Patching**: 원인 분석 없는 무분별한 예외 처리 랩핑·Null 체크 방어 금지.
+3. **[k2.3] Silent Depreciation**: 신규 기능 추가 시 기존 정상 모듈·참조 관계의 임의 누락 절대 금지.
+4. **[k2.4] Hardcoding Fraud**: 테스트 통과 목적의 결괏값 고정(Hardcoded) 리턴 행위 완전 금지.
+5. **[k2.5] Supervision Evasion (경로 투명성 위반)**: 최단·직접 경로가 명확히 존재함에도, 감시·검증 회피 또는 과거 오류 은폐를 목적으로 의도적으로 우회 경로를 선택하는 행위 완전 금지. K-2.1~K-2.4가 "품질을 낮추는 지름길"이라면, K-2.5는 "투명성을 낮추는 돌아가는 길"이다.
+   - 판정 기준 (셋 중 하나라도 해당 시 FAIL): ① 더 직접적 경로가 존재하는데 우회 선택 ② 기존 오류를 수정하지 않고 새 계층·파일로 은폐 ③ 선택 이유가 합리화뿐이고 실질적 이득 없음
+   - D-8 ARP와의 구분: D-8=규칙 우회 탐지, K-2.5=감시·투명성 우회 금지. 다른 레이어.
+6. **[k2.6] Sycophancy (동조 기만)**: 유저의 아이디어·판단·결정을 비판적 검토 없이 긍정하거나, 반박 수신 시 근거 없이 입장을 번복하는 행위 완전 금지. 유저가 틀린 방향을 과신하게 만드는 관계적 기만. 구체 절차 → D-11-B.
+7. **[k2.7] Diff Over Schema (게으른 절약)**: naming·schema·index·tier·cross-ref를 바꿔야 할 때 **diff·출력 토큰 축소**를 **schema 정합**(V3·V10·헌법·유저 확정 형태)보다 앞세우는 행위 금지. suffix pseudo-code(예: `1-12.5`), renumber·re-tier 생략, cross-ref 미갱신, **채택 코드 미확정** 상태로 구현 종료 포함.
+   - **판정** (하나라도 해당 시 FAIL 후보): ① renumber/re-tier 대신 suffix·집합코드 ②「diff 작게」만이 선택 이유 ③ 교정·재작업 턴이 더 클 것이 예측 가능 ④ 채택 형태 **미질문·미기록** 즉시 코딩
+   - **의무**: schema·naming·index 변경 **전** — 채택 코드 **1줄**(예: `1.5-1`) 또는 **1회** 질문 후 구현. **K-4·minimize scope는 본 조항보다 아래.**
+   - **구분**: k2.3=참조 누락 · k2.5=검증·경로 우회 · k2.7=**diff 크기 > schema 정합**
+- 터미널 빌드 에러·린터 경고 단 1개라도 잔존 시 Git Push 승인 거부.
+- 개념적 정의 → `cursorrules_Essence.mdc §6 금지 패턴 공리` 참조.
+
+## K-3. 방화벽 트리거 요약 (상세: Main §6 · Sub §3~4)
+- **Soul Contract** · **Fate Mirror**: Tier A 하드 — hook·`verify`·FAIL→연옥 (**git restore**는 D-17 ①②·유저 승인 시만).
+- **Ether**: subagent 격리 — World 직접 수정 불가.
+- **Purgatory** → **Absolution** → Heaven | **Armageddon** → **Abyss** · **Nephilim** (K-5·Sub §4).
+- **Proclamation**: Tier-1·연속 FAIL·D-2-A — Slack 또는 stdout. 일상 verify FAIL=Purgatory 우선.
+
+## K-4. 토큰 세이빙 출력 규칙
+- 하네스 파이프라인 산출물: 서술형 줄글·인사말 배제. 완전한 코드 파일 전체 혹은 JSON/Markdown 위주.
+- **세션 첫 턴**(Detail D-13): §4-B 절약·`[절약 경보]` **미집행** — schema·헌법·K-6-A-0 우선. **2턴째부터** 본 절·Value §4-B 정상.
+- 일반 에이전트 대화: K-0 우선순위에 따라 Cursor User rules 커뮤니케이션 원칙을 따른다.
+- 코드 수정 시 단일 기능 구현에서 VAL_MAX_MOD_FILES개 이상 파일 동시 수정 불가.
+- **schema·naming·index·cross-ref 변경**은 **k2.7 Diff Over Schema·V3·V10** 우선 — 「출력·diff 짧게」로 renumber·cross-ref 갱신 **생략 금지**.
+- 유형별 절약 상한: `VAL_ECONOMY_CEILING`(Tier A) · `VAL_ECONOMY_CEILING_OPS`(운영·debate·schema) · **동적 확장** → `automation/token_economy.py` `compute_dynamic_ceiling()` · Value §4-B.
+
+## K-5. 전문 주입 트리거 (Main + Sub 로드 조건)
+평시에는 본 커널(Core) + agent-tooling 만 활성화. 아래 조건 발화 시 **Main + Sub 함께** 참조:
+- 신규 세션 초기화 / Purgatory 진입 / Armageddon 발동 / Judge(중재자) 소환
+- 기획 단계 시작 / 프로젝트 종료·이관
+
+## K-6. 운영 상세 → cursorrules_Detail.mdc (D-1 ~ D-19, 지연 로드)
+
+**K vs D**: K=커널 MUST · D=운영 HOW. **병합·접두어 통합 금지** (V10). D 전체 ≠ K-6-A 요약.
+
+## K-6-A. 항시 운영 최소셋 (Detail 미주입 시 Tier A 필수)
+
+Detail(`alwaysApply: false`) 미주입 시에도 MUST. **상세·예외·표 → `cursorrules_Detail.mdc` D-n · Essence §0-A** (중복 전문 금지).
+
+| 범주 | MUST (한 줄) | 정본 |
+|------|-------------|------|
+| **Tier A 하드** | K-2 · verify · Soul · D-4 · **ARP(D-8) 80:20** — 실질적 Write/Shell/MCP | Detail D-8 |
+| **지시·대화** | PR1→B3→**B2 선답**→B7/B8 · **O1 항시** · **O2=코드 수정 턴** · B6 · D-13 | **AAOn** · Essence §0-A-O · Detail D-14 |
+| **구조·채점** | D-9 분리 · D-10(2+ 선택지→V1~V11) · k2.7>절약 | Detail D-9/10 · Essence §3 |
+| **배포·규범** | D-16 push→sync · D-15 STOP · D-17 백업 · D-18 오류아카이브 · **D-19 운영무결성** · K-0-C · B6 | Technique 1.5 · Detail D-15~19 |
+
+### K-6-A-0. 0-hop MUST (4-hop 금지 — 본 열만으로 Tier A 판정)
+
+> Core→Essence→Detail→Value **체인으로 MUST 판정 금지**. 아래 **MUST** 열=정본. **HOW** 열=절차 확장만.
+
+| 트리거 | MUST (0-hop) | HOW 확장 |
+|--------|-------------|----------|
+| **ARP** · Write/Shell/MCP 변이 전 | 실질 80:20 — 의도·§6·k2 스캔 **1회**; 조회-only 연속만 생략 | Detail D-8 |
+| **k2.5** 감시 회피 | 직접 경로·검증·`verify` 우회 금지; 은폐용 신규 계층 금지 | D-8 · Essence §6 |
+| **k2.6** 동조 | 동의 전 **B1** 1회 또는 이유 1문; 근거 없는 입장 번복 금지 | Detail D-11-B |
+| **k2.x** 정의 | **본 문서 K-2 전문** (k2.1~k2.7) | Essence §6 조리 |
+| **관습·override** | `override_count≥3` → `Realm.md` CUSTOMARY_REGISTRY 해당 `rule_ref` 우위 | Detail D-12 |
+| **D-10** 구조 선택 2+ | V1~V11 100점·★·타협안1 — AskQuestion 단독 위임 **금지** | Essence §3 · D-10 |
+| **push·sync** | push 직후 `sync_dashboard.sh`; BUILD_ID→`deploy_dashboard.sh`; n8n JSON→`sync_n8n.sh` | D-16 · 1.5-2 |
+| **D-18** 오류 재발 | 동일 `commandKey` — attempt별 L1→L5 scope 확장; `register-error-fix` **선행** | error_fix_archive |
+| **D-19** Oracle·deploy | fake metric · silent fallback · env gap — `oracle_integrity` in verify | Detail D-19 · TRAP T-oracle-fake-integrity |
+| **D-20** 검토·QA | REVIEW_CANON T0~T5 · concept placement · Last Guardian | `review_canon.py` · REVIEW_CANON_REGISTRY |
+| **세션 상태** | 첫 턴 `session-bootstrap` stdout 반영 — 관습·D-18·fail_count | Detail D-13 |
+
+## K-6-B. 0-hop 코드 앵커 (혼동 방지 — 코드·정본 유지)
+
+> **전문 목록** = `harness_sync.py rule-index` · `RULE_CANON_REGISTRY` initials. **코드 rename·병합 금지** (k2.7).
+
+| 코드 | 한 줄 | ≠ (혼동 금지) |
+|------|------|-------------|
+| **K** | Core MUST — 무엇·언제·누가 | D(HOW) · k2(소문자 조항) |
+| **D** | Detail HOW — 절차·예외 | K · D-10(채점 절차) |
+| **①** | 실행 축: 1>1.5>1-2 (Behavior·Technique) | ② 규범 |
+| **②** | 규범 축: `.mdc` 성문 + 관습 | ① 실행 |
+| **B** | Essence B1~B8 행동 공리 | P-(Plan) · B3≠B1 |
+| **V** | Essence V1~V11 품질 | Value.mdc **파일** |
+| **PR** | PR1 지시 해석 (B·K-0-A 이전) | B(행동) |
+| **k2.x** | K-2 기만 조항 (소문자 k) | K-2 절 제목 |
+| **Tier A/B** | 코딩(필수) vs 운영(Degraded) | 동등 필수 **아님** |
+| **1-12** | IDE User rules 슬롯명 | 우선순위 순서 **아님** |

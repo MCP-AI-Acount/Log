@@ -1,0 +1,97 @@
+---
+description: ① 1.5 Tier A HOW — verify·B4·ARP·O-GATE MUST·pre-push (lazy; 0-hop via mdc_digest)
+alwaysApply: false
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `.cursor/rules/tier-a/cursorrules_Technique_AAOn.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+> 층 접두어표(E/C/D/M/B) → `tier-a/cursorrules_Core.mdc` 상단 · 여기 복제 금지 (R6-1 LG-T1)
+
+
+# ① Technique AAOn — Tier A 항시 HOW
+
+> **① 1.5** — `.cursor/rules/`에 두되 **성문(②) 아님** (K-0-C). **O 시리즈 0-hop HOW·host 포인터**. 의미 사실=Psyche · 실행 정본=`automation/o_orbit.py` · 검증=`automation/o_gate.py` · 상세 HOW=`0_Config/cc_rules/lazy/ogate.md` (구 `O_GATE_CATALOG` = 2026-06-16 사망선고 · 잔해 `0_Config/_archive/o_series_legacy/20260616T131826Z/` — O2/O3 라벨 역전분이라 복원 금지).
+
+> **Git 도메인 진입점**: Git 권한·mode·commit·integration·remote ACK의 단일 정본은
+> `projects/gitter/CANON.md`다. 본 파일은 기존 Technique 1.5 순위의 로드 포인터만
+> 소유하며 Git 정책을 다시 정의하지 않는다.
+
+## 항시 (1.5-x)
+
+| 코드 | MUST |
+|------|------|
+| **1.5-1** | **B4-GIT 포인터**: Git mode·세션 권한·commit·integration·완료 조건은 `projects/gitter/CANON.md` **G-1~G-7** |
+| **1.5-2** | verified remote ACK 이후 소비자 결속은 Gitter Canon **G-7** |
+| **1.5-2-A** | **O1-운영**: 실제 수행만 O1 말미 **한 줄(한글)** · `운영: 1단-… · Epoch-…` · 사전 허가 **금지** (D-16-A) |
+| **1.5-2-B** | **O1·실측**: 작업 턴 O1 **쉬운 한글 1줄**(O0 `n →` 1:1 · 단독이면 한 줄 요약) + **O1-운영** Epoch/닫힘 한 줄 · 변이 후 경로·검증·결과 실측 · hollow=`O1-substance` FAIL · HOW=`ogate.md` §O1 · Essence_Body §0-A-O-Beginner |
+| **1.5-3** | 핵심·test/스모크→`verify` · Arkhe·interview·deploy_dashboard→`oracle_integrity`(D-19) · push/PR→`/pre-push-guard` · 문서-only→`all` |
+| **1.5-3-A** | **ARP 80:20** — Write/Shell/MCP 변이 **직전** (Detail D-8). 조회-only 연속만 생략 |
+| **1.5-3-B** | **A2·A11 직진**: 경로=ARP→F-gate→Write · 완결=Bitu H1~H3 PASS → verify → `Orbit.record_work_done` → O4 phase=`완료` |
+| **1.5-3-C** | **A1/A11 HOW 앵커**: 보존=`Detail_Coding` D-22 · Ops D-7 · 완결=`Value` §4-C — digest는 포인터만 |
+
+### O1-운영 Epoch/닫힘 (집행 요약)
+
+| 단 | 트리거 | 채널 |
+|---|---|---|
+| **1단** | 매 코드 변경 | Bitu H1 · 린트 |
+| **2단** | 중요 기능·UI·C2+ | Bitu H2 · verify · 대시보드 |
+| **Epoch/닫힘** | O4 phase=`마무리`·Orbit `seal`·Nirvana | **회고** · **Gitter ACK** · VM · 옵시디안 · 배포 · **레거시** |
+
+→ O-gate **정의·표 정본** = Essence_Body §0-A-O · **집행** = 본 파일(AAOn) + `.cursor/hooks/o-gate-*` · CC 적응=`CLAUDE.md`/`ogate.md`(HOW KEEP · `ntd-114` done).
+
+→ Git 정본: `projects/gitter/CANON.md` · 1.5-4~9: **AAOff** · O 정의 전문 → Essence_Body §0-A-O · B2·B7 → D-14 · D-16
+
+## O4 집행 요약 (T4 Auto 매 턴 MUST)
+
+> 검증=O-gate · 실행=Orbit.
+
+> **역할 분리 (유저 정본)**
+> **Psyche**가 의미·작업 사실을 판정하고, **Orbit**가 `heal→work→seal`을 스케줄하며, **O-gate**가 그 결과와 O0~O4를 교차검증한다. **Soma**는 host 재호출과 HARD 전달만 맡는다.
+> O4 라벨은 Orbit 상태의 **projection**이지 wake 원인이 아니다. O-gate 검증 실패는 Orbit `heal`로 들어가며 Soma가 의미·순서·종결을 재판정하지 않는다.
+
+| 구분 | 정책 |
+|------|------|
+| **T4 Auto 매 턴** | O0~O4 + body MUST. O4=`phase(진행\|마무리\|완료\|종결)` + `condition(없음\|권장\|보류)` + `outcome(없음\|성공\|실패)`; legacy 단일 라벨은 표시 호환만 |
+| **O-gate 루프 생략** | O-gate HARD 교정 followup은 재귀 검증·scheduler re-entry를 만들지 않는다. host 턴의 O0~O4·O-order HARD 계약은 유지 |
+| **O4-C 판정** 0-hop | phase: `진행`=runnable work/heal · `마무리`=AI 작업 소진+Epoch/seal 타이밍 · `완료`=`work_done`(유저가 세션을 무시해도 됨) · `종결`=`close_evidence` 확정 |
+| **condition / outcome** | `권장`=비강제 선택 제안 · `보류`=외부 작업/사실 대기 · outcome은 `종결`에서만 `성공\|실패`, 그 밖은 `없음` |
+| **O-Loop 정지** | **진짜 O2**(유저만 줄 수 있는 답·승인·선택)면 정지. 정책상 답이 이미 정해졌고 AI가 실행 가능하면 O2가 아니라 `Orbit.advance` · `완료·보류`는 runnable lane 없을 때 wake OFF · 표 정본=`ogate.md §O-Loop` |
+| **형식 soft / 실체 HARD** (ntd-119 · **2026-07-16 교정**) | cite·O4 세부 rendering은 로그 only. **핵심 라벨 O0~O4 생략과 O-order 위반=HARD followup**. 실체(Loop·poll·approach)=`O_GATE_HARD_ENFORCE` |
+| **1.5-2-FACE** (★S · HOW) | **면분기**: UF=O 라벨 ON(위 행). IN=라벨검사 OFF·완결성=`debate+verify` 전가. 실체 HARD face 무관 ON. Soft OFF≠Hard OFF. Route=**SF-T0/SF-T1/SF-T2**(≠O-gate 턴 T*). MUST→Core K-6-A-0 · Manual M-0-E · Detail D-27 · `session_face` |
+| **O2 목적 공허 금지** | `1=진행/Epoch · 2=보류`·「종료할까」만으로 말걸기 **금지** (O-Loop=묻기↓). 실체 blocker·유저미룸·`condition=권장|보류`일 때만 선택 제시. 집행=`o2_hollow_purpose` |
+
+### O-Loop HARD (0-hop · 2026-07-23 · 구 O3-Loop)
+
+> **트리거**: `Orbit.next_action`이 runnable `heal|work|seal`을 반환하고 진짜 O2가 없음 → **O-Loop ON — 자기완결 작업 전량 소진까지 계속** (유저 확정 2026-08-07). 우선순위=`heal→work→seal`; O4 phase/condition 라벨만으로 wake를 켜거나 끄지 않는다. HOW·표 정본 → `ogate.md` §O-Loop · §O-Loop HARD(구 O3-Loop).
+> **Gitter 결과 경계**: Git 상태가 pending/deferred이면 **해당 Git 항목만** 대기다. 비-Git runnable lane은 계속하며, Git 상태만으로 O3 전체 루프 중단이나 O4 phase 변경을 만들지 않는다. Git 상태 의미는 Gitter G-1·G-3.
+
+| 회피 | MUST | 위반키 |
+|------|------|--------|
+| **Git pending → O3 중단** | Gitter pending은 Git 항목만 표시 · 비-Git fixable·auto_continue **계속** | `O3-loop-git-defer-abuse` |
+| **라벨만 O4 종료** | Psyche work/O3 또는 Orbit runnable lane이 남았는데 phase만 `마무리`\|`완료`\|`종결`로 탈출 **금지** | `O4-C(o3-residual-label-only-exit)` |
+| **fixable → O2** | 유저손 없이 끝낼 항목을 O2 poll로 미루기 **금지** — `Orbit.advance`로 즉시 실행 | `fixable-deferred-to-o2` |
+| **완료·보류 과잉 wake** | `work_done`+외부 대기이며 runnable lane 없음 → 모델 wake OFF. 단 `seal|heal`이 runnable이면 그 lane만 진행 | `orbit-complete-hold-wake` |
+| **종결·실패 부활** | terminal work 자동 부활 금지. Xenia 수리 사다리→Blackpaper→bootstrap repair 1회만 `heal`로 허용 | `orbit-terminal-resurrection` |
+| **consecutive-error-skip** | open D-18·O-gate HARD 잔여는 Orbit `heal` 우선 · Fix 전 `완료`·주제전환 금지 | `consecutive-error-skip` (Manual M-0) |
+
+> **금지**: runnable lane을 git3 대기·가짜 O2·open error_key·legacy O4 라벨로 끊기 = 거짓 완결.
+> **≠**: `condition=권장|보류` 자체는 scheduler가 아니다. 진짜 O2면 OFF, 답이 정해진 `advance`나 runnable lane이면 ON.
+> **집행 정본**: `o_orbit.next_action` · `o_orbit.should_continue` · `o_orbit.advance` · `o_close_gate._attach_orbit_view`. 호환 검증=`o_gate` · host 전달=`o_format_enforce._maybe_auto_continue` · 훅=`o-gate-stop-detect`/`cc-stop-ogate-detect`.
+
+### condition=`권장` 진단 (0-hop · legacy `경고` accept)
+
+> 의미 판정은 Psyche, 투영·교차검증은 O-gate 소관이다. Orbit/Soma가 아래 질문의 답을 재계산하지 않는다. 상세 HOW → `ogate.md` §O4 권장.
+
+O3 잔여가 있을 때 매 턴 1초:
+
+| # | 질문 | YES면 |
+|---|------|-------|
+| 1 | 계속보다 새 세션이 명백히 효율적인가? | `condition=권장` + 진짜 선택이면 O2 |
+| 2 | 유저가 이미 「나중에·보류·새 세션」을 정했는가? | `condition=보류`/`psyche_route` 사실만 기록 · 같은 선택 재질문 금지 |
+| 3 | 정책·원칙상 답이 이미 하나로 정해졌는가? | O2 생성 금지 · `Orbit.advance` |
+| 4 | 즉시 실행 가능 일과 외부 대기가 공존하는가? | runnable lane 우선 소진 · 남은 외부 대기만 `완료·보류` |
+
+→ `권장`은 O-Loop 정지 사유가 아니다. **동반한 진짜 O2**만 정지시키고, 이미 정해진 답은 강제 전이가 아니라 명시적 `advance`로 실행한다.

@@ -1,0 +1,163 @@
+---
+description: Rules/Commands/Skills/Subagents/Obsidian/CI 자동 라우팅
+alwaysApply: true
+---
+<!-- MIRROR-GENERATED -->
+> [!warning] 생성 파일 — 여기서 편집하지 마세요
+> 이 문서는 `automation/obsidian_mirror/Harness/ParallelUniverse/평행우주-전-헌법스냅샷/20260716-004310/agent-tooling.mdc` 에서 자동 생성된 **사본**입니다.
+> 여기 가한 수정은 다음 동기화(`obsidian_archive.regenerate_rules_mirror`)에
+> 정본 내용으로 **덮어써져 사라집니다**. 고칠 곳은 위 정본 경로입니다.
+
+# K-7. 에이전트 도구 오케스트레이션
+
+## 이중 시스템
+
+→ **Tier A/B 정본**: Core **K-0-B** (표·Degraded 행렬). 본 절은 **K-7 도구表**만.
+
+> Tier B를 Tier A와 동등 필수로 취급 **금지**. Degraded → `cursorrules_Plan.mdc` P-1.
+
+## Active Schema (신규 파일·리네임 시 — `cursorrules_Value.mdc` §1 정본)
+
+> 패턴표(`cursorrules_{계층}.mdc` · `{역할}.md` · `llm_{role}.json` · `{domain}_{role}.py` · `wf_{pipeline}.json` · `wi_{topic}.json`) **전문 → Value §1 Active Schema**. 7차원 HARNESS_7D — **신규 적용 금지**. 레거시 보존: `0_Config/_archive/_legacy_ids.json` · `rule-index --topic legacy`
+
+## Tier A — 자동 실행 (코딩 턴)
+
+> **HOW 정본** → **AAOn 1.5-2~1.5-3**. 본 표 = **라우팅·Tier B 경계**만.
+
+| 상황 | 동작 |
+|------|------|
+| 핵심 비즈니스 로직·전역 상태 수정 후 | `python automation/harness_sync.py verify` → FAIL 시 **연옥 보고** (git restore는 D-17 ①②·유저 승인 시만) |
+| **`.cursor/hooks.json` · `.cursor/hooks/*.sh` 변경** | **훅 스크립트와 `$ROOT/…` 의존 파일 동시 반영** — 부분 머지 금지. `hook_integrity` (**harness verify 내장**) PASS · 보조 훅은 `|| exit 0` degrade |
+| **`.mdc`·cc_rules N3/N4** (C3) | `automation/norm_coherence_gate.py` — baseline ratchet · harness verify `norm_coherence_smoke` 편입 |
+| Arkhe·interview·`deploy_dashboard.sh`·bundled interview 변경 후 | verify (**`oracle_integrity` 포함** · D-19) · bundle sync · deploy 후 `EXE/verify_oracle_deploy_env.sh` |
+| 구현·문서 갱신 완료 후 | `python automation/harness_sync.py all` (로컬 `Realm.md`·스냅샷. Obsidian은 Tier B) |
+| Soul Contract·헌법 hook deny | 즉시 중단 (Tier A 하드 강제) |
+| Git push/PR 전 | `/pre-push-guard` → code-guardian + harness verify |
+| **Git push 직후** | **`sync_dashboard.sh`** (BUILD_ID/web-browser 변경 시 **`deploy_dashboard.sh`**). n8n JSON 변경 시 **`sync_n8n.sh`** (Detail **D-16**) |
+| **아키·구조 선택지 2+** | **Core K-6-A D-10** — A1~A11+Ac 별점표. 공식 → Essence §3 (필요 시 Detail D-10 로드) |
+| **중요 오류 수정** | **Detail D-18** · **Cerberus H3(전반 e2e·Black paper 하위)** · resolve→**White paper** · `register-error-fix` 선행 · Cloud=`beforeShellExecution` prep hook |
+| **`.py`/test/스모크·hook 수정 후** | **Cerberus cascade** (`post-edit-check` · `run_cerberus_loop.sh --until-pass`) · C0→H1만 · C1+→H1~H3 |
+
+## Tier B — 턴·skill·command 트리거 (운영·파이프라인)
+
+> 운영 라우팅표(debate · topic/evening/foreign/weather · n8n sync · Cloud Agent · Obsidian · Marionette · Proclamation) **전문 → AAOff 1.5-9** (Degraded OK). Tier B는 Tier A와 **동등 필수 아님**.
+
+> **헌법 파일 훅**: `.cursor/rules/**/*.mdc` 수정 시 유저 명시 승인 대기. 승인 후 K-0 Rule 1 재시도.
+
+### Last Guardian — 0-hop (LG-T1~3 · Last_Guardian · [독립])
+
+> **전문** → `technique-lazy/cursorrules_Technique_AAOff.mdc` §Last Guardian · Detail **D-20** · `lastGuardianDefense` in `harness_reference_tables`.
+
+| 티어 | 시점 | 0-hop |
+|------|------|-------|
+| **LG-T1** | `.cursor/rules/**/*.mdc` Write **직전** | 이동+포인터 auto-pass · 순손실(앵커 코퍼스 소멸·>12%↓)만 STOP |
+| **LG-T2** | Write **직후** | `post-edit-check` · `rule_deletion_guard check-path` |
+| **LG-T3** | verify · push 전 | verify PASS · TRAP `T-alwaysapply-unauthorized-shrink` |
+
+### 프로젝트 페르소나 (D-4-C · D-4-D)
+
+> **0-hop** = Core **K-6-A-0** · **전문** → Detail **D-4-C~D-4-F** · `project_persona_registry.json`.
+
+## K-7-A. Command · Skill · Subagent 라우팅
+
+> **표·인덱스 정본** → `harness_reference_tables.py` **`TOOL_ROUTING_CATALOG`** (대시보드 파이프라인·도구 탭).  
+> **`/`는 IDE 별칭일 뿐** — 유저·턴 **의도**가 정본. 슬래시 없어도 동일 워크플로 **자동** 적용 (K-7-B).
+
+### 선택 순서 (의도·상황 우선 — `/` 불필요)
+
+| 트리거 | 사용 | 금지 |
+|--------|------|------|
+| **의도 = 검증·동기화·배포** (구현 후·규칙·대시보드 변경) | **skill/command 절차 즉시 Shell** | 유저에게「/쳐주세요」위임 |
+| **1~3단** 고정 스크립트·verify | workflow `harness-verify` 등 | skill·subagent |
+| **다단계** MCP·EXE·n8n·도메인 | **skill** SKILL.md | subagent |
+| **레포 전체·2+ 독립 영역** 초기 맵 | **subagent** `pipeline-explorer` (병렬 Task) | 부모 wide grep |
+| PR/push 전·push 직후 | `pre-push-guard` → `code-guardian` · D-16 sync | explore subagent |
+| Cursor 제품·IDE | Task `cursor-guide` (readonly) | 추측·browser |
+| 유저가 **`/`만** 입력 | `.cursor/commands/` 해당 파일 | — |
+
+### K-7-B. 자동 트리거 (D-2 — 확인 없이 실행)
+
+| 턴·변경 신호 | MUST (슬래시·지시 불필요) |
+|-------------|---------------------------|
+| **C1+** `.py`·test·스모크 수정 후 | `python automation/harness_sync.py verify` |
+| **C0** 한 줄·오타·린트만 | **D-20 R0**만 — verify **생략** |
+| 문서·규칙·스냅샷·구현 마무리 | `python automation/harness_sync.py all` |
+| `web-browser/`·`TOOL_ROUTING`·`dashboard_sync` 변경 | `dashboard_sync --out` · 토큰 있으면 `EXE/sync_dashboard.sh` · UI면 **BUILD_ID bump + `deploy_dashboard.sh`** |
+| 파이프라인·스케줄·백업 **맵** 질문 | Task `pipeline-explorer` (2영역=병렬) — **부모 재탐색 금지** |
+| topic/evening/foreign/weather 운영 | skill `topic-news-pipeline` 절차 Shell |
+| git push·PR 준비 | `pre-push-guard` — code-guardian → tier **HIGH**면 `EXE/run_harness_sentinel.sh pre_push` → verify |
+| **`.mdc`·index·catalog (C3) Write 직전** | **D-7 N1~N5** Norm Coherence — FAIL→STOP |
+| **코드·설정 Write 직전** (C3 **아님**) | **D-22 I-gate axis=C** F1~F+ — PASS·무트레이드오프→생략 / 트레이드오프→D-10-B 루프 |
+| **`.mdc`·schema·`harness_reference_tables` (C3) Write 직후** | **MUST** `python collaboration/harness_sentinel.py --trigger constitution --paths <변경파일>` — FAIL→수정 · 아키 2+안·담합 의심→`/debate` 3모델 **(CC)** · Cursor=`.cursor/hooks/post-edit-check`(Degraded 자동)+sentinel **수동 O1 보완** |
+| **`.mdc` 기능 대체·수정** (K-0-E) | 영향 `.mdc` **전체** — **`/debate` 또는 sentinel constitution 선행** (sentinel 1-call **대체 불가** 트리거만) | `harness_debate.py` |
+| **Write/Shell 변이 직후** | **D-20** C→R 자동 게이트 — 유저「검토」**불요** · C2+ **DELIVERABLE_PRIORITY** ①장면 |
+| **M1+ Relay 활성 턴** (cc_bridge/delegation live-pending) · command·skill | **D-4-F Relay Ladder** — Judge 유일 유저 채널 · hooks Mode-Gate | `relay-ladder-inject.sh` · Trinity-Ops §T-4 |
+| **M0 Solo** (User↔Cursor 직접 · live-pending 없음) | **Solo spine** — Judge/Relay/T-V OFF · Tier A+verify/Cerberus | Trinity-Ops §T-4a · `relay_ladder_start_hint` M0 soft |
+| **Tier B 고정 스케줄·운영 파이프라인** (launchd·n8n cron·watchdog·catchup) | **verify·inspect-loop·전체 smoke 트리거 아님** — 코딩 턴 Write/Shell **D-20 C→R**만 · `refresh_cadence` `harness_verify` |
+| **session-plan pending** + 유저 **명시 계속**(「진행\|계속\|알아서 진행\|동의\|대찬성\|계속 진행」) | **코드-only O1 즉시** — `ntd_orchestrator run-current`(레거시 모듈명=session-plan) · Phase B enqueue · **O3 defer 금지** (Essence **O2-SXN-PB**) · `.mdc` LG-T1만 승인 대기 |
+| **`ntd_orchestrator`·`session_plan.json` 변경** | `refresh-cadence` · plan `phase` 갱신 · Mac sleep→`delegate cloud` (Phase B) |
+| **Volva open LT** | 장기 예언서 **인식만** — 자동 착수 금지 · 근기≠`cc_volva.json` |
+
+> **O2**: Shell·EXE·MCP로 **가능한 것**은 O1에서 끝낸다 — O2에 sync/deploy/verify·**Phase B run-current** 위임 **금지** (Essence_Body §0-A-O · Detail D-2).
+
+### K-7-C. 턴 응답 순序 (항시 — Shell 트리거 아님)
+
+> **정본 HOW** → Detail **D-14** · **D-14-B** · **D-14-C** · Essence_Body §0-A **B2·B7·B8**. 본 절 = **alwaysApply 1홉** — 전문·판정표 **복제 금지**.
+
+| 턴 신호 | MUST (도구·Write/Shell **전**) |
+|--------|-------------------------------|
+| **질문+작업 혼합** · Y/N·「예전에/했지/있었나/만들었나」 등 **사실·기억 확인** | **B2 선답** — 1~2문(또는 네/아니오). grep·구현·배포로 질문 **대체 금지** |
+| **교정·거부·「왜」** · 설명·원인·핑계 요구 | **B7 선행** — 이해·원인·사과 **완결**. **정리용 반사만**으로 **대체 금지** |
+| **맥락 vs 반사** (diff·TODO·완료압 vs 이번 메시지) | **B8** — **항상 이번 메시지·대화 맥락** 우선 |
+| **부분 수정·skip·데이터-only** · 이번 턴 **미실행** 하위 | **A9** · O2-S defer — Essence_Body §0-A9-op (PR1·B8·§6 Scope Bleed **포인터**) |
+
+**O0**: 복합·교정 턴 — **B2/B7 본문 선행** 후 O 라벨·작업 (AAOn **1.5-2-D**).
+
+### Subagent MUST (반환 후 부모)
+
+| MUST | 내용 |
+|------|------|
+| **재탐색 금지** | subagent 요약에 **이미 나온 경로** — 부모가 동일 범위 grep·Read·explore **금지** (K-4-A·D-19와 동형). **갭·모순**만 delta 조회 · **집행**: `.cursor/hooks/subagent-harness-followup.sh` (subagentStop K-4-A/D-19 delta 주입) |
+| **병렬** | 독립 영역 2+ (예: card news + weekly) → **한 메시지**에 Task **병렬** |
+| **프롬프트** | `Return structured **Korean** summary with file paths; no file dumps` 포함 |
+| **가시성** | 유저에게 **무엇을 띄웠는지** O0 1문 (subagent 유형·목적) |
+
+### 정본 1홉 (중복 정의 금지)
+
+| 유형 | 경로 |
+|------|------|
+| commands | `.cursor/commands/` — `/pipeline-map` · `/pre-push-guard` … |
+| skills | `.cursor/skills/*/SKILL.md` |
+| agents | `.cursor/agents/*.md` |
+| hooks | `.cursor/hooks.json` |
+
+### 구현 요청 시 일원화 (A3·A8 · 0-hop)
+
+**트리거**: 유저가 구현·추가·만들어·파이프라인·skill·command·EXE·모듈을 **부탁** — **D-23 3단(설계→검토→질문 gate)** → 구조 선택 2+안(D-10).
+
+| # | MUST | 금지 |
+|---|------|------|
+| 0 | **D-23** — 1차 **표준·패턴 설계** → 2차 **웹·캐논·코드 검증** → 유저 지시와 **충돌·모호면 질문 후** Write | 지시만 듣고 **즉시** Write |
+| 1 | **기존 정본** 먼저 grep/Read — `code_skill_book` · `.cursor/skills/` · `collaboration/` · `EXE/run_*` | 없는 것처럼 **즉시** skill+command+스크립트 **3종 세트** |
+| 2 | **일원화 기본** — 실행 정본=**코드·EXE 한 경로** · skill=**포인터+다단계 절차** · command=**1회 별칭** | rule·skill·command에 **같은 MUST·표·정책** 복제 |
+| 3 | **확장** — 기존 모듈·`code_skill_book` §·skill 정본에 **델타만** | `_v2` · `legacy_` · wrapper-only **병행** |
+| 4 | **대체** — **K-0-E** MUST (debate→Cerberus→스모크→active 삭제·아카이브) | active 잔존 · debate 생략 |
+| 5 | **분리 허용** — D-10 본문에 **일원화 불가** 1줄 + 도메인·mutex·deps **증거** | 「깔끔」「나누는 게」만으로 분리 |
+
+> **조리**: Essence **A3** · **A8** · **K-0-E** · 본 절 **금지**(중복 워크플로). HOW → `code_skill_book.md` §0 · 집행 → `skill_unification_gate.py`.
+
+## MCP 사용 (Tier B — Degraded OK)
+
+> 규칙표(스키마 선행 · `mcp_auth` 직렬 · 부분 실패 한계 명시 · 파이프라인 skill 경유 · `FetchMcpResource`) **전문 → AAOff 1.5-8**. 핵심 0-hop: `CallMcpTool` 전 descriptor 읽기 **필수** · browser 우회 금지(유저 명시 시만).
+
+## Realm (Tier A 로컬 / Tier B Obsidian)
+
+- **정본**: `Realm.md` (레포 루트)
+- **Obsidian 미러** (Tier B): `Harness/Realm.md`
+- TRAP_REGISTRY: `Realm.md` `## TRAP_REGISTRY` — `harness_sync.py register-trap`
+
+## 금지
+- 동일 워크플로를 rule+command+skill에 중복 정의
+- 단순 1회 작업용 subagent → command 사용
+- VAL_MAX_MOD_FILES(3) 초과 동시 수정 → 기능 단위 분리
+- 일반 코딩 턴에서 Tier B 인프라를 필수 전제로 응답 (과엔지니어링 체감 유발)
