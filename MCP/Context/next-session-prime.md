@@ -17,4 +17,4 @@
 
 _GitHub Actions가 세션 간 공통 키워드·피벗을 추출해 여기에 추가 예정._
 
-_generated: 2026-11-04 21:21 UTC_
+_generated: 2026-11-05 21:29 UTC_
